@@ -16,7 +16,7 @@ public:
 
     void genghuan();
     void move_peo();
-    void peo_jump_set();
+
     ~MainWindow();
 protected:
     void keyPressEvent( QKeyEvent *event);
@@ -41,6 +41,7 @@ private:
     int tfang,rfang;
     public slots:
  void yidong();
+  void peo_jump_set();
 };
 
 #endif // MAINWINDOW_H
