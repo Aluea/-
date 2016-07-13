@@ -29,8 +29,10 @@ private:
     Ui::MainWindow *ui;
     QPixmap *tu[4];
     QPixmap *tu_peo_left;
+    QPixmap *tu_peo_right;
     QRect *tuq[4];
-    QRect *tuq_peo;
+    QRect *tuq_peo_left;
+    QRect *tuq_peo_right;
 
     int dq;
     QTimer *jishi;
