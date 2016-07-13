@@ -74,7 +74,7 @@ void MainWindow::peo_jump_set(){
     const int all=20;
     static int cut=0;
     cut++;
-    qDebug("%d",cut);
+    //qDebug("%d",cut);
     tuq_peo.setRect(tuq_peo.x(),FUN_JUMP(cut),67,67);
     if(cut==all){
         peo_jump_timer.stop();
