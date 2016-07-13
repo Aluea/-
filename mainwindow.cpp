@@ -47,7 +47,7 @@ void MainWindow::keyPressEvent( QKeyEvent *event){
       case 'w':
           if(peo_jump==false){
               peo_jump=true;
-              peo_jump_timer.start(10*TI);
+              peo_jump_timer.start(5*TI);
           }
           break;
       case 'd':
@@ -63,7 +63,7 @@ void MainWindow::keyPressEvent( QKeyEvent *event){
  void MainWindow::keyReleaseEvent( QKeyEvent *event){
      if(event->isAutoRepeat()==false){
          if(event->key()=='A'||event->key()=='a'||event->key()=='d'||event->key()=='D'){
-          qDebug("%c\n",event->key());
+          //qDebug("%c\n",event->key());
             jishi->stop();
             tfang=0;
             jip=false;
@@ -74,7 +74,7 @@ void MainWindow::peo_jump_set(){
     const int all=20;
     static int cut=0;
     cut++;
-    qDebug("%d",cut);
+    //qDebug("%d",cut);
     tuq_peo.setRect(tuq_peo.x(),FUN_JUMP(cut),67,67);
     if(cut==all){
         peo_jump_timer.stop();
