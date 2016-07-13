@@ -15,15 +15,16 @@ public:
     explicit MainWindow(QWidget *parent = 0);
 
     void genghuan();
+    void move_peo();
     ~MainWindow();
 protected:
     void keyPressEvent( QKeyEvent *event);
     void paintEvent (QPaintEvent *event);
-<<<<<<< HEAD
+
     void keyReleaseEvent( QKeyEvent *event);
-=======
-    void move_peo(char ch);
->>>>>>> shizhilvren
+
+
+
 private:
     Ui::MainWindow *ui;
     QPixmap *tu[4];
@@ -33,8 +34,8 @@ private:
 
     int dq;
     QTimer *jishi;
-    bool jip;
-    int fang;
+    bool jip,tdf,rdf;
+    int tfang,rfang;
     public slots:
  void yidong();
 };

@@ -1,8 +1,9 @@
 #include "mainwindow.h"
+#include <QDebug>
 #include "ui_mainwindow.h"
-
+#define ti 5
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),dq(0),fang(0),jip(false),
+    QMainWindow(parent),dq(0),tfang(0),jip(false),tdf(false),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
@@ -15,13 +16,13 @@ MainWindow::MainWindow(QWidget *parent) :
    tuq[1]=new QRect(800,0,800,250);
    tuq[2]=new QRect(0,0,800,250);
    tuq[3]=new QRect(0,0,800,250);
-<<<<<<< HEAD
+
     jishi =new QTimer(this);
      connect( jishi,SIGNAL(timeout()),this,SLOT(yidong()));
 
-=======
+
    tuq_peo=new QRect(300,175,50,75);
->>>>>>> shizhilvren
+
 }
 void MainWindow::paintEvent (QPaintEvent *event){
     QPainter painter(this);
@@ -32,67 +33,64 @@ void MainWindow::paintEvent (QPaintEvent *event){
 void MainWindow::keyPressEvent( QKeyEvent *event){
     char ch;
     ch=event->key();
-<<<<<<< HEAD
-    if(ch=='A'||ch=='a'){
-        if(jip==false){
-            fang=-1;
-            jishi->start(10);
-            jip=true;
-        }
-    }
-    if(ch=='d'||ch=='D'){
-        if(jip==false){
-            fang=1;
-            jishi->start(10);
-            jip=true;
-        }
-    }
+      switch(ch){
+      case 'a':
+      case 'A':if(jip==false){
+              tfang=-1;
+              jishi->start(ti);
+              jip=true;
+          }break;
+      case 'W':
+      case 'w':rfang=0;break;
+      case 'd':
+      case 'D':if(jip==false){
+              tfang=1;
+              jishi->start(ti);
+              jip=true;
+          }break;
+
+      }
+
 
 
 }
  void MainWindow::keyReleaseEvent( QKeyEvent *event){
+     if(event->isAutoRepeat()==false){
+         if(event->key()=='A'||event->key()=='a'||event->key()=='d'||event->key()=='D'){
+  qDebug("%c\n",event->key());
     jishi->stop();
-    fang=0;
+    tfang=0;
     jip=false;
+         }
+     }
 }
 
 void MainWindow::yidong(){
 
-=======
+
     int bu=5;//每键位移量
->>>>>>> shizhilvren
+
     int width1,height1;
     int width = tuq[dq]->width ();
     int height=tuq[dq]->height();
     if(dq<4){ width1 = tuq[dq+1]->width ();
      height1=tuq[dq+1]->height();}
-<<<<<<< HEAD
-    switch(fang){
-    case -1:tuq[dq]->setX(tuq[dq]->x()+3);tuq[dq+1]->setX(tuq[dq+1]->x()+3);break;
-    case 1:tuq[dq]->setX(tuq[dq]->x()-3);tuq[dq+1]->setX(tuq[dq+1]->x()-3);break;
-=======
-    switch(ch){
-    case 'a':
-    case 'A':
-        tuq[dq]->setX(tuq[dq]->x()+bu);
-        tuq[dq+1]->setX(tuq[dq+1]->x()+bu);
-        break;
-    case 'd':
-    case 'D':
-        tuq[dq]->setX(tuq[dq]->x()-bu);
-        tuq[dq+1]->setX(tuq[dq+1]->x()-bu);
-        break;
->>>>>>> shizhilvren
+
+    switch(tfang){
+    case -1:tuq[dq]->setX(tuq[dq]->x()+2);tuq[dq+1]->setX(tuq[dq+1]->x()+2);break;
+    case 1:tuq[dq]->setX(tuq[dq]->x()-2);tuq[dq+1]->setX(tuq[dq+1]->x()-2);break;
+
+
     }
 
-    if(fang==-1){
+    if(tfang==-1){
         if(tuq[dq]->x()>=0&&dq>0){
             dq--;
             tuq[dq]->setX(-796);
             //~
         }
     }
-    if(fang==1){
+    if(tfang==1){
         if(tuq[dq]->x()+800<=0&&dq<4){
             dq++;
             tuq[dq+1]->setX(796);
@@ -102,18 +100,18 @@ void MainWindow::yidong(){
      tuq[dq]->setHeight(height);
     if(dq<4){ tuq[dq+1]->setWidth (width1);
       tuq[dq+1]->setHeight(height1);}
-    move_peo(ch);
+    move_peo();
     update();
 }
 
-void MainWindow::move_peo(char ch){
+void MainWindow::move_peo(){
     int width=tu_peo_left->width();
     int height=tu_peo_left->height();
-    if(ch=='d'||ch=='D'){
+    if(rfang==1){
 
-    }else if(ch=='a'||ch=='A'){
+    }else if(rfang==-1){
 
-    }else if(ch=='w'||ch=='W'){
+    }else if(rfang==0){
 
     }
     tuq_peo->setX(400);
