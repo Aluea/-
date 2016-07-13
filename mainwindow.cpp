@@ -2,7 +2,7 @@
 #include <QDebug>
 #include "ui_mainwindow.h"
 #define TI 5
-#define FUN_JUMP(x) (-1.8*(x)*(x)+36*(x))
+#define FUN_JUMP(x) (1.8*(x)*(x)-36*(x)+175)
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),dq(0),tfang(0),jip(false),tdf(false),rfang(1),tu_peo_left(":/r_l"),tu_peo_right(":/r_r"),
     tuq_peo(300,175,67,67),peo_jump(false),
@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
    tuq[3]=new QRect(0,0,800,250);
     jishi =new QTimer(this);
      connect( jishi,SIGNAL(timeout()),this,SLOT(yidong()));
+     connect(&peo_jump_timer,SIGNAL(timeout()),this,SLOT(peo_jump_set()));
 
 
 
@@ -46,7 +47,7 @@ void MainWindow::keyPressEvent( QKeyEvent *event){
       case 'w':
           if(peo_jump==false){
               peo_jump=true;
-              peo_jump_timer.start(TI);
+              peo_jump_timer.start(10*TI);
           }
           break;
       case 'd':
@@ -73,10 +74,14 @@ void MainWindow::peo_jump_set(){
     const int all=20;
     static int cut=0;
     cut++;
+    qDebug("%d",cut);
     tuq_peo.setRect(tuq_peo.x(),FUN_JUMP(cut),67,67);
     if(cut==all){
         peo_jump_timer.stop();
+        peo_jump=false;
+        cut=0;
     }
+    update();
 }
 
 void MainWindow::yidong(){
