@@ -4,5 +4,6 @@
         <file alias="A2">img/bg2.jpg</file>
         <file alias="A3">img/bg3.jpg</file>
         <file alias="A4">img/bg4.jpg</file>
+        <file alias="r_l">img/peo_left.png</file>
     </qresource>
 </RCC>

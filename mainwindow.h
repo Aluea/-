@@ -19,11 +19,18 @@ public:
 protected:
     void keyPressEvent( QKeyEvent *event);
     void paintEvent (QPaintEvent *event);
+<<<<<<< HEAD
     void keyReleaseEvent( QKeyEvent *event);
+=======
+    void move_peo(char ch);
+>>>>>>> shizhilvren
 private:
     Ui::MainWindow *ui;
     QPixmap *tu[4];
+    QPixmap *tu_peo_left;
     QRect *tuq[4];
+    QRect *tuq_peo;
+
     int dq;
     QTimer *jishi;
     bool jip;
