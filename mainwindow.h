@@ -16,6 +16,7 @@ public:
 
     void genghuan();
     void move_peo();
+    void peo_jump_set();
     ~MainWindow();
 protected:
     void keyPressEvent( QKeyEvent *event);
@@ -28,15 +29,15 @@ protected:
 private:
     Ui::MainWindow *ui;
     QPixmap *tu[4];
-    QPixmap *tu_peo_left;
-    QPixmap *tu_peo_right;
+    QPixmap tu_peo_left;
+    QPixmap tu_peo_right;
+    QPixmap *tu_peo;
     QRect *tuq[4];
-    QRect *tuq_peo_left;
-    QRect *tuq_peo_right;
+    QRect tuq_peo;
 
     int dq;
-    QTimer *jishi;
-    bool jip,tdf,rdf;
+    QTimer *jishi,peo_jump_timer;
+    bool jip,tdf,rdf,peo_jump;
     int tfang,rfang;
     public slots:
  void yidong();

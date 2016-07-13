@@ -1,9 +1,11 @@
 #include "mainwindow.h"
 #include <QDebug>
 #include "ui_mainwindow.h"
-#define ti 5
+#define TI 5
+#define FUN_JUMP(x) (-1.8*(x)*(x)+36*(x))
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),dq(0),tfang(0),jip(false),tdf(false),rfang(1),
+    QMainWindow(parent),dq(0),tfang(0),jip(false),tdf(false),rfang(1),tu_peo_left(":/r_l"),tu_peo_right(":/r_r"),
+    tuq_peo(300,175,67,67),peo_jump(false),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
@@ -11,15 +13,11 @@ MainWindow::MainWindow(QWidget *parent) :
    tu[1]=new QPixmap(":/A2");
    tu[2]=new QPixmap(":/A3");
    tu[3]=new QPixmap(":/A4");
-   tu_peo_left=new QPixmap(":/r_l");
-   tu_peo_right=new QPixmap(":/r_r");
+   tu_peo=&tu_peo_right;
    tuq[0]=new QRect(0,0,800,250);
    tuq[1]=new QRect(800,0,800,250);
    tuq[2]=new QRect(0,0,800,250);
    tuq[3]=new QRect(0,0,800,250);
-   tuq_peo_left=new QRect(300,175,67,67);
-   tuq_peo_right=new QRect(300,175,67,67);
-
     jishi =new QTimer(this);
      connect( jishi,SIGNAL(timeout()),this,SLOT(yidong()));
 
@@ -30,11 +28,7 @@ void MainWindow::paintEvent (QPaintEvent *event){
     QPainter painter(this);
     painter.drawPixmap(*tuq[dq],*tu[dq]);
     painter.drawPixmap(*tuq[dq+1],*tu[dq+1]);
-    if(rfang==-1){//左
-        painter.drawPixmap(*tuq_peo_left,*tu_peo_left);
-    }else if(rfang==1){
-        painter.drawPixmap(*tuq_peo_right,*tu_peo_right);
-    }
+    painter.drawPixmap(tuq_peo,*tu_peo);
 
 }
 void MainWindow::keyPressEvent( QKeyEvent *event){
@@ -45,24 +39,25 @@ void MainWindow::keyPressEvent( QKeyEvent *event){
       case 'A':
           if(jip==false){
               rfang=tfang=-1;
-              jishi->start(ti);
+              jishi->start(TI);
               jip=true;
           }break;
       case 'W':
       case 'w':
-          rfang=0;break;
+          if(peo_jump==false){
+              peo_jump=true;
+              peo_jump_timer.start(TI);
+          }
+          break;
       case 'd':
       case 'D':
           if(jip==false){
               rfang=tfang=1;
-              jishi->start(ti);
+              jishi->start(TI);
               jip=true;
           }break;
 
       }
-
-
-
 }
  void MainWindow::keyReleaseEvent( QKeyEvent *event){
      if(event->isAutoRepeat()==false){
@@ -73,6 +68,15 @@ void MainWindow::keyPressEvent( QKeyEvent *event){
             jip=false;
          }
      }
+}
+void MainWindow::peo_jump_set(){
+    const int all=20;
+    static int cut=0;
+    cut++;
+    tuq_peo.setRect(tuq_peo.x(),FUN_JUMP(cut),67,67);
+    if(cut==all){
+        peo_jump_timer.stop();
+    }
 }
 
 void MainWindow::yidong(){
@@ -115,15 +119,12 @@ void MainWindow::yidong(){
 }
 
 void MainWindow::move_peo(){
-    int width=tu_peo_left->width();
-    int height=tu_peo_left->height();
-    if(rfang==-1){//左
-        tuq_peo_left->setRect(300,175,67,67);
-        //tuq_peo_left->setHeight(height);
+    if(rfang==-1){//
+        tuq_peo.setRect(300,tuq_peo.y(),67,67);
+        tu_peo=&tu_peo_left;
     }else if(rfang==1){//右
-        tuq_peo_right->setRect(300,175,67,67);
-       // tuq_peo_right->setWidth(width);
-       // tuq_peo_right->setHeight(height);
+        tuq_peo.setRect(300,tuq_peo.y(),67,67);
+        tu_peo=&tu_peo_right;
     }else if(rfang==0){
 
     }
