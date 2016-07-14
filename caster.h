@@ -6,15 +6,23 @@
 #include<life.h>
 #include<m_map.h>
 #define EMPTY -1
-typedef struct{
+struct pic{
     bool show;
     int id,x,y,width,height;
-}pic;
-typedef struct{
+};
+struct pic_new{
     char name;//m为背景 p为人物
     int id,x,y,width,height;
-}pic_new;
+};
 enum FANG{
     SHANG=0,XIA,ZUO,YOU
 };
+struct showturn{
+    int z;
+    int id;
+};
+bool cmp(showturn a,showturn b){
+    return a.z>b.z;
+}
+
 #endif
