@@ -10,8 +10,10 @@ class System{
         ~System();
         void key_in(const char key_val,int key_now=-1);
         void mouse_in(int mouse_x,int mouse_y,int mouse_now);
-        stack<pic>& redrew();
-        stack<pic_new>& get_new_project();
+        stack<pic>* redrew_background();
+        stack<pic>* redrew();
+
+        stack<pic_new>* get_new_project();
         void calculate();
         void peo_move(FANG fang);
     private:
@@ -19,6 +21,7 @@ class System{
         int get_id(const char ch);//取得空id
         //返回堆栈
         stack<pic> picture;
+
         stack<pic_new> picture_new;
 
 
@@ -31,7 +34,10 @@ class System{
         stack<int> id_peo_empty;
         int id_peo_max;
 
-        vector<M_map> backgroubd;
+        vector<M_map> background;
+        vector<Life> people;
+
+        int pic_now;
 };
 
 #endif

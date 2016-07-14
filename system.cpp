@@ -7,16 +7,25 @@
 //    int x,y,width,height;
 //}pic_new;
 System::System(){
+    pic_now=0;
     pic_new lin;
     lin.name='m';
     lin.x=0;
     lin.y=0;
     lin.width=700;
     lin.height=350;
-    lin.id_pic=0;
+    lin.x=696;
     new_prject(lin);
+
     lin.x=696;
     lin.id_pic=1;
+    new_prject(lin);
+
+    lin.width=700;
+    lin.height=350;
+    lin.x=335;
+    lin.y=270;
+    lin.name='p';
     new_prject(lin);
 }
 
@@ -31,11 +40,19 @@ void System::key_in(const char key_val,int key_now/*-1*/){
 void System::mouse_in(int mouse_x,int mouse_y,int mouse_now){
 
 }
+stack<pic>* System::redrew_background(){
+    int id=background[pic_now].get_id_pic_chuang();
+    picture.push((id_map.find(id))->second);
+    id=background[pic_now+1].get_id_pic_chuang();
+    picture.push(id_map.find(id)->second);
+    return &picture;
+}
 
-stack<pic>& System::redrew(){
+stack<pic>* System::redrew(){
 
 }
-stack<pic_new>& System::get_new_project(){
+
+stack<pic_new>* System::get_new_project(){
 
 }
 
@@ -48,22 +65,37 @@ void System::peo_move(FANG fang){
 
 void System::new_prject(pic_new& obj){
     int id;
+    pic lin;
     switch(obj.name){
         case 'm'://背景
             id=get_id('m');
-            pic lin;
-            lin.id=id;
+            lin.id_area=id;
             lin.x=obj.x;
             lin.y=obj.y;
             lin.width=obj.width;
             lin.height=obj.height;
             lin.show=true;
+            lin.type='m';
+            lin.z=100;
             id_map.insert(pair<int,pic>(id,lin));
-            backgroubd.push_back(M_map(lin.id,obj.id_pic,lin.x,lin.y));
+            background.push_back(M_map(lin.id_area,obj.id_pic,lin.x,lin.y));
             break;
         case 'p'://人物
             id=get_id('p');
-
+            lin.id_area=id;
+            lin.x=obj.x;
+            lin.y=obj.y;
+            lin.width=obj.width;
+            lin.height=obj.height;
+            lin.show=true;
+            lin.type='p';
+            lin.z=0;
+            id_peo.insert(pair<int,pic>(id,lin));
+            Life peo(2,lin.id_area,lin.x,lin.y,0,lin.width,lin.height);
+            for(int i=0;i<peo.get_id_count();i++){
+                peo.setid(i,i);
+            }
+            people.push_back(peo);
             break;
     }
 }
