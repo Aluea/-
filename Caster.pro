@@ -11,3 +11,6 @@ SOURCES += \
     m_ios.cpp \
     main.cpp
 
+RESOURCES += \
+    ziyuan.qrc
+
