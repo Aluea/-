@@ -8,12 +8,12 @@
 #define EMPTY -1
 struct pic{
     bool show;
-    int id,x,y,width,height;
+    char type;
+    int id_pic,id_area,x,y,z,width,height;
 };
 struct pic_new{
-    char name;//m为背景 p为人物
-
-    int x,y,width,height;
+    char name;//m为背景 p为人
+    int x,y,width,height,id_pic;
 };
 
 
