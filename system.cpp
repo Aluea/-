@@ -148,3 +148,66 @@ int System::get_id(const char ch){
             break;
     }
 }
+
+void System::move(int fang){
+if(fang==-1){
+if(rtd==0){
+if(hero.x<=140){
+    rtd=1;
+    tu_move(fang);
+}
+else{
+    peo_move(fang);
+}
+
+}
+if(rtd==1){
+if(hero.x>=450){
+    rtd=0;
+    peo_move(fang);
+}
+else{
+    tu_move(fang);
+}
+}
+}
+if(fang==1){
+if(rtd==0){
+if(hero.x>=500){
+    rtd=1;
+    tu_move(fang);
+}
+else{
+    peo_move(fang);
+}
+}
+if(rtd==1){
+if(hero.x<=300){
+    rtd=0;
+    peo_move(fang);
+}
+else{
+    tu_move(fang);
+}
+}
+}
+}
+void System::peo_move(int fang){
+hero.x+=fang;
+}
+
+void System::tu_move(int fang){
+if(fang==-1){
+if(backgroubd[picnow].x>=0&&picnow>0){
+picnow--;
+backgroubd[picnow].x=-696;
+//~
+}
+}
+if(fang==1){
+if(backgroubd[picnow].x+700<=0&&picnow<4){
+picnow--;
+backgroubd[picnow+1].x=696;
+}
+}
+}

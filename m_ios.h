@@ -29,7 +29,7 @@ private:
 
 public slots:
      void peo_jump_set();
-    // void move();
+    void move();
      void key_bourd_fun();
      void face_to();
 
