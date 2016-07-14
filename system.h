@@ -34,10 +34,11 @@ class System{
         stack<int> id_peo_empty;
         int id_peo_max;
 
-        vector<M_map> background;
-        vector<Life> people;
+        M_map background[20];
+        Life people[1000];
 
         int pic_now;
+        Life hero;
 };
 
 #endif
