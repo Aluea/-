@@ -19,18 +19,18 @@ my_ios::my_ios(QWidget *parent):QWidget(parent){
         else dsf[i]=0;
     }
     for(int i=0;i<3000;i++){
-        if(i<=2)wsf[i]=i;   //值为载入那张图
-        else wsf[i]=-1;
+        if(i<=2)wsf[i]=1;   //值为载入那张图
+        else wsf[i]=0;
     }
     count=2;
-    st[0].id=0;st[1].id=1;
+    st[0].id=0;st[1].id=1;st[0].pic=0;st[1].pic=1;
 }
 void my_ios::paintEvent (QPaintEvent *event){
     QPainter painter(this);
     painter.drawPixmap(*dtuq[dq],*dtu[dq]);
     painter.drawPixmap(*dtuq[dq+1],*dtu[dq+1]);
     for(int i=0;i<count;i++){
-        painter.drawPixmap(*tuq[st[i].id],*tu[wsf[st[i].id]]);
+        painter.drawPixmap(*tuq[st[i].id],*tu[st[i].pic]);
     }
 
 }
