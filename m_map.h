@@ -6,9 +6,9 @@ class M_map{
         ~M_map();
         int get_id_pic_chuang() const;
         int get_id_pic() const;
-
+        int x,y;
     private:
-        int x_win,y_win;
+
         int id_pic_chuang;//0~9为背景
         int id_pic;
 };

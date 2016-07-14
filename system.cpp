@@ -25,6 +25,10 @@ System::System():
     lin.id_pic=1;
     new_prject(lin);
 
+    lin.x=696;
+    lin.id_pic=2;
+    new_prject(lin);
+
     lin.width=67;
     lin.height=67;
     lin.x=335;
