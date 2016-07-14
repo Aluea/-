@@ -112,7 +112,13 @@ compiler_rcc_make_all: release/qrc_ziyuan.cpp
 compiler_rcc_clean:
 	-$(DEL_FILE) release/qrc_ziyuan.cpp
 release/qrc_ziyuan.cpp: ../ziyuan.qrc \
-		C:/Qt/Qt5.7.0/5.7/mingw53_32/bin/rcc.exe
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/bin/rcc.exe \
+		../img/bg1.jpg \
+		../img/peo_left.png \
+		../img/bg2.jpg \
+		../img/peo_right.png \
+		../img/bg3.jpg \
+		../img/bg4.jpg
 	'C:\Qt\Qt5.7.0\5.7\mingw53_32\bin\rcc.exe' -name ziyuan ../ziyuan.qrc -o release/qrc_ziyuan.cpp
 
 compiler_moc_header_make_all: release/moc_m_ios.cpp
@@ -427,6 +433,9 @@ release/moc_m_ios.cpp: C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtGui/QtGui \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtWidgets/QWidget \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtWidgets/qwidget.h \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtWidgets/qsizepolicy.h \
+		../caster.h \
+		../life.h \
+		../m_map.h \
 		../m_ios.h \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/bin/moc.exe
 	'C:\Qt\Qt5.7.0\5.7\mingw53_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/Qt5.7.0/5.7/mingw53_32/mkspecs/win32-g++ -IE:/code/qt/Caster/Caster -IC:/Qt/Qt5.7.0/5.7/mingw53_32/include -IC:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtWidgets -IC:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtGui -IC:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtANGLE -IC:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore -I. ../m_ios.h -o release/moc_m_ios.cpp
@@ -756,7 +765,10 @@ release/m_ios.o: ../m_ios.cpp ../m_ios.h \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtGui/qtguiversion.h \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtWidgets/QWidget \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtWidgets/qwidget.h \
-		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtWidgets/qsizepolicy.h
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtWidgets/qsizepolicy.h \
+		../caster.h \
+		../life.h \
+		../m_map.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/m_ios.o ../m_ios.cpp
 
 release/main.o: ../main.cpp ../m_ios.h \
@@ -1069,6 +1081,9 @@ release/main.o: ../main.cpp ../m_ios.h \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtWidgets/QWidget \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtWidgets/qwidget.h \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtWidgets/qsizepolicy.h \
+		../caster.h \
+		../life.h \
+		../m_map.h \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtWidgets/QApplication \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtWidgets/qapplication.h \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtWidgets/qdesktopwidget.h
@@ -1080,7 +1095,7 @@ release/system.o: ../system.cpp ../system.h \
 		../m_map.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/system.o ../system.cpp
 
-release/life.o: ../life.cpp 
+release/life.o: ../life.cpp ../life.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/life.o ../life.cpp
 
 release/m_map.o: ../m_map.cpp ../m_map.h

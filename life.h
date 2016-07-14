@@ -10,8 +10,12 @@ class Life{
     private:
         int x_true,y_true,z_true,width_true,height_true;
         int x_win,y_win;
+
         int *id_pic;
         int id_count;
+
+
+
 
 };
 #endif
