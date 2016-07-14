@@ -7,19 +7,12 @@
 #include<m_map.h>
 #define EMPTY -1
 struct pic{
-    bool show;
-    char type;
-    int id_pic,id_area,x,y,z,width,height;
-};
-struct pic_new{
-    char name;//m为背景 p为人
-    int x,y,width,height,id_pic;
+    int x,y,w,h;
+    int id_pic,idarea;
+    int type;
+    bool m_exit,is_new;
 };
 
-
-enum FANG{
-    SHANG=0,XIA,ZUO,YOU
-};
 struct showturn{
     int z;
     int id;

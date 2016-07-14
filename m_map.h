@@ -2,14 +2,15 @@
 #define __M_MAP__
 class M_map{
     public:
-        M_map(int id_pic_chuang,int id_pic,int x_win,int y_win);
+        M_map();
+        void set(int idarea,int id_pic,int x,int y,int w,int h);
         ~M_map();
-        int get_id_pic_chuang() const;
+        int get_idarea() const;
         int get_id_pic() const;
-        int x,y;
+        int x,y,w,h;
     private:
 
-        int id_pic_chuang;//0~9为背景
+        int idarea;//0~9为背景
         int id_pic;
 };
 #endif

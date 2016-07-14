@@ -13,31 +13,27 @@ class System{
         stack<pic>* redrew_background();
         stack<pic>* redrew();
 
-        stack<pic_new>* get_new_project();
+        //stack<pic_new>* get_new_project();
         void calculate();
-        void peo_move(FANG fang);
+        void peo_move(int fang);
+        void move(int fang);
+        void tu_move(int fang);
     private:
-        void new_prject(pic_new& obj);//新建对象
-        int get_id(const char ch);//取得空id
+        void new_prject();//新建对象
+        int get_id();//取得空id
         //返回堆栈
         stack<pic> picture;
 
-        stack<pic_new> picture_new;
-
-
         //图区id
-        map<int,pic> id_map;
-        stack<int> id_map_empty;
-        int id_map_max;
-
-        map<int,pic> id_peo;
-        stack<int> id_peo_empty;
-        int id_peo_max;
+        //此处有id
+        int area_id[3000];
+        bool area_id_use[3000]={false};
 
         M_map background[20];
         Life people[1000];
 
         int pic_now;
+        int rtd;
         Life hero;
 };
 
