@@ -12,7 +12,7 @@ typedef struct{
 }pic;
 typedef struct{
     char name;//m为背景 p为人物
-    int id,x,y,width,height;
+    int x,y,width,height;
 }pic_new;
 enum FANG{
     SHANG=0,XIA,ZUO,YOU

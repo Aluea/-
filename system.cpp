@@ -2,8 +2,18 @@
 #include<caster.h>
 #include<m_map.h>
 
+//typedef struct{
+//    char name;//m为背景 p为人物
+//    int x,y,width,height;
+//}pic_new;
 System::System(){
-
+    pic_new lin;
+    lin.name='m';
+    lin.x=0;
+    lin.y=0;
+    lin.width=1080;
+    lin.height=720;
+    new_prject(lin);
 }
 
 System::~System(){
@@ -36,23 +46,24 @@ void System::new_prject(pic_new& obj){
     int id;
     switch(obj.name){
         case 'm'://背景
-            id=get_id_empty('m');
+            id=get_id('m');
             pic lin;
             lin.id=id;
-            lin.x=0;
-            lin.y=0;
-            lin.width=1080;
-            lin.height=720;
+            lin.x=obj.x;
+            lin.y=obj.y;
+            lin.width=obj.width;
+            lin.height=obj.height;
             lin.show=true;
             id_map.insert(pair<int,pic>(id,lin));
+            backgroubd.push_back(M_map(lin.id,lin.x,lin.y,lin.width,lin.height));
             break;
         case 'p'://人物
-            id=get_id_empty('p');
+            id=get_id('p');
             break;
     }
 }
-int System::get_id_empty(const char ch){
-    switch(obj.name){
+int System::get_id(const char ch){
+    switch(ch){
         case 'm'://背景
             if(id_map_empty.empty()){
                 return id_map_max++;

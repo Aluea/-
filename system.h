@@ -2,6 +2,7 @@
 #define __SYSTEM__
 #include<iostream>
 #include<caster.h>
+#include<vector>
 using namespace std;
 class System{
     public:
@@ -16,16 +17,21 @@ class System{
     private:
         void new_prject(pic_new& obj);//新建对象
         int get_id(const char ch);//取得空id
+        //返回堆栈
         stack<pic> picture;
         stack<pic_new> picture_new;
 
+
+        //图区id
         map<int,pic> id_map;
-        stact<int> id_map_empty;
+        stack<int> id_map_empty;
         int id_map_max;
 
         map<int,pic> id_peo;
-        stact<int> id_peo_empty;
+        stack<int> id_peo_empty;
         int id_peo_max;
+
+        vector<M_map> backgroubd;
 };
 
 #endif
