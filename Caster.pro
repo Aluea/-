@@ -16,3 +16,6 @@ SOURCES += \
     m_map.cpp \
     caster.cpp
 
+RESOURCES += \
+    ziyuan.qrc
+
