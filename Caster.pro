@@ -13,5 +13,6 @@ SOURCES += \
     main.cpp \
     system.cpp \
     life.cpp \
-    m_map.cpp
+    m_map.cpp \
+    caster.cpp
 

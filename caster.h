@@ -17,6 +17,4 @@ typedef struct{
 enum FANG{
     SHANG=0,XIA,ZUO,YOU
 };
-
-
 #endif

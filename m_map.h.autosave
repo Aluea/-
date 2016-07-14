@@ -3,7 +3,7 @@
 class M_map{
     public:
         m_map();
-        ~m_map();
+        viatul ~m_map();
     private:
         int x_win,y_win,width_win,height_win;
         int id_pic;//0~9为背景

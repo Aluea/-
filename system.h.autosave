@@ -14,8 +14,8 @@ class System{
         void calculate();
         void peo_move(FANG fang);
     private:
-        void new_prject(pic_new& obj);
-        int get_id(const char ch);
+        void new_prject(pic_new& obj);//新建对象
+        int get_id(const char ch);//取得空id
         stack<pic> picture;
         stack<pic_new> picture_new;
 

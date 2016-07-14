@@ -36,6 +36,7 @@ void System::new_prject(pic_new& obj){
     switch(obj.name){
         case 'm'://背景
             id=get_id_empty('m');
+            id_map.insert(pair<int,M_map>(id,M_map()))
             break;
         case 'p'://人物
             id=get_id_empty('p');

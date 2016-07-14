@@ -5,6 +5,6 @@ M_map::m_map(int x_win,int y_win,int width_win,int height_win,int id_pic):
 
     }
 
-M_map::~m_map(){
+virtual M_map::~m_map(){
 
 }
