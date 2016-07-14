@@ -5,9 +5,11 @@ HEADERS += \
     m_ios.h \
     life.h \
     m_map.h \
-    arton.h
+    arton.h \
+    caster.h
 
 SOURCES += \
     m_ios.cpp \
-    main.cpp
+    main.cpp \
+    system.cpp
 
