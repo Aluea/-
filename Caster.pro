@@ -11,5 +11,7 @@ HEADERS += \
 SOURCES += \
     m_ios.cpp \
     main.cpp \
-    system.cpp
+    system.cpp \
+    life.cpp \
+    m_map.cpp
 

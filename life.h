@@ -5,6 +5,8 @@ class life{
         life();
         ~life();
     private:
+        int x_true,y_true,z_true,width_true,height_true;
+        int x_win,y_win,width_win,height_win;
+        int id_pic;
 };
-
 #endif

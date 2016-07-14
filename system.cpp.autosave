@@ -1,7 +1,7 @@
 #include<system.h>
 
 System::System(){
-
+    
 }
 
 System::~System(){
@@ -24,5 +24,5 @@ void System::calculate(){
 
 }
 void System::peo_move(FANG fang){
-
+    
 }
