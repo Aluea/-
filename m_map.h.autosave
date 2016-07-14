@@ -2,8 +2,8 @@
 #define __M_MAP__
 class M_map{
     public:
-        m_map();
-        viatul ~m_map();
+        m_map(int id_pic,int x_win,int y_win,int width_win,int height_win);
+        virtual ~m_map();
     private:
         int x_win,y_win,width_win,height_win;
         int id_pic;//0~9为背景

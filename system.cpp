@@ -1,5 +1,6 @@
 #include<system.h>
 #include<caster.h>
+#include<m_map.h>
 
 System::System(){
 
@@ -36,7 +37,14 @@ void System::new_prject(pic_new& obj){
     switch(obj.name){
         case 'm'://背景
             id=get_id_empty('m');
-            id_map.insert(pair<int,M_map>(id,M_map()))
+            pic lin;
+            lin.id=id;
+            lin.x=0;
+            lin.y=0;
+            lin.width=1080;
+            lin.height=720;
+            lin.show=true;
+            id_map.insert(pair<int,pic>(id,lin));
             break;
         case 'p'://人物
             id=get_id_empty('p');
