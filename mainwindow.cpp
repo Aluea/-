@@ -1,25 +1,20 @@
 #include "mainwindow.h"
 #include<iostream>
 #include <QDebug>
-<<<<<<< .merge_file_a03672
-=======
-<<<<<<< HEAD
+
 #include<qtimer.h>
 #include<QKeyEvent>
 #include "ui_mainwindow.h"
 #include<iostream>
 using namespace std;
 #define TI 5
-=======
->>>>>>> .merge_file_a04216
+
 
 #include "ui_mainwindow.h"
 using namespace std;
 #define TI 10
-<<<<<<< .merge_file_a03672
-=======
->>>>>>> 2c9ca98d72854e6edee47eacc40c5df8bbbe7f6c
->>>>>>> .merge_file_a04216
+
+
 #define FUN_JUMP(x) (1.8*(x)*(x)-36*(x)+175)
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),dq(0),tfang(0),jip(false),tdf(false),rfang(1),tu_peo_left(":/r_l"),tu_peo_right(":/r_r"),
@@ -43,20 +38,12 @@ MainWindow::MainWindow(QWidget *parent) :
      connect( jishi1,SIGNAL(timeout()),this,SLOT(yidong()));
       connect( jishi2,SIGNAL(timeout()),this,SLOT(yidong()));
      connect(&peo_jump_timer,SIGNAL(timeout()),this,SLOT(peo_jump_set()));
-<<<<<<< .merge_file_a03672
-=======
-<<<<<<< HEAD
-=======
->>>>>>> .merge_file_a04216
+
       connect(&peo_move_timer1,SIGNAL(timeout()),this,SLOT(peo_move()));
       connect(&peo_move_timer2,SIGNAL(timeout()),this,SLOT(ting()));
     hero.x=300;
     hero.y=175;
 
-<<<<<<< .merge_file_a03672
-=======
->>>>>>> 2c9ca98d72854e6edee47eacc40c5df8bbbe7f6c
->>>>>>> .merge_file_a04216
 }
 void MainWindow::paintEvent (QPaintEvent *event){
     QPainter painter(this);
@@ -143,9 +130,6 @@ void MainWindow::ting(){
      peo_move_timer2.stop();
     peo_move_pan=false;
 }
-<<<<<<< .merge_file_a03672
-=======
-<<<<<<< HEAD
 // void MainWindow::keyReleaseEvent( QKeyEvent *event){
 //     if(event->isAutoRepeat()==false){
 //         if(event->key()=='A'||event->key()=='a'||event->key()=='d'||event->key()=='D'){
@@ -157,8 +141,7 @@ void MainWindow::ting(){
 //     }
 
 //}
-=======
->>>>>>> .merge_file_a04216
+
  /*void MainWindow::keyReleaseEvent( QKeyEvent *event){
    if(event->isAutoRepeat()==false){
          if(event->key()=='A'||event->key()=='a'||event->key()=='d'||event->key()=='D'){
@@ -186,10 +169,7 @@ void MainWindow::ting(){
 
 }
 }*/
-<<<<<<< .merge_file_a03672
-=======
->>>>>>> 2c9ca98d72854e6edee47eacc40c5df8bbbe7f6c
->>>>>>> .merge_file_a04216
+
 void MainWindow::peo_jump_set(){
     const int all=20;
     static int cut=0;
@@ -206,9 +186,7 @@ void MainWindow::peo_jump_set(){
 }
 
 void MainWindow::yidong(){
-<<<<<<< .merge_file_a03672
-=======
-<<<<<<< HEAD
+
     int bu=5;//每键位移量
     const int all=100;
     static int cut=0;
@@ -222,8 +200,7 @@ void MainWindow::yidong(){
     switch(tfang){
         case -1:tuq[dq]->setX(tuq[dq]->x()+2);tuq[dq+1]->setX(tuq[dq+1]->x()+2);break;
         case 1:tuq[dq]->setX(tuq[dq]->x()-2);tuq[dq+1]->setX(tuq[dq+1]->x()-2);break;
-=======
->>>>>>> .merge_file_a04216
+
 
 
     int bu=5;
@@ -237,10 +214,7 @@ void MainWindow::yidong(){
     switch(tfang){
     case -1:tuq[dq]->setRect(tuq[dq]->x()+2,0,800,250); tuq[dq+1]->setRect(tuq[dq+1]->x()+2,0,800,250);break;
     case 1:tuq[dq]->setRect(tuq[dq]->x()-2,0,800,250);tuq[dq+1]->setRect(tuq[dq+1]->x()-2,0,800,250);break;
-<<<<<<< .merge_file_a03672
-=======
->>>>>>> 2c9ca98d72854e6edee47eacc40c5df8bbbe7f6c
->>>>>>> .merge_file_a04216
+
     }
 
     if(tfang==-1){
@@ -256,33 +230,21 @@ void MainWindow::yidong(){
             tuq[dq+1]->setX(796);
         }
     }
-<<<<<<< .merge_file_a03672
+
 
     //move_peo();
 
-=======
-<<<<<<< HEAD
-    tuq[dq]->setWidth (width);
-     tuq[dq]->setHeight(height);
-    if(dq<4){ tuq[dq+1]->setWidth (width1);
-      tuq[dq+1]->setHeight(height1);}
-    move_peo();
-    if(cut==all){
-        //jishi->stop();
-        tfang=-2;
-        jishi->changeInterval(10);
-        jip=false;
-        cut=0;
-    }
-=======
+
+
+
 
     //move_peo();
 
->>>>>>> 2c9ca98d72854e6edee47eacc40c5df8bbbe7f6c
->>>>>>> .merge_file_a04216
+
     update();
 }
 }
+    }
 
 void MainWindow::peo_move(){
    /* if(rfang==-1){//
