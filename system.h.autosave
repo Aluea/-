@@ -10,10 +10,14 @@ class System{
         void key_in(const char key_val,int key_now=-1);
         void mouse_in(int mouse_x,int mouse_y,int mouse_now);
         stack<pic>& redrew();
+        stack<pic_new>& get_new_project();
         void calculate();
         void peo_move(FANG fang);
     private:
+        void new_prject(pic_new& obj);//新建对象
+        int get_id(const char ch);//取得空id
         stack<pic> picture;
+        stack<pic_new> picture_new;
 
         map<int,Life> id_map;
         stact<int> id_map_empty;

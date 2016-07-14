@@ -1,0 +1,7 @@
+life::life(){
+
+}
+
+life::~life(){
+
+}
