@@ -20,10 +20,7 @@ private:
      int dsf[100],wsf[3000];
    // 此处有图片
     //定时器和线程
-     struct showturn{
-         int z;
-         int id;
-     }st[3000];
+    
     
 
 public slots:
