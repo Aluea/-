@@ -106,10 +106,7 @@ void my_ios::peo_jump_set(){
     }
     update();
 }
-/*void MainWindow::move(){
-    while(){
-
-    }
-    update();
-}*/
+void my_ios::move(){
+    
+}
 
