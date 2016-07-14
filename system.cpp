@@ -1,4 +1,5 @@
 #include<system.h>
+#include<caster.h>
 
 System::System(){
 
@@ -19,10 +20,47 @@ void System::mouse_in(int mouse_x,int mouse_y,int mouse_now){
 stack<pic>& System::redrew(){
 
 }
+stack<pic_new>& System::get_new_project(){
+
+}
 
 void System::calculate(){
 
 }
 void System::peo_move(FANG fang){
 
+}
+
+void System::new_prject(pic_new& obj){
+    int id;
+    switch(obj.name){
+        case 'm'://背景
+            id=get_id_empty('m');
+            break;
+        case 'p'://人物
+            id=get_id_empty('p');
+            break;
+    }
+}
+int System::get_id_empty(const char ch){
+    switch(obj.name){
+        case 'm'://背景
+            if(id_map_empty.empty()){
+                return id_map_max++;
+            }else{
+                int ret=id_map_empty.top();
+                id_map_empty.pop();
+                return ret;
+            }
+            break;
+        case 'p'://人物
+            if(id_peo_empty.empty()){
+                return id_peo_max++;
+            }else{
+                int ret=id_peo_empty.top();
+                id_peo_empty.pop();
+                return ret;
+            }
+            break;
+    }
 }
