@@ -40,7 +40,7 @@ private:
     };
     ren hero;
     int dq;
-    QTimer *jishi1,*jishi2,peo_jump_timer,peo_move_timer,key_board_timer;
+    QTimer *jishi1,*jishi2,peo_jump_timer,peo_move_timer,key_mouse_timer;
     bool jip,tdf,rdf,peo_jump;
     int tfang,rfang,rtd,ffang,ji;
     public slots:
@@ -49,6 +49,7 @@ private:
     void peo_move();
     //void ting();
     void key_bourd_fun();
+    void face_to();
 };
 
 #endif // MAINWINDOW_H

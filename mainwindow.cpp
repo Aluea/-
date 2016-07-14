@@ -27,11 +27,20 @@ MainWindow::MainWindow(QWidget *parent) :
     connect( jishi2,SIGNAL(timeout()),this,SLOT(yidong()));
     connect(&peo_jump_timer,SIGNAL(timeout()),this,SLOT(peo_jump_set()));
     connect(&peo_move_timer,SIGNAL(timeout()),this,SLOT(peo_move()));
-    connect(&key_board_timer,SIGNAL(timeout()),this,SLOT(key_bourd_fun()));
+    connect(&key_mouse_timer,SIGNAL(timeout()),this,SLOT(key_bourd_fun()));
+    connect(&key_mouse_timer,SIGNAL(timeout()),this,SLOT(face_to()));
     hero.x=300;
     hero.y=175;
-    key_board_timer.start(30);
+   key_mouse_timer.start(30);
 }
+void MainWindow::face_to(){
+    QPoint aaa = cursor().pos();
+    aaa=mapFromGlobal(aaa);
+    if(aaa.x()>hero.x)tu_peo=&tu_peo_right;
+    else tu_peo=&tu_peo_left;
+    update();
+}
+
 void MainWindow::key_bourd_fun(){
     bool key[256]={false},flag=true;
     key['A']=GetKeyState('A')<0?true:false;
@@ -176,12 +185,12 @@ void MainWindow::peo_move(){
     case 1:
         hero.x+=2;
         tuq_peo.setRect(hero.x,hero.y,67,67);
-        tu_peo=&tu_peo_right;
+
         break;
     case -1:
         hero.x-=2;
         tuq_peo.setRect(hero.x,hero.y,67,67);
-        tu_peo=&tu_peo_left;
+
         break;
 }
 
