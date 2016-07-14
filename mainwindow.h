@@ -22,7 +22,7 @@ protected:
     void keyPressEvent( QKeyEvent *event);
     void paintEvent (QPaintEvent *event);
 
-    void keyReleaseEvent( QKeyEvent *event);
+    //void keyReleaseEvent( QKeyEvent *event);
 
 
 

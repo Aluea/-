@@ -1,6 +1,10 @@
 #include "mainwindow.h"
 #include <QDebug>
+#include<qtimer.h>
+#include<QKeyEvent>
 #include "ui_mainwindow.h"
+#include<iostream>
+using namespace std;
 #define TI 5
 #define FUN_JUMP(x) (1.8*(x)*(x)-36*(x)+175)
 MainWindow::MainWindow(QWidget *parent) :
@@ -21,9 +25,6 @@ MainWindow::MainWindow(QWidget *parent) :
     jishi =new QTimer(this);
      connect( jishi,SIGNAL(timeout()),this,SLOT(yidong()));
      connect(&peo_jump_timer,SIGNAL(timeout()),this,SLOT(peo_jump_set()));
-
-
-
 }
 void MainWindow::paintEvent (QPaintEvent *event){
     QPainter painter(this);
@@ -60,16 +61,17 @@ void MainWindow::keyPressEvent( QKeyEvent *event){
 
       }
 }
- void MainWindow::keyReleaseEvent( QKeyEvent *event){
-     if(event->isAutoRepeat()==false){
-         if(event->key()=='A'||event->key()=='a'||event->key()=='d'||event->key()=='D'){
-          //qDebug("%c\n",event->key());
-            jishi->stop();
-            tfang=0;
-            jip=false;
-         }
-     }
-}
+// void MainWindow::keyReleaseEvent( QKeyEvent *event){
+//     if(event->isAutoRepeat()==false){
+//         if(event->key()=='A'||event->key()=='a'||event->key()=='d'||event->key()=='D'){
+//            //jishi->stop();
+//            //tfang=0;
+//             tfang=-2;
+//             jip=false;
+//         }
+//     }
+
+//}
 void MainWindow::peo_jump_set(){
     const int all=20;
     static int cut=0;
@@ -85,10 +87,10 @@ void MainWindow::peo_jump_set(){
 }
 
 void MainWindow::yidong(){
-
-
     int bu=5;//每键位移量
-
+    const int all=100;
+    static int cut=0;
+    cut++;
     int width1,height1;
     int width = tuq[dq]->width ();
     int height=tuq[dq]->height();
@@ -96,10 +98,8 @@ void MainWindow::yidong(){
      height1=tuq[dq+1]->height();}
 
     switch(tfang){
-    case -1:tuq[dq]->setX(tuq[dq]->x()+2);tuq[dq+1]->setX(tuq[dq+1]->x()+2);break;
-    case 1:tuq[dq]->setX(tuq[dq]->x()-2);tuq[dq+1]->setX(tuq[dq+1]->x()-2);break;
-
-
+        case -1:tuq[dq]->setX(tuq[dq]->x()+2);tuq[dq+1]->setX(tuq[dq+1]->x()+2);break;
+        case 1:tuq[dq]->setX(tuq[dq]->x()-2);tuq[dq+1]->setX(tuq[dq+1]->x()-2);break;
     }
 
     if(tfang==-1){
@@ -120,6 +120,13 @@ void MainWindow::yidong(){
     if(dq<4){ tuq[dq+1]->setWidth (width1);
       tuq[dq+1]->setHeight(height1);}
     move_peo();
+    if(cut==all){
+        //jishi->stop();
+        tfang=-2;
+        jishi->changeInterval(10);
+        jip=false;
+        cut=0;
+    }
     update();
 }
 
