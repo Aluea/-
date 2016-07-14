@@ -11,8 +11,12 @@ System::System(){
     lin.name='m';
     lin.x=0;
     lin.y=0;
-    lin.width=1080;
-    lin.height=720;
+    lin.width=700;
+    lin.height=350;
+    lin.id_pic=0;
+    new_prject(lin);
+    lin.x=696;
+    lin.id_pic=1;
     new_prject(lin);
 }
 
@@ -55,10 +59,11 @@ void System::new_prject(pic_new& obj){
             lin.height=obj.height;
             lin.show=true;
             id_map.insert(pair<int,pic>(id,lin));
-            backgroubd.push_back(M_map(lin.id,lin.x,lin.y,lin.width,lin.height));
+            backgroubd.push_back(M_map(lin.id,obj.id_pic,lin.x,lin.y));
             break;
         case 'p'://人物
             id=get_id('p');
+
             break;
     }
 }

@@ -13,7 +13,7 @@ struct pic{
 struct pic_new{
     char name;//m为背景 p为人物
 
-    int x,y,width,height;
+    int x,y,width,height,id_pic;
 };
 
 
