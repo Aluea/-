@@ -23,6 +23,7 @@ enum FANG{
 struct showturn{
     int z;
     int id;
+    int pic;
 };
 bool cmp(showturn a,showturn b);
 
