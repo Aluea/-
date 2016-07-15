@@ -1,9 +1,14 @@
 #include<life.h>
- Life::Life(int state,int id,int x,int y,int z,int width,int height):
-    id_count(state),x(x),y(y),idarea(id),z(z),width(width),height(height)
-    {
-        id_pic=new int[state];
-    }
+ void Life::set(int state,int id,int x,int y,int z,int width,int height)   {
+    id_pic=new int[state];
+    id_count=(state);
+    this->x=(x);
+    this->y=(y);
+    this->idarea=(id);
+    this->z=(z);
+    this->width=(width);
+    this->height=(height);
+}
 
 Life::~Life(){
     delete[] id_pic;

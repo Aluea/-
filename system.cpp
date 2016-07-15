@@ -9,8 +9,9 @@
 //}pic_new;
 
 System::System():
-    pic_now(0),rtd(0),hero(2,0,335,270,0,67,67)
+    pic_now(0),rtd(0)
     {
+        hero.set(2,0,335,270,0,67,67);
         area_id[0]=0;
         area_id_use[0]=true;
         hero.setid(0,0);
@@ -65,47 +66,46 @@ int System::get_id(){
 }
 
 void System::move(int fang){
-if(fang==-1){
-if(rtd==0){
-if(hero.x<=140){
-    rtd=1;
-    tu_move(fang);
-}
-else{
-    peo_move(fang);
-}
-
-}
-if(rtd==1){
-if(hero.x>=450){
-    rtd=0;
-    peo_move(fang);
-}
-else{
-    tu_move(fang);
-}
-}
-}
-if(fang==1){
-if(rtd==0){
-if(hero.x>=500){
-    rtd=1;
-    tu_move(fang);
-}
-else{
-    peo_move(fang);
-}
-}
-if(rtd==1){
-if(hero.x<=300){
-    rtd=0;
-    peo_move(fang);
-}
-else{
-    tu_move(fang);
-}
-}
-}
+    if(fang==-1){
+        if(rtd==0){
+            if(hero.x<=140){
+                rtd=1;
+                tu_move(fang);
+            }
+            else{
+                peo_move(fang);
+            }
+        }
+        if(rtd==1){
+            if(hero.x>=450){
+                rtd=0;
+                peo_move(fang);
+            }
+            else{
+                tu_move(fang);
+            }
+        }
+    }
+    if(fang==1){
+        if(rtd==0){
+            if(hero.x>=500){
+                rtd=1;
+                tu_move(fang);
+            }
+            else{
+                peo_move(fang);
+            }
+         }
+         if(rtd==1){
+            if(hero.x<=300){
+                rtd=0;
+                peo_move(fang);
+            }
+            else{
+                tu_move(fang);
+            }
+        }
+    }
 }
 void System::peo_move(int fang){
     hero.x+=fang;
@@ -123,8 +123,8 @@ void System::peo_move(int fang){
 }
 
 void System::tu_move(int fang){
-background[pic_now].x+=fang*2;
-background[pic_now+1].x+=fang*2;
+    background[pic_now].x+=fang*2;
+    background[pic_now+1].x+=fang*2;
     if(fang==-1){
         if(background[pic_now].x>=0&&pic_now>0){
             pic_now--;
