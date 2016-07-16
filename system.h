@@ -2,11 +2,11 @@
 #define __SYSTEM__
 #include<iostream>
 #include<caster.h>
-#include<vector>
 #include<stdarg.h>
 #define PEOPLE_ALL 1000
 #define BACKGROUND_ALL 20
 #define AREA_ID_ALL 3000
+#define EMPTY -1
 using namespace std;
 class System{
     public:
@@ -27,8 +27,6 @@ class System{
     private:
         //类型 图区id x y z w h 图片id数 ...为图片id
         void new_prject(char type,int idarea,int x,int y,int z,int w,int h,int id_count,...);//新建对象
-        int get_id();//取得空id
-
 
         //图区id
         int area_id[AREA_ID_ALL];

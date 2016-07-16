@@ -1,12 +1,4 @@
 #include<system.h>
-#include<caster.h>
-#include<m_map.h>
-#include<life.h>
-
-//typedef struct{
-//    char name;//m为背景 p为人物
-//    int x,y,width,height;
-//}pic_new;
 
 System::System():
     pic_now(0),rtd(0)
@@ -95,13 +87,6 @@ void System::new_prject(char type,int idarea,int x,int y,int z,int w,int h,int i
             break;
         case 'l'://粒子
             break;
-    }
-}
-int System::get_id(){
-    for(int i=0;i<3000;i++){
-        if(!area_id_use){
-            return i;
-        }
     }
 }
 

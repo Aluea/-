@@ -1,11 +1,13 @@
 #ifndef __CASTER__
 #define __CASTER__
+#include<iostream>
 #include<algorithm>
+#include<vector>
 #include<stack>
 #include<map>
 #include<life.h>
 #include<m_map.h>
-#define EMPTY -1
+
 struct pic{
     int x,y,w,h;
     int id_pic,idarea;
