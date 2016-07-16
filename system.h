@@ -3,35 +3,51 @@
 #include<iostream>
 #include<caster.h>
 #include<vector>
+#include<stdarg.h>
+#define PEOPLE_ALL 1000
+#define BACKGROUND_ALL 20
+#define AREA_ID_ALL 3000
 using namespace std;
 class System{
     public:
         System();
         ~System();
+        //键盘计时器绑定
         void key_in(const char key_val,int key_now=-1);
+        //鼠标绑定
         void mouse_in(int mouse_x,int mouse_y,int mouse_now);
         //stack<pic_new>* get_new_project();
         void calculate();
+        //移动有关
         void peo_move(int fang);
         void move(int fang);
         void tu_move(int fang);
         //返回堆栈
         stack<pic> picture;
     private:
-        void new_prject();//新建对象
+        //类型 图区id x y z w h 图片id数 ...为图片id
+        void new_prject(char type,int idarea,int x,int y,int z,int w,int h,int id_count,...);//新建对象
         int get_id();//取得空id
 
 
         //图区id
-        //此处有id
-        int area_id[3000];
-        bool area_id_use[3000]={false};
+        int area_id[AREA_ID_ALL];
+        bool area_id_use[AREA_ID_ALL]={false};
 
-        M_map background[20];
-        Life people[1000];
+        //地图线性表
+        M_map background[BACKGROUND_ALL];
+        bool background_use[BACKGROUND_ALL];
+        //人物线性表
+        Life people[PEOPLE_ALL];
+        bool people_use[PEOPLE_ALL];
+        //粒子线性表
+        //~
 
+        //当前图片
         int pic_now;
+        //人图动 标志
         int rtd;
+        //主人物
         Life hero;
 };
 
