@@ -35,14 +35,6 @@ void System::key_in(const char key_val,int key_now/*-1*/){
 }
 
 void System::mouse_in(int mouse_x,int mouse_y,int mouse_now){
-
-}
-stack<pic>* System::redrew_background(){
-
-}
-
-stack<pic>* System::redrew(){
-
 }
 
 //stack<pic_new>* System::get_new_project(){
