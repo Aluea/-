@@ -1,9 +1,7 @@
 #ifndef __CASTER__
 #define __CASTER__
 #include<algorithm>
-#include<stack>
-#include<map>
-#include<life.h>
+
 #include<m_map.h>
 #define EMPTY -1
 struct pic{
