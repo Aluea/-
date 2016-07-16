@@ -24,7 +24,7 @@ my_ios::my_ios(QWidget *parent):QWidget(parent){
     }
     count=2;
     st[0].id=0;st[1].id=1;st[0].pic=0;st[1].pic=1;
-     connect(&peo_jump_timer,SIGNAL(timeout()),this,SLOT(peo_jump_set()));
+    connect(&peo_jump_timer,SIGNAL(timeout()),this,SLOT(peo_jump_set()));
 }
 void my_ios::paintEvent (QPaintEvent *event){
     QPainter painter(this);
