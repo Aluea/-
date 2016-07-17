@@ -138,12 +138,18 @@ void System::peo_move(int fang){
     lin.is_new=false;
     lin.type=0;//人
     lin.m_exit=true;
-    lin.id_pic=0;//hero.getpic_id(fang);
-    lin.idarea=0;//hero.getarea_id();
+    //lin.id_pic=0;//hero.getpic_id(fang);
+    //lin.idarea=0;//hero.getarea_id();
+    if(fang==-1){//定义面向左为0//右为1
+        lin.id_pic=hero.getpic_id(0);
+    }else if(fang==1){
+        lin.id_pic=hero.getpic_id(1);
+    }
+    lin.idarea=hero.getarea_id();
     lin.x=hero.x;
     lin.y=hero.y;
-    lin.h=67;//hero.height;
-    lin.w=67;//hero.width;
+    lin.h=hero.height;
+    lin.w=hero.width;
     picture.push(lin);
 }
 

@@ -119,7 +119,7 @@ void my_ios::move(){
          sys.picture.pop();
          st[count].id=lin.idarea;
          st[count++].pic=lin.id_pic;
-         tuq[lin.idarea]->setRect(lin.x,lin.y,lin.w,lin.h);//未尽全功
+         tuq[lin.idarea]->setRect(lin.x,tuq[lin.idarea]->y(),lin.w,lin.h);//未尽全功
      }
      update();
 
