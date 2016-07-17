@@ -3,21 +3,16 @@
 System::System():
     pic_now(0),rtd(0)
     {
-        hero.set(2,0,335,270,0,67,67);
+        hero.set(2,0,335,260,0,67,67);
         area_id[0]=0;
         area_id_use[0]=true;
         hero.setid(0,0);
         hero.setid(1,1);
 
         new_prject('m',0,0,0,0,700,350,1,0);
-        //area_id[1]=0;
-        //area_id_use[1]=true;
-        //background[0].set(0,0,0,0,700,350);
-
-        new_prject('m',1,696,0,0,700,350,1,1);
-        //area_id[2]=1;
-        //area_id_use[2]=true;
-        //background[1].set(1,1,696,0,700,350);
+        new_prject('m',1,600,0,0,700,350,1,1);
+        new_prject('m',2,1200,0,0,700,350,1,2);
+        new_prject('m',3,1800,0,0,700,350,1,3);
         ft=1;
     }
 
@@ -96,24 +91,12 @@ void System::face_to(int fang){
     lin.is_new=false;
     lin.type=0;//人
     lin.m_exit=true;
-
-    lin.id_pic=0;//hero.getpic_id(face);
-
-    //lin.id_pic=0;//hero.getpic_id(fang);
-    //lin.idarea=0;//hero.getarea_id();
-
-
-
     lin.id_pic=hero.getpic_id(ft);
-
-
     lin.idarea=hero.getarea_id();
     lin.x=hero.x;
     lin.y=hero.y;
     lin.h=hero.height;
-
     lin.w=  hero.width;
-
     lin.w=hero.width;
 
     picture.push(lin);
@@ -192,19 +175,20 @@ void System::tu_move(int fang){
     //afk
     background[pic_now].x+=fang*2;
     background[pic_now+1].x+=fang*2;
-    if(fang==-1){
+    //if(fang==-1){
         if(background[pic_now].x>=0&&pic_now>0){
             pic_now--;
-            background[pic_now].x=-696;
+            background[pic_now].x=-700;
             //~
         }
-    }
-    if(fang==1){
+   // }
+   // if(fang==1){
         if(background[pic_now].x+700<=0&&pic_now<4){
-            pic_now--;
-            background[pic_now+1].x=696;
+            pic_now++;
+            background[pic_now+1].x=700;
         }
-    }
+   // }
+    qDebug("pic_now=%d  fang=%d",pic_now,fang);
     pic lin;
     lin.is_new=false;
     lin.type=1;//图

@@ -1,5 +1,5 @@
 #include<m_ios.h>
-#define FUN_JUMP(x) (1.8*(x)*(x)-36*(x)+175)
+#define FUN_JUMP(x) (1.8*(x)*(x)-36*(x)+260)
 my_ios::my_ios(QWidget *parent):QWidget(parent){
     dtu[0]=new QPixmap(":/A1");
     dtu[1]=new QPixmap(":/A2");
@@ -7,12 +7,12 @@ my_ios::my_ios(QWidget *parent):QWidget(parent){
     dtu[3]=new QPixmap(":/A4");
     tu[0]=new QPixmap(":/R1");
     tu[1]=new QPixmap(":/R2");
-    dtuq[0]=new QRect(0,0,800,250);
-    dtuq[1]=new QRect(800,0,800,250);
-    dtuq[2]=new QRect(0,0,800,250);
-    dtuq[3]=new QRect(0,0,800,250);
-    tuq[0]=new QRect(300,175,67,67);
-    tuq[1]=new QRect(300,175,67,67);
+    dtuq[0]=new QRect(0,0,800,350);
+    dtuq[1]=new QRect(800,0,800,350);
+    dtuq[2]=new QRect(0,0,800,350);
+    dtuq[3]=new QRect(0,0,800,350);
+    tuq[0]=new QRect(300,260,67,67);
+    tuq[1]=new QRect(300,260,67,67);
     dq=0;peo_jump=false;
     for(int i=0;i<100;i++){
         if(i<=3)dsf[i]=1;
