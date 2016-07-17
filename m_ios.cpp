@@ -26,7 +26,7 @@ my_ios::my_ios(QWidget *parent):QWidget(parent){
     st[0].id=0;st[1].id=1;st[0].pic=0;st[1].pic=1;
     connect(&peo_jump_timer,SIGNAL(timeout()),this,SLOT(peo_jump_set()));
     connect(&peo_move_timer,SIGNAL(timeout()),this,SLOT(move()));
-    connect(&key_mouse_timer,SIGNAL(timeout()),this,SLOT(face_to()));
+    //connect(&key_mouse_timer,SIGNAL(timeout()),this,SLOT(face_to()));
     connect(&key_mouse_timer,SIGNAL(timeout()),this,SLOT(key_bourd_fun()));
         key_mouse_timer.start(30);
 }

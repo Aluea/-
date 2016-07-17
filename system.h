@@ -49,7 +49,7 @@ class System{
         int rtd;
         //主人物
        Life hero;
-        int face;
+
 };
 
 #endif

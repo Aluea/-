@@ -8,7 +8,7 @@ System::System():
         area_id_use[0]=true;
         hero.setid(0,0);
         hero.setid(1,1);
-        face=0;
+
         new_prject('m',0,0,0,0,700,350,1,0);
         //area_id[1]=0;
         //area_id_use[1]=true;
