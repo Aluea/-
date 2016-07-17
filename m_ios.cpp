@@ -126,14 +126,25 @@ void my_ios::peo_jump_set(){
 }
 void my_ios::move(){
      sys.move(fang);
-     count=0;
+             pic lin;
+     lin=sys.picture.top();
+     if(lin.type==0){count=0;
      while(!sys.picture.empty()){
-         pic lin;
+
          lin=sys.picture.top();
          sys.picture.pop();
          st[count].id=lin.idarea;
          st[count++].pic=lin.id_pic;
          tuq[lin.idarea]->setRect(lin.x,tuq[lin.idarea]->y(),lin.w,lin.h);//未尽全功
+     }
+     }
+     else{
+        sys.picture.pop();
+        dq=lin.idarea;
+        dtuq[dq]->setRect(lin.x,lin.y,lin.w,lin.h);
+        lin=sys.picture.top();
+        dtuq[dq+1]->setRect(lin.x,lin.y,lin.w,lin.h);
+        while(!sys.picture.empty())sys.picture.pop();
      }
      update();
 

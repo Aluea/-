@@ -182,15 +182,13 @@ void System::peo_move(int fang){
     lin.x=hero.x;
     lin.y=hero.y;
     lin.h=hero.height;
-
-    lin.w=  hero.width;
-
     lin.w=hero.width;
 
     picture.push(lin);
 }
 
 void System::tu_move(int fang){
+    fang*=-1;
     background[pic_now].x+=fang*2;
     background[pic_now+1].x+=fang*2;
     if(fang==-1){
