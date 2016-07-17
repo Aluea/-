@@ -19,12 +19,16 @@ my_ios::my_ios(QWidget *parent):QWidget(parent){
         else dsf[i]=0;
     }
     for(int i=0;i<3000;i++){
-        if(i<=2)wsf[i]=1;   //值为载入那张图
+        if(i<=2)wsf[i]=1;
         else wsf[i]=0;
     }
     count=2;
     st[0].id=0;st[1].id=1;st[0].pic=0;st[1].pic=1;
     connect(&peo_jump_timer,SIGNAL(timeout()),this,SLOT(peo_jump_set()));
+    connect(&peo_move_timer,SIGNAL(timeout()),this,SLOT(move()));
+    connect(&key_mouse_timer,SIGNAL(timeout()),this,SLOT(face_to()));
+    connect(&key_mouse_timer,SIGNAL(timeout()),this,SLOT(key_bourd_fun()));
+        key_mouse_timer.start(30);
 }
 void my_ios::paintEvent (QPaintEvent *event){
     QPainter painter(this);
@@ -107,6 +111,17 @@ void my_ios::peo_jump_set(){
     update();
 }
 void my_ios::move(){
+     sys.peo_move(fang);
+     count=0;
+     while(!sys.picture.empty()){
+         pic lin;
+         lin=sys.picture.top();
+         sys.picture.pop();
+         st[count].id=lin.idarea;
+         st[count++].pic=lin.id_pic;
+         tuq[lin.idarea]->setRect(lin.x,lin.y,lin.w,lin.h);//未尽全功
+     }
+     update();
 
 }
 

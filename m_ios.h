@@ -2,6 +2,7 @@
 #define M_IOS_H
 #include <QtGui>
 #include<QWidget>
+#include<system.h>
 #include<caster.h>
 #define TI 10
 class my_ios:public QWidget{
@@ -26,6 +27,7 @@ private:
     int count;
     int dq;
     bool peo_jump;
+    System sys;
 
 public slots:
      void peo_jump_set();

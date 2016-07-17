@@ -138,12 +138,12 @@ void System::peo_move(int fang){
     lin.is_new=false;
     lin.type=0;//人
     lin.m_exit=true;
-    lin.id_pic=hero.getpic_id(fang);
-    lin.idarea=hero.getarea_id();
+    lin.id_pic=0;//hero.getpic_id(fang);
+    lin.idarea=0;//hero.getarea_id();
     lin.x=hero.x;
     lin.y=hero.y;
-    lin.h=hero.height;
-    lin.w=hero.width;
+    lin.h=67;//hero.height;
+    lin.w=67;//hero.width;
     picture.push(lin);
 }
 
