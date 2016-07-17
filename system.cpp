@@ -189,6 +189,7 @@ void System::peo_move(int fang){
 
 void System::tu_move(int fang){
     fang*=-1;
+    //afk
     background[pic_now].x+=fang*2;
     background[pic_now+1].x+=fang*2;
     if(fang==-1){
