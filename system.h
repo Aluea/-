@@ -3,7 +3,6 @@
 #include<iostream>
 #include<caster.h>
 #include<stdarg.h>
-#include<QDebug>
 #define PEOPLE_ALL 1000
 #define BACKGROUND_ALL 20
 #define AREA_ID_ALL 3000
