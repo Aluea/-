@@ -18,6 +18,7 @@ void Life::setid(int id,int n){
 }
 
 int Life::getpic_id(int x){
+
     return id_pic[x];
 }
 

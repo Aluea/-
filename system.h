@@ -12,6 +12,8 @@ class System{
     public:
         System();
         ~System();
+        Life hero;
+        int ft;
         //键盘计时器绑定
         void key_in(const char key_val,int key_now=-1);
         //鼠标绑定
@@ -48,7 +50,7 @@ class System{
         //人图动 标志
         int rtd;
         //主人物
-       Life hero;
+
 
 };
 

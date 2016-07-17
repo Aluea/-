@@ -45,8 +45,8 @@ my_ios::~my_ios(){
 void my_ios::face_to(){
     QPoint aaa = cursor().pos();
     aaa=mapFromGlobal(aaa);
-    //if(aaa.x()>=sys.hero.x)sys.face_to(1);
-    //else sys.face_to(0);
+    if(aaa.x()>=sys.hero.x)sys.face_to(1);
+    else sys.face_to(0);
     update();
 }
 void my_ios::key_bourd_fun(){

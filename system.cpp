@@ -18,6 +18,7 @@ System::System():
         //area_id[2]=1;
         //area_id_use[2]=true;
         //background[1].set(1,1,696,0,700,350);
+        ft=1;
     }
 
 System::~System(){
@@ -90,7 +91,7 @@ void System::new_prject(char type,int idarea,int x,int y,int z,int w,int h,int i
     }
 }
 void System::face_to(int fang){
-   // face=fang;
+    ft=fang;
 }
 
 void System::move(int fang){
@@ -141,12 +142,26 @@ void System::peo_move(int fang){
     lin.is_new=false;
     lin.type=0;//人
     lin.m_exit=true;
+
     lin.id_pic=0;//hero.getpic_id(face);
+
+    //lin.id_pic=0;//hero.getpic_id(fang);
+    //lin.idarea=0;//hero.getarea_id();
+
+
+
+    lin.id_pic=hero.getpic_id(ft);
+
+
     lin.idarea=hero.getarea_id();
     lin.x=hero.x;
     lin.y=hero.y;
     lin.h=hero.height;
+
     lin.w=  hero.width;
+
+    lin.w=hero.width;
+
     picture.push(lin);
 }
 
