@@ -2,6 +2,7 @@
 #define __LIFE__
 class Life{
     public:
+        Life();
         void set(int state,int id,int x,int y,int z,int width,int height);
         ~Life();
         void setid(int id,int n);
@@ -14,6 +15,7 @@ class Life{
         int idarea;
         int *id_pic;
         int id_count;
+        bool id_pic_use;
 
 
 
