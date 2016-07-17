@@ -8,7 +8,7 @@ System::System():
         area_id_use[0]=true;
         hero.setid(0,0);
         hero.setid(1,1);
-
+        face=0;
         new_prject('m',0,0,0,0,700,350,1,0);
         //area_id[1]=0;
         //area_id_use[1]=true;
@@ -89,6 +89,9 @@ void System::new_prject(char type,int idarea,int x,int y,int z,int w,int h,int i
             break;
     }
 }
+void System::face_to(int fang){
+   // face=fang;
+}
 
 void System::move(int fang){
     if(fang==-1){
@@ -133,17 +136,17 @@ void System::move(int fang){
     }
 }
 void System::peo_move(int fang){
-    hero.x+=fang;
+    hero.x+=fang*2;
     pic lin;
     lin.is_new=false;
     lin.type=0;//人
     lin.m_exit=true;
-    lin.id_pic=0;//hero.getpic_id(fang);
-    lin.idarea=0;//hero.getarea_id();
+    lin.id_pic=0;//hero.getpic_id(face);
+    lin.idarea=hero.getarea_id();
     lin.x=hero.x;
     lin.y=hero.y;
-    lin.h=67;//hero.height;
-    lin.w=67;//hero.width;
+    lin.h=hero.height;
+    lin.w=  hero.width;
     picture.push(lin);
 }
 

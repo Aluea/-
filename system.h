@@ -22,8 +22,10 @@ class System{
         void peo_move(int fang);
         void move(int fang);
         void tu_move(int fang);
+        void face_to(int fang);
         //返回堆栈
         stack<pic> picture;
+
     private:
         //类型 图区id x y z w h 图片id数 ...为图片id
         void new_prject(char type,int idarea,int x,int y,int z,int w,int h,int id_count,...);//新建对象
@@ -46,7 +48,8 @@ class System{
         //人图动 标志
         int rtd;
         //主人物
-        Life hero;
+       Life hero;
+        int face;
 };
 
 #endif

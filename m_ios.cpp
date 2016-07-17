@@ -45,7 +45,8 @@ my_ios::~my_ios(){
 void my_ios::face_to(){
     QPoint aaa = cursor().pos();
     aaa=mapFromGlobal(aaa);
-
+    //if(aaa.x()>=sys.hero.x)sys.face_to(1);
+    //else sys.face_to(0);
     update();
 }
 void my_ios::key_bourd_fun(){
@@ -111,7 +112,7 @@ void my_ios::peo_jump_set(){
     update();
 }
 void my_ios::move(){
-     sys.peo_move(fang);
+     sys.move(fang);
      count=0;
      while(!sys.picture.empty()){
          pic lin;
@@ -119,7 +120,7 @@ void my_ios::move(){
          sys.picture.pop();
          st[count].id=lin.idarea;
          st[count++].pic=lin.id_pic;
-         tuq[lin.idarea]->setRect(lin.x,lin.y,lin.w,lin.h);//未尽全功
+         tuq[lin.idarea]->setRect(lin.x,tuq[lin.idarea]->y(),lin.w,lin.h);//未尽全功
      }
      update();
 
