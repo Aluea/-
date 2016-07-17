@@ -26,6 +26,7 @@ private:
     showturn st[3000];
     int count;
     int dq;
+    int yan;
     bool peo_jump;
     System sys;
 

@@ -22,11 +22,11 @@ my_ios::my_ios(QWidget *parent):QWidget(parent){
         if(i<=2)wsf[i]=1;
         else wsf[i]=0;
     }
-    count=2;
+    count=2;yan=0;
     st[0].id=0;st[1].id=1;st[0].pic=0;st[1].pic=1;
     connect(&peo_jump_timer,SIGNAL(timeout()),this,SLOT(peo_jump_set()));
     connect(&peo_move_timer,SIGNAL(timeout()),this,SLOT(move()));
-    //connect(&key_mouse_timer,SIGNAL(timeout()),this,SLOT(face_to()));
+        connect(&key_mouse_timer,SIGNAL(timeout()),this,SLOT(face_to()));
     connect(&key_mouse_timer,SIGNAL(timeout()),this,SLOT(key_bourd_fun()));
         key_mouse_timer.start(30);
 }
@@ -43,11 +43,24 @@ my_ios::~my_ios(){
 
 }
 void my_ios::face_to(){
+    yan++;
+    if(yan==3){
+        yan=0;
     QPoint aaa = cursor().pos();
     aaa=mapFromGlobal(aaa);
     if(aaa.x()>=sys.hero.x)sys.face_to(1);
     else sys.face_to(0);
+    count=0;
+    while(!sys.picture.empty()){
+        pic lin;
+        lin=sys.picture.top();
+        sys.picture.pop();
+        st[count].id=lin.idarea;
+        st[count++].pic=lin.id_pic;
+        tuq[lin.idarea]->setRect(lin.x,tuq[lin.idarea]->y(),lin.w,lin.h);//未尽全功
+    }
     update();
+    }
 }
 void my_ios::key_bourd_fun(){
     bool key[256]={false},flag=true;
