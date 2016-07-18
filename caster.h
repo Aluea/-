@@ -7,6 +7,7 @@
 #include<map>
 #include<life.h>
 #include<m_map.h>
+//#include<database.h>
 #define INF 1<<30
 
 struct pic{
