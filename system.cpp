@@ -11,13 +11,17 @@ System::System():
 
         data.new_prject('m',0,0,0,0,700,350,1,0);
         data.new_prject('m',1,696,0,0,700,350,1,1);
-        data.new_prject('m',2,696,0,0,700,350,1,2);
-        data.new_prject('m',3,696,0,0,700,350,1,3);
+        data.new_prject('m',2,2*696,0,0,700,350,1,2);
+        data.new_prject('m',3,3*696,0,0,700,350,1,3);
         ft=1;
     }
 
 System::~System(){
 
+}
+
+void System::picture_push(char type,void * val,){
+    
 }
 
 void System::key_in(const char key_val,int key_now/*-1*/){

@@ -4,7 +4,12 @@ Life::Life():
 
     }
  void Life::set(int state,int id,int x,int y,int z,int width,int height){
-    id_pic=new int[state];
+    if(id_pic_use==false){
+        id_pic=new int[state];
+    }else{
+        delete[] id_pic;
+        id_pic=new int[state];
+    }
     id_pic_use=true;
     id_count=(state);
     this->x=(x);

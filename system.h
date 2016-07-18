@@ -10,6 +10,8 @@ class System{
     public:
         System();
         ~System();
+        //返回堆栈
+        stack<pic> picture;
         //脸朝向
         int ft;
         //键盘计时器绑定
@@ -26,6 +28,7 @@ class System{
 
         //数据库
         Database data;
+        void picture_push_one();
 
 
     private:    

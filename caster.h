@@ -7,13 +7,14 @@
 #include<map>
 #include<life.h>
 #include<m_map.h>
+#include<affairs.h>
 //#include<database.h>
 #define INF 1<<30
 
 struct pic{
     int x,y,z,w,h;
     int id_pic,idarea;
-    int type;
+    int type;//0人1图
     bool m_exit,is_new;
 };
 

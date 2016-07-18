@@ -7,7 +7,8 @@ HEADERS += \
     m_map.h \
     arton.h \
     caster.h \
-    database.h
+    database.h \
+    affairs.h
 
 SOURCES += \
     m_ios.cpp \
@@ -16,7 +17,8 @@ SOURCES += \
     life.cpp \
     m_map.cpp \
     caster.cpp \
-    database.cpp
+    database.cpp \
+    affairs.cpp
 
 RESOURCES += \
     ziyuan.qrc
