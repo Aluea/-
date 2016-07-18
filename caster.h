@@ -7,9 +7,10 @@
 #include<map>
 #include<life.h>
 #include<m_map.h>
+#define INF 1<<30
 
 struct pic{
-    int x,y,w,h;
+    int x,y,z,w,h;
     int id_pic,idarea;
     int type;
     bool m_exit,is_new;
