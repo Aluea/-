@@ -54,7 +54,7 @@ void System::face_to(int fang){
     data.picture.push(lin);
 }
 
-void System::move(int fang){
+void System::move(int fang,int hfang){
     if(fang==-1){
         if(rtd==0){
             if(data.hero.x<=140){
@@ -62,13 +62,13 @@ void System::move(int fang){
                 tu_move(fang);
             }
             else{
-                peo_move(fang);
+                peo_move(fang,0);
             }
         }
         if(rtd==1){
             if(data.hero.x>=450){
                 rtd=0;
-                peo_move(fang);
+                peo_move(fang,0);
             }
             else{
                 tu_move(fang);
@@ -82,73 +82,36 @@ void System::move(int fang){
                 tu_move(fang);
             }
             else{
-                peo_move(fang);
+                peo_move(fang,0);
             }
          }
          if(rtd==1){
             if(data.hero.x<=300){
                 rtd=0;
-                peo_move(fang);
+                peo_move(fang,0);
             }
             else{
                 tu_move(fang);
             }
         }
     }
+    if(hfang==-1){
+        peo_move(0,hfang);
+    }
+    if(hfang==1){
+        peo_move(0,hfang);
+    }
+
 }
-void System::peo_move(int fang){
+
+
+
+void System::peo_move(int fang,int hfang){
     data.hero.x+=fang*2;
-    pic lin;
-    lin.is_new=false;
-    lin.type=0;//人
-    lin.m_exit=true;
-    lin.id_pic=data.hero.getpic_id(ft);
-    lin.idarea=data.hero.getarea_id();
-    lin.x=data.hero.x;
-    lin.y=data.hero.y;
-    lin.h=data.hero.height;
-    lin.w=data.hero.width;
-    data.picture.push(lin);
+
 }
 
 void System::tu_move(int fang){
     fang*=-1;
-    data.background[pic_now].x+=fang*2;
-    data.background[pic_now+1].x+=fang*2;
-    //if(fang==-1){
-        if(data.background[pic_now].x>=0&&pic_now>0){
-            pic_now--;
-            data.background[pic_now].x=-696;
-            //~
-        }
-    //}
-    //if(fang==1){
-        if(data.background[pic_now].x+700<=0&&pic_now<4){
-            pic_now++;
-            data.background[pic_now+1].x=696;
-        }
-   // }
-    //qDebug("pic_now=%d fang=%d",pic_now,fang);
-    pic lin;
-    lin.is_new=false;
-    lin.type=1;//图
-    lin.m_exit=true;
-    lin.id_pic=data.background[pic_now+1].get_id_pic();
-    lin.idarea=data.background[pic_now+1].get_idarea();
-    lin.x=data.background[pic_now+1].x;
-    lin.y=data.background[pic_now+1].y;
-    lin.h=data.background[pic_now+1].h;
-    lin.w=data.background[pic_now+1].w;
-    data.picture.push(lin);
 
-    lin.is_new=false;
-    lin.type=1;//图
-    lin.m_exit=true;
-    lin.id_pic=data.background[pic_now].get_id_pic();
-    lin.idarea=data.background[pic_now].get_idarea();
-    lin.x=data.background[pic_now].x;
-    lin.y=data.background[pic_now].y;
-    lin.h=data.background[pic_now].h;
-    lin.w=data.background[pic_now].w;
-    data.picture.push(lin);
 }
