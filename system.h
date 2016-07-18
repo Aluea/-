@@ -26,6 +26,7 @@ class System{
 
         //数据库
         Database data;
+        stack<pic> picture;
 
 
     private:    
