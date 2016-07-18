@@ -77,9 +77,9 @@ void my_ios::key_bourd_fun(){
     }else if(key['D']){
         fang=1;flag=true;
     }
-    if(key['S']){
+    if(key['W']){
         hfang=-1;flag=true;
-    }else if(key['W']){
+    }else if(key['S']){
         hfang=1;flag=true;
     }
     if(flag){

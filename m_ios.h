@@ -19,7 +19,7 @@ private:
     QPixmap *tu[15],*dtu[9];
     QRect *tuq[15],*dtuq[15];
      QTimer *jishi1,*jishi2,peo_jump_timer,peo_move_timer,key_mouse_timer;
-     int fang;
+     int fang,hfang;
      int dsf[100],wsf[3000];
    // 此处有图片
     //定时器和线程

@@ -114,7 +114,7 @@ void System::face_to(int fang){
     picture.push(lin);
 }
 
-void System::move(int fang){
+void System::move(int fang,int hfang){
     if(fang==-1){
         if(rtd==0){
             if(hero.x<=140){
@@ -122,13 +122,13 @@ void System::move(int fang){
                 tu_move(fang);
             }
             else{
-                peo_move(fang);
+                peo_move(fang,0);
             }
         }
         if(rtd==1){
             if(hero.x>=450){
                 rtd=0;
-                peo_move(fang);
+                peo_move(fang,0);
             }
             else{
                 tu_move(fang);
@@ -142,22 +142,30 @@ void System::move(int fang){
                 tu_move(fang);
             }
             else{
-                peo_move(fang);
+                peo_move(fang,0);
             }
          }
          if(rtd==1){
             if(hero.x<=300){
                 rtd=0;
-                peo_move(fang);
+                peo_move(fang,0);
             }
             else{
                 tu_move(fang);
             }
         }
     }
+    if(hfang==-1){
+        peo_move(0,hfang);
+    }
+    if(hfang==1){
+        peo_move(0,hfang);
+    }
+
 }
-void System::peo_move(int fang){
+void System::peo_move(int fang,int hfang){
     hero.x+=fang*2;
+    hero.y+=hfang*2;
     pic lin;
     lin.is_new=false;
     lin.type=0;//人

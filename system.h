@@ -22,8 +22,8 @@ class System{
         //stack<pic_new>* get_new_project();
         void calculate();
         //移动有关
-        void peo_move(int fang);
-        void move(int fang);
+        void peo_move(int fang,int hfang);
+        void move( int fang,int hfang);
         void tu_move(int fang);
         void face_to(int fang);
         //返回堆栈
