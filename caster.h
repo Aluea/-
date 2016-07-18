@@ -14,8 +14,7 @@
 struct pic{
     int x,y,z,w,h;
     int id_pic,idarea;
-    int type;//0人1图
-    bool m_exit,is_new;
+    //int type;//0人1图
 };
 
 struct showturn{

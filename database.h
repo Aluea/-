@@ -20,7 +20,7 @@ struct pic_point{
 };
 
 struct data_in{
-    data_in();
+    //data_in();
 
     int area_id[AREA_ID_ALL];
     bool area_id_use[AREA_ID_ALL]={false};
@@ -40,7 +40,7 @@ struct data_in{
 
     //地图
     //间距=20px
-    pic_all map[200][100];
+    pic_all map[200][20];
     int map_count[200];
 };
 
@@ -52,9 +52,9 @@ class Database{
         //类型 图区id x y z w h 图片id数 ...为图片id
         void new_prject(char type,int idarea,int x,int y,int z,int w,int h,int id_count,...);//新建对象
         void del_prject(const pic_all& obj);//删除
-    private:
         int hear;
-        data_in data[MAP_ALL];
+    private:        
+        data_in data_f[MAP_ALL];
 
 
 

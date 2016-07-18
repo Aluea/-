@@ -4,10 +4,10 @@ System::System():
     pic_now(0),rtd(0)
     {
         data.hero.set(2,0,335,250,0,67,67);
-        data.area_id[0]=0;
-        data.area_id_use[0]=true;
-        data.hero.setid(0,0);
-        data.hero.setid(1,1);
+        data.data_f[0].area_id[0]=0;
+        data.data_f[0].area_id_use[0]=true;
+        data.hero.setid(100,0);
+        data.hero.setid(101,1);
 
         data.new_prject('m',0,0,0,0,700,350,1,0);
         data.new_prject('m',1,696,0,0,700,350,1,1);
@@ -20,7 +20,7 @@ System::~System(){
 
 }
 
-void System::picture_push(char type,void * val,){
+void System::picture_push_one(char type,void * val){
     
 }
 
@@ -42,16 +42,16 @@ void System::calculate(){
 void System::face_to(int fang){
     ft=fang;
     pic lin;
-    lin.is_new=false;
-    lin.type=0;//人
-    lin.m_exit=true;
+    //lin.is_new=false;
+    //lin.type=0;//人
+   // lin.m_exit=true;
     lin.id_pic=data.hero.getpic_id(ft);
     lin.idarea=data.hero.getarea_id();
     lin.x=data.hero.x;
     lin.y=data.hero.y;
     lin.h=data.hero.height;
     lin.w=data.hero.width;
-    data.picture.push(lin);
+    picture.push(lin);
 }
 
 void System::move(int fang,int hfang){
