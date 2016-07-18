@@ -2,18 +2,15 @@
 #define __SYSTEM__
 #include<iostream>
 #include<caster.h>
-#include<stdarg.h>
+#include<database.h>
 #include<QDebug>
-#define PEOPLE_ALL 1000
-#define BACKGROUND_ALL 20
-#define AREA_ID_ALL 3000
-#define EMPTY -1
+
 using namespace std;
 class System{
     public:
         System();
         ~System();
-        Life hero;
+        //脸朝向
         int ft;
         //键盘计时器绑定
         void key_in(const char key_val,int key_now=-1);
@@ -26,26 +23,12 @@ class System{
         void move(int fang);
         void tu_move(int fang);
         void face_to(int fang);
-        //返回堆栈
-        stack<pic> picture;
 
-    private:
-        //类型 图区id x y z w h 图片id数 ...为图片id
-        void new_prject(char type,int idarea,int x,int y,int z,int w,int h,int id_count,...);//新建对象
+        //数据库
+        Database data;
 
-        //图区id
-        int area_id[AREA_ID_ALL];
-        bool area_id_use[AREA_ID_ALL]={false};
 
-        //地图线性表
-        M_map background[BACKGROUND_ALL];
-        bool background_use[BACKGROUND_ALL];
-        //人物线性表
-        Life people[PEOPLE_ALL];
-        bool people_use[PEOPLE_ALL];
-        //粒子线性表
-        //~
-
+    private:    
         //当前图片
         int pic_now;
         //人图动 标志
