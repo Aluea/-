@@ -56,12 +56,12 @@ my_ios::~my_ios(){
 
 }
 void my_ios::face_to(){
-    yan++;
+    //yan++;
     //if(yan==3){
-        yan=0;
+       // yan=0;
     QPoint aaa = cursor().pos();
     aaa=mapFromGlobal(aaa);
-    if(aaa.x()>=sys->data.hero.x)sys->face_to(1);
+    if(aaa.x()>=sys->data.hero.x-sys->show_zb)sys->face_to(1);
     else sys->face_to(0);
 
    // }
@@ -71,7 +71,7 @@ void my_ios::key_bourd_fun(){
     key['A']=GetKeyState('A')<0?true:false;
     key['S']=GetKeyState('S')<0?true:false;
     key['D']=GetKeyState('D')<0?true:false;
-    key['W']=GetKeyState('A')<0?true:false;
+    key['W']=GetKeyState('W')<0?true:false;
     key[VK_SPACE]=GetKeyState(VK_SPACE);
 
             flag=false;fang=0;hfang=0;

@@ -2,8 +2,8 @@
 
 System::System():
     pic_now(0),rtd(0)
-    {
-        data.hero.set(2,0,335,250,0,67,67);
+    {   show_zb=0;
+        data.hero.set(2,100,335,250,0,67,67);
         data.data_f[0].area_id[0]=0;
         data.data_f[0].area_id_use[0]=true;
         data.hero.setid(100,0);
@@ -48,20 +48,43 @@ void System::face_to(int fang){
 
 }
 void System::input_stack(){
-     pic lin;
-    lin.id_pic=data.hero.getpic_id(ft);
-    lin.idarea=data.hero.getarea_id();
-    lin.x=data.hero.x;
-    lin.y=data.hero.y;
-    lin.h=data.hero.height;
-    lin.w=data.hero.width;
-    picture.push(lin);
+     pic lin;int dq;
+      dq=show_zb/696;
+     lin.id_pic=data.hero.getpic_id(ft);
+     lin.idarea=data.hero.getarea_id();
+     lin.x=data.hero.x-show_zb;
+     lin.y=data.hero.y;
+     lin.h=data.hero.height;
+     lin.w=data.hero.width;
+     picture.push(lin);
+
+
+     lin.idarea=data.data_f[0].background[dq].get_idarea();
+     lin.id_pic=data.data_f[0].background[dq].get_id_pic();
+     lin.x=data.data_f[0].background[dq].x-show_zb;
+     lin.y=data.data_f[0].background[dq].y;
+     lin.z=0;
+     lin.w=700;
+     lin.h=350;
+     picture.push(lin);
+
+     lin.idarea=data.data_f[0].background[dq+1].get_idarea();
+     lin.id_pic=data.data_f[0].background[dq+1].get_id_pic();
+     lin.x=data.data_f[0].background[dq+1].x-show_zb;
+     lin.y=data.data_f[0].background[dq+1].y;
+     lin.z=0;
+     lin.w=700;
+     lin.h=350;
+     picture.push(lin);
+
+
+
 }
 
 void System::move(int fang,int hfang){
     if(fang==-1){
         if(rtd==0){
-            if(data.hero.x<=140){
+            if(data.hero.x-show_zb<=140){
                 rtd=1;
                 tu_move(fang);
             }
@@ -70,7 +93,7 @@ void System::move(int fang,int hfang){
             }
         }
         if(rtd==1){
-            if(data.hero.x>=450){
+            if(data.hero.x-show_zb>=450){
                 rtd=0;
                 peo_move(fang,0);
             }
@@ -81,7 +104,7 @@ void System::move(int fang,int hfang){
     }
     if(fang==1){
         if(rtd==0){
-            if(data.hero.x>=500){
+            if(data.hero.x-show_zb>=500){
                 rtd=1;
                 tu_move(fang);
             }
@@ -90,7 +113,7 @@ void System::move(int fang,int hfang){
             }
          }
          if(rtd==1){
-            if(data.hero.x<=300){
+            if(data.hero.x-show_zb<=300){
                 rtd=0;
                 peo_move(fang,0);
             }
@@ -112,10 +135,12 @@ void System::move(int fang,int hfang){
 
 void System::peo_move(int fang,int hfang){
     data.hero.x+=fang*2;
+    data.hero.y+=hfang*2;
+
 
 }
 
 void System::tu_move(int fang){
-    fang*=-1;
-
+    data.hero.x+=fang*2;
+    show_zb+=fang*2;
 }

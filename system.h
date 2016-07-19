@@ -30,7 +30,7 @@ class System{
         Database data;
         void picture_push_one(char type,void * val);
         void input_stack();
-
+        int show_zb;
     private:    
         //当前图片
         int pic_now;
