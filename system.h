@@ -29,7 +29,7 @@ class System{
         //数据库
         Database data;
         void picture_push_one(char type,void * val);
-
+        void input_stack();
 
     private:    
         //当前图片

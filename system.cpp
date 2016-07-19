@@ -41,10 +41,14 @@ void System::calculate(){
 
 void System::face_to(int fang){
     ft=fang;
-    pic lin;
+
     //lin.is_new=false;
     //lin.type=0;//人
    // lin.m_exit=true;
+
+}
+void System::input_stack(){
+     pic lin;
     lin.id_pic=data.hero.getpic_id(ft);
     lin.idarea=data.hero.getarea_id();
     lin.x=data.hero.x;

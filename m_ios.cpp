@@ -14,7 +14,7 @@ my_ios::my_ios(QWidget *parent):QWidget(parent){
     tuq[100]=new QRect(335,250,67,67);
     tuq[101]=new QRect(335,250,67,67);
     //dq=0;peo_jump=false;
-
+      sys=new System;
     count=2;yan=0;
     st[0].id=0;st[1].id=1;st[0].pic=0;st[1].pic=1;
     //connect(&peo_jump_timer,SIGNAL(timeout()),this,SLOT(peo_jump_set()));
@@ -22,7 +22,7 @@ my_ios::my_ios(QWidget *parent):QWidget(parent){
     connect(&key_mouse_timer,SIGNAL(timeout()),this,SLOT(face_to()));
     connect(&key_mouse_timer,SIGNAL(timeout()),this,SLOT(key_bourd_fun()));
     connect(&show_time,SIGNAL(timeout()),this,SLOT(m_show()));
-        show_time.start(20);
+        show_time.start(10);
         key_mouse_timer.start(30);
 }
 void my_ios::paintEvent (QPaintEvent *event){
@@ -36,19 +36,20 @@ void my_ios::paintEvent (QPaintEvent *event){
 }
 void my_ios::m_show(){
     pic lin;count=0;
-    while(!sys.picture.empty()){
-        lin=sys.picture.top();
-        sys.picture.pop();
+    sys->input_stack();
+    while(!sys->picture.empty()){
+        lin=sys->picture.top();
+        sys->picture.pop();
         st[count].id=lin.idarea;
         tuq[st[count].id]->setRect(lin.x,lin.y,lin.w,lin.h);
         st[count].pic=lin.id_pic;
         st[count++].z=lin.z;
     }
-    sort(st,st+count,cmp);
+    //sort(st,st+count,cmp);
     update();
 }
 void my_ios::move(){
-     sys.move(fang,hfang);
+     sys->move(fang,hfang);
 }
 
 my_ios::~my_ios(){
@@ -56,14 +57,14 @@ my_ios::~my_ios(){
 }
 void my_ios::face_to(){
     yan++;
-    if(yan==3){
+    //if(yan==3){
         yan=0;
     QPoint aaa = cursor().pos();
     aaa=mapFromGlobal(aaa);
-    if(aaa.x()>=sys.data.hero.x)sys.face_to(1);
-    else sys.face_to(0);
+    if(aaa.x()>=sys->data.hero.x)sys->face_to(1);
+    else sys->face_to(0);
 
-    }
+   // }
 }
 void my_ios::key_bourd_fun(){
     bool key[256]={false},flag=true;

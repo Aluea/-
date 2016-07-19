@@ -40,7 +40,7 @@ struct data_in{
 
     //地图
     //间距=20px
-    pic_all map[200][20];
+    pic_all map[200][200];
     int map_count[200];
 };
 

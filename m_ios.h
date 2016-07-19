@@ -28,7 +28,7 @@ private:
     int dq;
     int yan;
     bool peo_jump;
-    System sys;
+    System *sys;
 
 public slots:
     // void peo_jump_set();

@@ -7,6 +7,7 @@
 
 Database::Database(){
     hear=0;
+    //data_f=new data_in;
 }
 void swap(pic_all& a,pic_all& b){
     pic_all c;
