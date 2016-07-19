@@ -1,16 +1,9 @@
 #include<database.h>
-data_in::data_in(){
-    for(int i=0;i<200;i++){
-        map_count[i]=0;
-        map[i]=new pic_all[100];
-    }
-   // qDebug("ty=%d int=%d\n",sizeof(pic_all[200][50]),sizeof(int[100][100]));
-}
-data_in::~data_in(){
-    for(int i=0;i<200;i++){
-        delete[] map[i];
-    }
-}
+//data_in::data_in(){
+//    for(int i=0;i<200;i++){
+//        map_count[i]=0;
+//    }
+//}
 
 Database::Database(){
     hear=0;
@@ -43,17 +36,15 @@ void Database::new_prject(char type,int idarea,int x,int y,int z,int w,int h,int
                     break;
                 }
             }
-            data_f[hear].background[i]=new M_map;
-            data_f[hear].background[i]->set(idarea,id_pic,x,y,w,h);
+            data_f[hear].background[i].set(idarea,id_pic,x,y,w,h);
             data_f[hear].background_use[i]=true;
             data_f[hear].area_id[idarea_n]=idarea;
             data_f[hear].area_id_use[idarea_n]=true;
             lin_a.type='m';
             lin_a.id=i;
             data_f[hear].map[id_map][data_f[hear].map_count[id_map]]=lin_a;
-            data_f[hear].area_to_map[idarea]=new pic_point;
-            data_f[hear].area_to_map[idarea]->x=id_map;
-            data_f[hear].area_to_map[idarea]->y=data_f[hear].map_count[id_map]++;
+            data_f[hear].area_to_map[idarea].x=id_map;
+            data_f[hear].area_to_map[idarea].y=data_f[hear].map_count[id_map]++;
             break;
         case 'p'://人物与怪物
 
@@ -68,11 +59,10 @@ void Database::new_prject(char type,int idarea,int x,int y,int z,int w,int h,int
                     break;
                 }
             }
-            data_f[hear].people[i]=new Life;
-            data_f[hear].people[i]->set(id_count,idarea,x,y,z,w,h);
+            data_f[hear].people[i].set(id_count,idarea,x,y,z,w,h);
             for(int j=0;i<id_count;j++){
                 id_pic=va_arg(arg_ptr,int);
-                data_f[hear].people[i]->setid(id_pic,j);
+                data_f[hear].people[i].setid(id_pic,j);
             }
             data_f[hear].people_use[i]=true;
             data_f[hear].area_id[idarea_n]=idarea;
@@ -80,9 +70,8 @@ void Database::new_prject(char type,int idarea,int x,int y,int z,int w,int h,int
             lin_a.type='p';
             lin_a.id=i;
             data_f[hear].map[id_map][data_f[hear].map_count[id_map]]=lin_a;
-            data_f[hear].area_to_map[idarea]=new pic_point;
-            data_f[hear].area_to_map[idarea]->x=id_map;
-            data_f[hear].area_to_map[idarea]->y=data_f[hear].map_count[id_map]++;
+            data_f[hear].area_to_map[idarea].x=id_map;
+            data_f[hear].area_to_map[idarea].y=data_f[hear].map_count[id_map]++;
             break;
         case 'l'://粒子
             break;
@@ -90,29 +79,17 @@ void Database::new_prject(char type,int idarea,int x,int y,int z,int w,int h,int
 }
 void Database::del_prject(const pic_all& obj){
     pic_point lin;
-    int idarea;
     switch (obj.type){
         case 'm':
             data_f[hear].background_use[obj.id]=false;
-            idarea=data_f[hear].background[obj.id]->get_idarea();
-            data_f[hear].area_id_use[idarea]=false;
-            delete data_f[hear].background[obj.id];
-            lin=*data_f[hear].area_to_map[idarea];
-            delete data_f[hear].area_to_map[idarea];
+            lin=data_f[hear].area_to_map[data_f[hear].background[obj.id].get_idarea()];
             swap( data_f[hear].map[lin.x][lin.y] , data_f[hear].map[lin.x][ data_f[hear].map_count[lin.x]-- ] );
 
             break;
         case 'p':
             data_f[hear].people_use[obj.id]=false;
-            idarea=data_f[hear].people[obj.id]->getarea_id();
-            data_f[hear].area_id_use[idarea]=false;
-            delete data_f[hear].people[obj.id];
-            lin=*data_f[hear].area_to_map[idarea];
-            delete data_f[hear].area_to_map[idarea];
+            lin=data_f[hear].area_to_map[data_f[hear].people[obj.id].getarea_id()];
             swap( data_f[hear].map[lin.x][lin.y] , data_f[hear].map[lin.x][ data_f[hear].map_count[lin.x]-- ] );
-//            data_f[hear].people_use[obj.id]=false;
-//            lin=data_f[hear].area_to_map[data_f[hear].people[obj.id].getarea_id()];
-//            swap( data_f[hear].map[lin.x][lin.y] , data_f[hear].map[lin.x][ data_f[hear].map_count[lin.x]-- ] );
             break;
     }
 }

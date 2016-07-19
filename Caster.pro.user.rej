@@ -1,0 +1,14 @@
+diff a/Caster.pro.user b/Caster.pro.user	(rejected hunks)
+@@ -1,10 +1,10 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE QtCreatorProject>
+-<!-- Written by QtCreator 4.0.2, 2016-07-18T22:13:57. -->
++<!-- Written by QtCreator 3.3.0, 2016-07-19T13:32:34. -->
+ <qtcreator>
+  <data>
+   <variable>EnvironmentId</variable>
+-  <value type="QByteArray">{435ef7ab-29ef-4932-9a21-22c9312fd384}</value>
++  <value type="QByteArray">{75490759-707c-4600-ba39-ad9a4958be67}</value>
+  </data>
+  <data>
+   <variable>ProjectExplorer.Project.ActiveTarget</variable>
