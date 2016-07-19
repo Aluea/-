@@ -48,7 +48,7 @@ void System::input_stack(){
      lin.id_pic=data.hero.getpic_id(ft);
      //lin.idarea=data.hero.getarea_id();
      lin.x=data.hero.x-show_zb;
-     lin.y=data.hero.y;
+     lin.y=data.hero.y+data.hero.z/2+144;
      lin.h=data.hero.height;
      lin.w=data.hero.width;
      picture.push(lin);
@@ -130,9 +130,10 @@ void System::move(int fang,int hfang){
 
 void System::peo_move(int fang,int hfang){
     data.hero.x+=fang*2;
-    data.hero.y+=hfang*2;
-
-
+    if(data.hero.z>0&&hfang<0)
+    data.hero.z+=hfang*4;
+    if(data.hero.z<230&&hfang>0)
+     data.hero.z+=hfang*4;
 }
 
 void System::tu_move(int fang){
