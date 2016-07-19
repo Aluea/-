@@ -6,16 +6,27 @@ data_in::data_in(){
         }
     }
 }
+bool pic_all::operator ==(const pic_all &lin){
+    if((this->id==lin.id) && (this->type==lin.type)){
+        return true;
+    }
+    return false;
+}
 
-Database::Database():hero(Hero()){
+Database::Database(){
     hear=0;
+    //hero=new Hero();
     data_f[hear].people[0]=&hero;
-    data_f[hear].people_use=true;
+    data_f[hear].people_use[0]=true;
     data_f[hear].map[hero.x/DIS][hero.y/DIS][0].type=-1;
     data_f[hear].map[hero.x/DIS][hero.y/DIS][0].id=0;
     data_f[hear].map_count[hero.x/DIS][hero.y/DIS]++;
     //data_f=new data_in;
 }
+Database::~Database(){
+    //delete hero;
+}
+
 void swap(pic_all& a,pic_all& b){
     pic_all c;
     c=a;
@@ -24,7 +35,7 @@ void swap(pic_all& a,pic_all& b){
 }
 
 void Database::new_project(int type,int x,int y,int z){
-    int id,x,y;
+    int id;
     Life* lin;
     switch (type){
         case(0)://怪物_0
@@ -33,8 +44,8 @@ void Database::new_project(int type,int x,int y,int z){
                     id=i;
                 }
             }
-            data_f[hear].people_use[i]=true;
-            lin=data_f[hear].people=new Monster_0();
+            data_f[hear].people_use[id]=true;
+            lin=data_f[hear].people[id]=new Monster_0();
             x=lin->x/DIS;
             y=lin->y/DIS;
             data_f[hear].map[x][y][data_f[hear].map_count[x][y]++];
@@ -43,8 +54,8 @@ void Database::new_project(int type,int x,int y,int z){
 }
 void Database::new_background(int hear,int x,int y,int w,int h,int pic_id){
     for(int i=0;i<BACKGROUND_ALL;i++){
-        if(data_f[hear].background_use[i]=false){
-            data_f[hear].background[i]=new M_map(x,y,w,h,pic_id)
+        if(data_f[hear].background_use[i]==false){
+            data_f[hear].background[i]=new M_map(x,y,w,h,pic_id);
         }
     }
 }
@@ -55,8 +66,8 @@ void Database::del_project(const pic_all& obj){
         case (-1)://英雄
         case (0)://怪物
             data_f[hear].people_use[obj.id]=false;
-            x=data_f[hear].people[obj]->x/DIS;
-            y=data_f[hear].people[obj]->y/DIS;
+            x=data_f[hear].people[obj.id]->x/DIS;
+            y=data_f[hear].people[obj.id]->y/DIS;
             for(int i=0;i<data_f[hear].map_count[x][y];i++){
                 if(data_f[hear].map[x][y][i]==obj){
                     swap(data_f[hear].map[x][y][i],data_f[hear].map[x][y][ --data_f[hear].map_count[x][y] ]);
@@ -88,9 +99,9 @@ void Database::move_project(const pic_all& obj,int x_old,int y_old){
 
 }
 
-void move_project(int type,int id,int x_old,int y_old){
+void Database::move_project(int type,int id,int x_old,int y_old){
     pic_all lin;
     lin.type=type;
     lin.id=id;
-    this->move_project(lin,x_old,y_old);
+    move_project(lin,x_old,y_old);
 }

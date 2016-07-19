@@ -40,7 +40,7 @@ void my_ios::m_show(){
     while(!sys->picture.empty()){
         lin=sys->picture.top();
         sys->picture.pop();
-        st[count].id=lin.idarea;
+        //st[count].id=lin.idarea;
         tuq[st[count].id]->setRect(lin.x,lin.y,lin.w,lin.h);
         st[count].pic=lin.id_pic;
         st[count++].z=lin.z;

@@ -8,8 +8,8 @@ class Life{
         int getpic_id(int n) const;
         int get_id_count() const;
         int x,y,z;
-    protected:
         int width,height;
+    protected:
         int *id_pic;
         int id_count;
     private:

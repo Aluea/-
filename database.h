@@ -11,6 +11,7 @@ using namespace std;
 #define EMPTY -1
 #define DIS 20
 struct pic_all{
+    bool operator ==(const pic_all& lin);
     int type;
     int id;
 };
@@ -42,7 +43,8 @@ struct data_in{
 class Database{
     public:
         Database();
-        Hero& hero;
+        ~Database();
+        Hero hero;
         friend class System;
         void new_project(int type,int x,int y,int z);//新建对象
         void new_background(int hear, int x, int y, int w, int h, int pic_id);
