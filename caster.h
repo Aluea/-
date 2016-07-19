@@ -6,6 +6,7 @@
 #include<stack>
 #include<map>
 #include<life.h>
+#include<monsters.h>
 #include<m_map.h>
 #include<affairs.h>
 #include<QDebug>
@@ -14,7 +15,7 @@
 
 struct pic{
     int x,y,z,w,h;
-    int id_pic,idarea;
+    int id_pic;//,idarea;
     //int type;//0人1图
 };
 

@@ -1,18 +1,13 @@
 #include<system.h>
 
 System::System():
-    pic_now(0),rtd(0)
-    {   show_zb=0;
-        data.hero.set(2,100,335,250,0,67,67);
-        data.data_f[0].area_id[0]=0;
-        data.data_f[0].area_id_use[0]=true;
-        data.hero.setid(100,0);
-        data.hero.setid(101,1);
+    pic_now(0),rtd(0){   
+        show_zb=0;
 
-        data.new_prject('m',0,0,0,0,700,350,1,0);
-        data.new_prject('m',1,696,0,0,700,350,1,1);
-        data.new_prject('m',2,2*696,0,0,700,350,1,2);
-        data.new_prject('m',3,3*696,0,0,700,350,1,3);
+        data.new_background(0,0,0,700,350,0);
+        data.new_background(0,696,0,700,350,1);
+        data.new_background(0,2*696,0,700,350,2);
+        data.new_background(0,3*696,0,700,350,3);
         ft=1;
     }
 

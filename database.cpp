@@ -1,12 +1,19 @@
 #include<database.h>
-//data_in::data_in(){
-//    for(int i=0;i<200;i++){
-//        map_count[i]=0;
-//    }
-//}
+data_in::data_in(){
+    for(int i=0;i<200;i++){
+        for(int j=0;j<18;j++){
+            map_count[i][j]=0;
+        }
+    }
+}
 
-Database::Database(){
+Database::Database():hero(Hero()){
     hear=0;
+    data_f[hear].people[0]=&hero;
+    data_f[hear].people_use=true;
+    data_f[hear].map[hero.x/DIS][hero.y/DIS][0].type=-1;
+    data_f[hear].map[hero.x/DIS][hero.y/DIS][0].id=0;
+    data_f[hear].map_count[hero.x/DIS][hero.y/DIS]++;
     //data_f=new data_in;
 }
 void swap(pic_all& a,pic_all& b){
@@ -16,80 +23,74 @@ void swap(pic_all& a,pic_all& b){
     b=c;
 }
 
-void Database::new_prject(char type,int idarea,int x,int y,int z,int w,int h,int id_count,...){
-    int id_map=x/DIS;
-    va_list arg_ptr;
-    va_start(arg_ptr,id_count);
-    int id_pic,i,idarea_n;
-    pic_all lin_a;
-    switch(type){
-        case 'm'://背景
-            id_pic=va_arg(arg_ptr,int);
-            for(i=0;i<AREA_ID_ALL;i++){
-                if(!data_f[hear].area_id_use[i]){
-                    idarea_n=i;
-                    break;
+void Database::new_project(int type,int x,int y,int z){
+    int id,x,y;
+    Life* lin;
+    switch (type){
+        case(0)://怪物_0
+            for(int i=0;i<PEOPLE_ALL;i++){
+                if(!data_f[hear].people_use[i]){
+                    id=i;
                 }
-            }
-            for(i=0;i<BACKGROUND_ALL;i++){
-                if(!data_f[hear].background_use[i]){
-                    break;
-                }
-            }
-            data_f[hear].background[i].set(idarea,id_pic,x,y,w,h);
-            data_f[hear].background_use[i]=true;
-            data_f[hear].area_id[idarea_n]=idarea;
-            data_f[hear].area_id_use[idarea_n]=true;
-            lin_a.type='m';
-            lin_a.id=i;
-            data_f[hear].map[id_map][data_f[hear].map_count[id_map]]=lin_a;
-            data_f[hear].area_to_map[idarea].x=id_map;
-            data_f[hear].area_to_map[idarea].y=data_f[hear].map_count[id_map]++;
-            break;
-        case 'p'://人物与怪物
-
-            for(i=0;i<AREA_ID_ALL;i++){
-                if(!data_f[hear].area_id_use[i]){
-                    idarea_n=i;
-                    break;
-                }
-            }
-            for(i=0;i<PEOPLE_ALL;i++){
-                if(!data_f[hear].background_use[i]){
-                    break;
-                }
-            }
-            data_f[hear].people[i].set(id_count,idarea,x,y,z,w,h);
-            for(int j=0;i<id_count;j++){
-                id_pic=va_arg(arg_ptr,int);
-                data_f[hear].people[i].setid(id_pic,j);
             }
             data_f[hear].people_use[i]=true;
-            data_f[hear].area_id[idarea_n]=idarea;
-            data_f[hear].area_id_use[idarea_n]=true;
-            lin_a.type='p';
-            lin_a.id=i;
-            data_f[hear].map[id_map][data_f[hear].map_count[id_map]]=lin_a;
-            data_f[hear].area_to_map[idarea].x=id_map;
-            data_f[hear].area_to_map[idarea].y=data_f[hear].map_count[id_map]++;
-            break;
-        case 'l'://粒子
+            lin=data_f[hear].people=new Monster_0();
+            x=lin->x/DIS;
+            y=lin->y/DIS;
+            data_f[hear].map[x][y][data_f[hear].map_count[x][y]++];
             break;
     }
 }
-void Database::del_prject(const pic_all& obj){
-    pic_point lin;
-    switch (obj.type){
-        case 'm':
-            data_f[hear].background_use[obj.id]=false;
-            lin=data_f[hear].area_to_map[data_f[hear].background[obj.id].get_idarea()];
-            swap( data_f[hear].map[lin.x][lin.y] , data_f[hear].map[lin.x][ data_f[hear].map_count[lin.x]-- ] );
+void Database::new_background(int hear,int x,int y,int w,int h,int pic_id){
+    for(int i=0;i<BACKGROUND_ALL;i++){
+        if(data_f[hear].background_use[i]=false){
+            data_f[hear].background[i]=new M_map(x,y,w,h,pic_id)
+        }
+    }
+}
 
-            break;
-        case 'p':
+void Database::del_project(const pic_all& obj){
+    int x,y;
+    switch (obj.type){
+        case (-1)://英雄
+        case (0)://怪物
             data_f[hear].people_use[obj.id]=false;
-            lin=data_f[hear].area_to_map[data_f[hear].people[obj.id].getarea_id()];
-            swap( data_f[hear].map[lin.x][lin.y] , data_f[hear].map[lin.x][ data_f[hear].map_count[lin.x]-- ] );
+            x=data_f[hear].people[obj]->x/DIS;
+            y=data_f[hear].people[obj]->y/DIS;
+            for(int i=0;i<data_f[hear].map_count[x][y];i++){
+                if(data_f[hear].map[x][y][i]==obj){
+                    swap(data_f[hear].map[x][y][i],data_f[hear].map[x][y][ --data_f[hear].map_count[x][y] ]);
+                    break;
+                }
+            }
+            break;
+
+    }
+}
+void Database::move_project(const pic_all& obj,int x_old,int y_old){
+    int x,y;
+    x_old/=DIS;
+    y_old/=DIS;
+    switch(obj.type){
+        case (-1)://英雄
+        case (0)://怪物
+            x=data_f[hear].people[obj.id]->x/DIS;
+            y=data_f[hear].people[obj.id]->y/DIS;
+            for(int i=0;i<data_f[hear].map_count[x][y];i++){
+                if(data_f[hear].map[x_old][y_old][i]==obj){
+                    swap(data_f[hear].map[x_old][y_old][i],data_f[hear].map[x_old][y_old][ --data_f[hear].map_count[x_old][y_old] ]);
+                    break;
+                }
+            }
+            swap(data_f[hear].map[x_old][y_old][ data_f[hear].map_count[x_old][y_old] ],data_f[hear].map[x][y][ data_f[hear].map_count[x][y]++ ]);
             break;
     }
+
+}
+
+void move_project(int type,int id,int x_old,int y_old){
+    pic_all lin;
+    lin.type=type;
+    lin.id=id;
+    this->move_project(lin,x_old,y_old);
 }

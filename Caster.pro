@@ -8,7 +8,8 @@ HEADERS += \
     arton.h \
     caster.h \
     database.h \
-    affairs.h
+    affairs.h \
+    monsters.h
 
 SOURCES += \
     m_ios.cpp \
@@ -18,7 +19,8 @@ SOURCES += \
     m_map.cpp \
     caster.cpp \
     database.cpp \
-    affairs.cpp
+    affairs.cpp \
+    monsters.cpp
 
 RESOURCES += \
     ziyuan.qrc
