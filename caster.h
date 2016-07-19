@@ -8,6 +8,7 @@
 #include<life.h>
 #include<m_map.h>
 #include<affairs.h>
+#include<QDebug>
 //#include<database.h>
 #define INF 1<<30
 

@@ -20,27 +20,28 @@ struct pic_point{
 };
 
 struct data_in{
-    //data_in();
+    data_in();
+    ~data_in();
 
     int area_id[AREA_ID_ALL];
     bool area_id_use[AREA_ID_ALL]={false};
-    pic_point area_to_map[AREA_ID_ALL];
+    pic_point* area_to_map[AREA_ID_ALL];
 
     //背景线性表
-    M_map background[BACKGROUND_ALL];
+    M_map* background[BACKGROUND_ALL];
     bool background_use[BACKGROUND_ALL];
     //人物线性表
-    Life people[PEOPLE_ALL];
+    Life* people[PEOPLE_ALL];
     bool people_use[PEOPLE_ALL];
     //粒子线性表
     //~
     //事物线性表
-    Affairs affairs[AFFAIRS_ALL];
+    Affairs* affairs[AFFAIRS_ALL];
     bool affairs_use[AFFAIRS_ALL];
 
     //地图
     //间距=20px
-    pic_all map[200][20];
+    pic_all* map[200];
     int map_count[200];
 };
 
