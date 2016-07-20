@@ -56,6 +56,8 @@ void Database::new_background(int hear,int x,int y,int w,int h,int pic_id){
     for(int i=0;i<BACKGROUND_ALL;i++){
         if(data_f[hear].background_use[i]==false){
             data_f[hear].background[i]=new M_map(x,y,w,h,pic_id);
+            data_f[hear].background_use[i]=true;
+            break;
         }
     }
 }
