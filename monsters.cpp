@@ -9,6 +9,12 @@ Hero::Hero(){
     id_pic=new int[2];
     id_pic[0]=100;
     id_pic[1]=101;
+    ax=0;
+    ay=0;
+    az=0;
+    vx=0;
+    vy=0;
+    vz=0;
 }
 Hero::Hero(int x,int y,int z,int w,int h){
     this->x=x;

@@ -9,7 +9,9 @@ HEADERS += \
     caster.h \
     database.h \
     affairs.h \
-    monsters.h
+    monsters.h \
+    calculate.h \
+    systems.h
 
 SOURCES += \
     m_ios.cpp \
@@ -20,7 +22,9 @@ SOURCES += \
     caster.cpp \
     database.cpp \
     affairs.cpp \
-    monsters.cpp
+    monsters.cpp \
+    calculate.cpp \
+    systems.cpp
 
 RESOURCES += \
     ziyuan.qrc

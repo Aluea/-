@@ -3,6 +3,7 @@
 #include <QtGui>
 #include<QWidget>
 #include<system.h>
+#include<systems.h>
 #include<caster.h>
 #define TI 10
 class my_ios:public QWidget{
@@ -28,7 +29,8 @@ private:
     int dq;
     int yan;
     bool peo_jump;
-    System *sys;
+   m_system *sys;
+   void jumps();
 
 public slots:
     // void peo_jump_set();
@@ -36,6 +38,7 @@ public slots:
      void key_bourd_fun();
      void face_to();
      void m_show();
+
 
 };
 #endif

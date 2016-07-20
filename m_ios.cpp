@@ -14,7 +14,7 @@ my_ios::my_ios(QWidget *parent):QWidget(parent){
     tuq[100]=new QRect(335,250,67,67);
     tuq[101]=new QRect(335,250,67,67);
     //dq=0;peo_jump=false;
-      sys=new System;
+      sys=new m_system;
     count=2;yan=0;
     st[0].id=0;st[1].id=1;st[0].pic=0;st[1].pic=1;
     //connect(&peo_jump_timer,SIGNAL(timeout()),this,SLOT(peo_jump_set()));
@@ -22,6 +22,7 @@ my_ios::my_ios(QWidget *parent):QWidget(parent){
     connect(&key_mouse_timer,SIGNAL(timeout()),this,SLOT(face_to()));
     connect(&key_mouse_timer,SIGNAL(timeout()),this,SLOT(key_bourd_fun()));
     connect(&show_time,SIGNAL(timeout()),this,SLOT(m_show()));
+
         show_time.start(10);
         key_mouse_timer.start(30);
 }
@@ -111,10 +112,15 @@ void my_ios::keyPressEvent( QKeyEvent *event){
             //if(peo_jump==false){
            //     peo_jump=true;
            //    peo_jump_timer.start(3*TI);
-
+            jumps();
             break;
     }
 }
+ void my_ios::jumps(){
+     if(sys->data.hero.y==0){
+         sys->data.hero.vy=25;
+     }
+ }
 
 /*void my_ios::peo_jump_set(){
     const int all=20;

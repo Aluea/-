@@ -7,7 +7,7 @@ class Life{
         ~Life();
         int getpic_id(int n) const;
         int get_id_count() const;
-        int x,y,z;
+        int x,y,z,ax,ay,az,vx,vy,vz;
         int width,height;
     protected:
         int *id_pic;
