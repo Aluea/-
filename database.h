@@ -47,7 +47,7 @@ class Database{
         Hero hero;
         friend class System;
         void new_project(int type,int x,int y,int z);//新建对象
-        void new_background(int hears, int x, int y, int w, int h, int pic_id);
+        void new_background(int hear, int x, int y, int w, int h, int pic_id);
         void del_project(const pic_all& obj);//删除
         void move_project(const pic_all& obj,int x_old,int y_old);
         void move_project(int type,int id,int x_old,int y_old);

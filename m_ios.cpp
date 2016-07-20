@@ -73,7 +73,7 @@ void my_ios::key_bourd_fun(){
     key['S']=GetKeyState('S')<0?true:false;
     key['D']=GetKeyState('D')<0?true:false;
     key['W']=GetKeyState('W')<0?true:false;
-    key[VK_SPACE]=GetKeyState(VK_SPACE);
+    key[VK_SPACE]=GetKeyState(VK_SPACE)<0?true:false;
 
             flag=false;fang=0;hfang=0;
 
