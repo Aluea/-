@@ -7,5 +7,6 @@
         <file alias="R1">img/peo_left.png</file>
         <file alias="R2">img/peo_right.png</file>
         <file alias="L_L1">img/粒子.jpg</file>
+        <file alias="L1">E:/图片美/03.png</file>
     </qresource>
 </RCC>

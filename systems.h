@@ -33,8 +33,13 @@ public:
     //数据库
     Database data;
     void picture_push_one(char type,void * val);
+    //显示
     void input_stack();
     int show_zb;
+    void show_search();
+    pic_all harvest[1000];
+    int h_count;
+
 private:
     //人图动 标志
     int rtd;

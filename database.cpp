@@ -43,9 +43,11 @@ void Database::new_project(int type,int x,int y,int z){
             for(int i=0;i<PEOPLE_ALL;i++){
                 if(!data_f[hear].people_use[i]){
                     id=i;
+                     data_f[hear].people_use[id]=true;
+                     break;
                 }
             }
-            data_f[hear].people_use[id]=true;
+
             lin=data_f[hear].people[id]=new Monster_0();
             x=lin->x/DIS;
             y=lin->y/DIS;
@@ -55,13 +57,19 @@ void Database::new_project(int type,int x,int y,int z){
             for(int i=0;i<ARTON_ALL;i++){
                 if(!data_f[hear].arton_use[i]){
                     id=i;
+                    data_f[hear].arton_use[id]=true;
+                    break;
                 }
             }
-            data_f[hear].arton_use[id]=true;
+
             lin_a=data_f[hear].arton[id]=new Arton_green(x,y,z);
             x=lin_a->x/DIS;
             y=lin_a->y/DIS;
-            data_f[hear].map[x][y][data_f[hear].map_count[x][y]++];
+           // qDebug("%d %d",x,y);
+            data_f[hear].map[x][y][data_f[hear].map_count[x][y]].id=id; //dns
+            data_f[hear].map[x][y][data_f[hear].map_count[x][y]].type=type;
+            data_f[hear].map_count[x][y]++;
+            //qDebug("%d",data_f[hear].map_count[x][y]);
             break;
 
     }

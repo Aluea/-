@@ -16,8 +16,8 @@ protected:
     void paintEvent (QPaintEvent *event);
 // 读取事件
 private:
-    QPixmap *tu[150];
-    QRect *tuq[150];
+    QPixmap *tu[550];
+    QRect *tuq[550];
      QTimer show_time,peo_jump_timer,peo_move_timer,key_mouse_timer;
      int fang,hfang;
     // int dsf[100],wsf[3000];

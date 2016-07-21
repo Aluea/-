@@ -7,10 +7,18 @@ my_ios::my_ios(QWidget *parent):QWidget(parent){
     tu[3]=new QPixmap(":/A4");
     tu[100]=new QPixmap(":/R1");
     tu[101]=new QPixmap(":/R2");
+    tu[200]=new QPixmap(":/L1");
     tuq[0]=new QRect(0,0,800,350);
     tuq[1]=new QRect(800,0,800,350);
     tuq[2]=new QRect(0,0,800,350);
     tuq[3]=new QRect(0,0,800,350);
+    tuq[4]=new QRect(0,0,800,350);
+    tuq[5]=new QRect(0,0,800,350);
+    tuq[6]=new QRect(0,0,800,350);
+    tuq[7]=new QRect(0,0,800,350);
+    tuq[8]=new QRect(0,0,800,350);
+    tuq[9]=new QRect(0,0,800,350);
+    tuq[10]=new QRect(0,0,800,350);
     tuq[100]=new QRect(335,250,67,67);
     tuq[101]=new QRect(335,250,67,67);
     //dq=0;peo_jump=false;
@@ -43,9 +51,12 @@ void my_ios::m_show(){
         sys->picture.pop();
         //st[count].id=lin.idarea;
         st[count].id=count;
+
         tuq[count]->setRect(lin.x,lin.y,lin.w,lin.h);
+        //qDebug("%d %d %d %d",lin.x,lin.y,lin.w,lin.h);
         st[count].pic=lin.id_pic;
         st[count++].z=lin.z;
+
     }
     sort(st,st+count,cmp);
     update();

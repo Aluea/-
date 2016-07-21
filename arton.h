@@ -5,15 +5,23 @@ class Arton_base{
         Arton_base();
         ~Arton_base();
         inline void set_a(int a_x,int a_y,int a_z);
+        inline void set_v(int x,int y,int z);
+        inline void set_xy(int x,int y,int z);
+        int get_id_pic();
         inline void cal_v();//计算v
         inline void cal_s();//计算位置
         int x,y,z;
         int v_x,v_y,v_z;
         int a_x,a_y,a_z;
+        int belong;
+        int type;
+        int state;
+        int size;
     protected:
         int *id_pic;
         int id_count;
     private:
+
 };
 class Arton_green:public Arton_base{
     public:
