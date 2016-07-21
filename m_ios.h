@@ -2,7 +2,6 @@
 #define M_IOS_H
 #include <QtGui>
 #include<QWidget>
-#include<system.h>
 #include<systems.h>
 #include<caster.h>
 #define TI 10

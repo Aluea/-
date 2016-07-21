@@ -37,6 +37,7 @@ void swap(pic_all& a,pic_all& b){
 void Database::new_project(int type,int x,int y,int z){
     int id;
     Life* lin;
+    Arton_base* lin_a;
     switch (type){
         case(0)://怪物_0
             for(int i=0;i<PEOPLE_ALL;i++){
@@ -50,6 +51,19 @@ void Database::new_project(int type,int x,int y,int z){
             y=lin->y/DIS;
             data_f[hear].map[x][y][data_f[hear].map_count[x][y]++];
             break;
+        case (100)://粒子 green
+            for(int i=0;i<ARTON_ALL;i++){
+                if(!data_f[hear].arton_use[i]){
+                    id=i;
+                }
+            }
+            data_f[hear].arton_use[id]=true;
+            lin_a=data_f[hear].arton[id]=new Arton_green(x,y,z);
+            x=lin_a->x/DIS;
+            y=lin_a->y/DIS;
+            data_f[hear].map[x][y][data_f[hear].map_count[x][y]++];
+            break;
+
     }
 }
 void Database::new_background(int hear,int x,int y,int w,int h,int pic_id){

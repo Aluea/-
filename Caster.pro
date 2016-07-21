@@ -1,7 +1,6 @@
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 HEADERS += \
-    system.h \
     m_ios.h \
     life.h \
     m_map.h \
@@ -16,7 +15,6 @@ HEADERS += \
 SOURCES += \
     m_ios.cpp \
     main.cpp \
-    system.cpp \
     life.cpp \
     m_map.cpp \
     caster.cpp \
@@ -24,8 +22,11 @@ SOURCES += \
     affairs.cpp \
     monsters.cpp \
     calculate.cpp \
-    systems.cpp
+    systems.cpp \
+    arton.cpp
 
 RESOURCES += \
     ziyuan.qrc
+
+DISTFILES +=
 

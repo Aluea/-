@@ -36,8 +36,6 @@ public:
     void input_stack();
     int show_zb;
 private:
-    //当前图片
-    int pic_now;
     //人图动 标志
     int rtd;
     //主人物

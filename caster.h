@@ -7,6 +7,7 @@
 #include<map>
 #include<life.h>
 #include<monsters.h>
+#include<arton.h>
 #include<m_map.h>
 #include<affairs.h>
 #include<QDebug>

@@ -5,6 +5,7 @@
 using namespace std;
 #define PEOPLE_ALL 1000
 #define BACKGROUND_ALL 20
+#define ARTON_ALL 3000
 #define AREA_ID_ALL 3000
 #define MAP_ALL 10
 #define AFFAIRS_ALL 3000
@@ -19,10 +20,6 @@ void swap(pic_all& a,pic_all& b);
 struct data_in{
     data_in();
 
-    //int area_id[AREA_ID_ALL];
-    //bool area_id_use[AREA_ID_ALL]={false};
-    //pic_point area_to_map[AREA_ID_ALL];
-
     //背景线性表
     M_map* background[BACKGROUND_ALL];
     bool background_use[BACKGROUND_ALL];
@@ -30,7 +27,8 @@ struct data_in{
     Life* people[PEOPLE_ALL];
     bool people_use[PEOPLE_ALL];
     //粒子线性表
-    //~
+    Arton_base* arton[ARTON_ALL];
+    bool arton_use[ARTON_ALL];
     //事物线性表
     Affairs* affairs[AFFAIRS_ALL];
     bool affairs_use[AFFAIRS_ALL];

@@ -1,11 +1,11 @@
 #include<systems.h>
 m_system::m_system(QWidget *parent):QWidget(parent){
     show_zb=0;
-     pic_now=0;rtd=0;
-    data.new_background(0,0,0,700,350,0);
-    data.new_background(0,696,0,700,350,1);
-    data.new_background(0,2*696,0,700,350,2);
-    data.new_background(0,3*696,0,700,350,3);
+    rtd=0;
+    data.new_background(0,0,0,800,350,0);
+    data.new_background(0,796,0,800,350,1);
+    data.new_background(0,2*796,0,800,350,2);
+    data.new_background(0,3*796,0,800,350,3);
     ft=1;
     jisuan.datas=&data;
     connect(&con_ji,SIGNAL(timeout()),this,SLOT(upbase()));
@@ -49,7 +49,7 @@ void m_system::upbase(){
  }
  void m_system::input_stack(){
       pic lin;int dq;
-       dq=show_zb/696;
+       dq=show_zb/796;
       lin.id_pic=data.hero.getpic_id(ft);
       //lin.idarea=data.hero.getarea_id();
       lin.x=data.hero.x-show_zb;
@@ -58,24 +58,28 @@ void m_system::upbase(){
       lin.w=data.hero.width;
       picture.push(lin);
 
+      if(dq<4){
+          //lin.idarea=data.data_f[0].background[dq].get_idarea();
+          lin.id_pic=data.data_f[0].background[dq]->get_id_pic();
+          lin.x=data.data_f[0].background[dq]->x-show_zb;
+          lin.y=data.data_f[0].background[dq]->y;
+          lin.z=0;
+          lin.w=data.data_f[0].background[dq]->w;
+          lin.h=data.data_f[0].background[dq]->h;
+          picture.push(lin);
+      }
 
-      //lin.idarea=data.data_f[0].background[dq].get_idarea();
-      lin.id_pic=data.data_f[0].background[dq]->get_id_pic();
-      lin.x=data.data_f[0].background[dq]->x-show_zb;
-      lin.y=data.data_f[0].background[dq]->y;
-      lin.z=0;
-      lin.w=700;
-      lin.h=350;
-      picture.push(lin);
+      if(dq+1<4){
+          //lin.idarea=data.data_f[0].background[dq+1]->get_idarea();
+          lin.id_pic=data.data_f[0].background[dq+1]->get_id_pic();
+          lin.x=data.data_f[0].background[dq+1]->x-show_zb;
+          lin.y=data.data_f[0].background[dq+1]->y;
+          lin.z=0;
+          lin.w=data.data_f[0].background[dq+1]->w;
+          lin.h=data.data_f[0].background[dq+1]->h;
+          picture.push(lin);
+      }
 
-      //lin.idarea=data.data_f[0].background[dq+1]->get_idarea();
-      lin.id_pic=data.data_f[0].background[dq+1]->get_id_pic();
-      lin.x=data.data_f[0].background[dq+1]->x-show_zb;
-      lin.y=data.data_f[0].background[dq+1]->y;
-      lin.z=0;
-      lin.w=700;
-      lin.h=350;
-      picture.push(lin);
 
 
 
