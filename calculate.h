@@ -25,11 +25,9 @@ inline void getxyz(pic_all *p,double *x,double *y,double *z);
     void shouli();
     void sudujs();
     void weizhijs();
-    //并查集(伪)
-    int b_find(int x);
-    void b_join(int x,int y){
+    //计算
+    void main_js();
 
-    }
 
 private:
    pic_all active_list[1000];
@@ -37,6 +35,8 @@ private:
    int at_count;
    tuan fn_list[1000];
    int fn_count;
+   pic_all js_list[1000];
+   int js_count;
 
 };
 

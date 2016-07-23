@@ -93,6 +93,46 @@ void cal::m_search1(){
        if(y<fn_list[pre[i]].y_min)fn_list[pre[i]].y_min=y;
      }
  }
+ void cal::main_js(){
+     m_search1();
+     m_search2();
+     int b_z,b_y,b_s,b_x;
+     for(int l=0;l<fn_count;l++){
+         if(fn_list[l].x_min-5>=0)
+         b_z=fn_list[l].x_min-5;
+         else b_z=0;
+         if(fn_list[l].x_max+5<=180)
+         b_y=fn_list[l].x_max+5;
+         else b_y=180;
+         if(fn_list[l].y_min-5>=0)
+         b_x=fn_list[l].y_min-5;
+         else b_s=0;
+         if(fn_list[l].y_max+5<=18)
+         b_s=fn_list[l].y_max+5;
+         else b_s=18;
+         js_count=0;
+         for(int k=b_z;k<=b_y;k++){    //四极入库
+             for(int i=b_x;i<b_s;i++){
+                 for(int j=0;j<datas->data_f[0].map_count[k][i];j++){
+
+                    js_list[js_count++]=datas->data_f[0].map[k][i][j];
+
+                 }
+             }
+         }
+         // 前戏结束 正式开算
+         for(int i=0;i<js_count;i++){
+             //单个受力
+             for(int j=0;j<js_count;j++){
+                 //双方受力
+             }
+         }
+
+
+
+
+     }
+ }
 
 void cal::shouli(){
     if(datas->hero.y>0)datas->hero.ay=-2;
