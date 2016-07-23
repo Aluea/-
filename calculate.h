@@ -16,8 +16,8 @@ public :
     //查询方法
 inline bool getdf(pic_all *p);
 inline double getjuli(pic_all *p,pic_all *q);
-inline void getxy(pic_all *p,int *x,int *y);
-inline void getxyz(pic_all *p,int *x,int *y,int *z);
+inline void getxy(pic_all *p,double *x,double *y);
+inline void getxyz(pic_all *p,double *x,double *y,double *z);
    //寻找列表
     void m_search1();
     void m_search2();

@@ -18,9 +18,9 @@ Database::Database(){
     //hero=new Hero();
     data_f[hear].people[0]=&hero;
     data_f[hear].people_use[0]=true;
-    data_f[hear].map[hero.x/DIS][hero.y/DIS][0].type=-1;
-    data_f[hear].map[hero.x/DIS][hero.y/DIS][0].id=0;
-    data_f[hear].map_count[hero.x/DIS][hero.y/DIS]++;
+    data_f[hear].map[int(hero.x/DIS)][int(hero.y/DIS)][0].type=-1;
+    data_f[hear].map[int(hero.x/DIS)][int(hero.y/DIS)][0].id=0;
+    data_f[hear].map_count[int(hero.x/DIS)][int(hero.y/DIS)]++;
     //data_f=new data_in;
 }
 Database::~Database(){

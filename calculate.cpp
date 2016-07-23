@@ -16,14 +16,14 @@ inline bool cal::getdf(pic_all *p){
 }
 
 inline double cal::getjuli(pic_all *p,pic_all *q){
-       int x1,y1,z1,x2,y2,z2;double juli;
+       double x1,y1,z1,x2,y2,z2;double juli;
        getxyz(p,&x1,&y1,&z1);
        getxyz(q,&x2,&y2,&z2);
         juli=(x2-x1)*(x2-x1)+(y2-y1)*(y2-y1)+(z2-z1)*(z2-z1);
         return juli;
 }
 
-inline void cal::getxy(pic_all *p,int *x,int *y){
+inline void cal::getxy(pic_all *p,double *x,double *y){
     if(p->type<100){
             //empty
            *x=*y=0;
@@ -34,7 +34,7 @@ inline void cal::getxy(pic_all *p,int *x,int *y){
        *x=lin->x;*y=lin->y;
     }
 }
-inline void cal::getxyz(pic_all *p,int *x,int *y,int *z){
+inline void cal::getxyz(pic_all *p,double *x,double *y,double *z){
     if(p->type<100){
             //empty
            *x=*y=*z=0;
@@ -84,7 +84,7 @@ void cal::m_search1(){
          fn_list[i].y_min=99999;
 
      }
-     int x,y;
+     double x,y;
      for(int i=0;i<at_count;i++){
        getxy(&active_list[i],&x,&y);
        if(x>fn_list[pre[i]].x_max)fn_list[pre[i]].x_max=x;

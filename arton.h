@@ -10,9 +10,9 @@ class Arton_base{
         int get_id_pic();
         inline void cal_v();//计算v
         inline void cal_s();//计算位置
-        int x,y,z;
-        int v_x,v_y,v_z;
-        int a_x,a_y,a_z;
+        double x,y,z;
+        double v_x,v_y,v_z;
+        double a_x,a_y,a_z;
         int belong;
         int type;
         int state;
