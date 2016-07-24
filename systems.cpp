@@ -6,18 +6,63 @@ m_system::m_system(QWidget *parent):QWidget(parent){
     data.new_background(0,796,0,800,350,1);
     data.new_background(0,2*796,0,800,350,2);
     data.new_background(0,3*796,0,800,350,3);
-    data.new_project(100,400,100,50);
+    data.new_project(100,100,100,50);
     data.new_project(100,500,100,50);
+    data.new_project(100,300,0,50);
+    data.new_project(100,0,0,0);
+    for(int i=0;i<5;i++){
+        data.new_project(100,rand()%700,rand()%350,rand()%300);
+        //data.new_project(100,300,0,50);
+    }
     ft=1;
     jisuan.datas=&data;
     connect(&con_ji,SIGNAL(timeout()),this,SLOT(upbase()));
 
-    con_ji.start(20);
+    con_ji.start(50);
 }
 void m_system::upbase(){
     jisuan.shouli();
     jisuan.sudujs();
     jisuan.weizhijs();
+    jisuan.main_js();
+
+    //临时写法
+    {
+        for(int i=0;i<200;i++){
+            for(int j=0;j<18;j++){
+                for(int k=0;k<data.data_f[data.hear].map_count[i][j];k++){
+                    if(data.data_f[data.hear].map[i][j][k].type==100){
+
+                        for(int x=0;x<200;x++){
+                            for(int y=0;y<18;y++){
+                                for(int z=0;z<data.data_f[data.hear].map_count[x][y];z++){
+                                    if(data.data_f[data.hear].map[x][y][z].type==100){
+
+                                        jisuan.cal_f(data.data_f[data.hear].map[i][j][k],data.data_f[data.hear].map[x][y][z]);
+
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+        for(int i=0;i<200;i++){
+            for(int j=0;j<18;j++){
+                for(int k=0;k<data.data_f[data.hear].map_count[i][j];k++){
+                    if(data.data_f[data.hear].map[i][j][k].type==100){
+                        Arton_base &A=*static_cast<Arton_base*>(data.find_type(data.data_f[data.hear].map[i][j][k]));
+                        A.cal_v();
+                        A.cal_s();
+                        A.set_a(0,0,0);
+                    }
+                }
+            }
+        }
+    }
+
 }
  m_system::~m_system(){
 

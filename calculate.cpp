@@ -283,3 +283,26 @@ void cal::weizhijs(){
     }
     else datas->hero.y+=datas->hero.vy;
 }
+
+void cal::cal_f(const pic_all& a,const pic_all& b){
+    Arton_base& A=*static_cast<Arton_base*>((datas->find_type(a)));
+    Arton_base& B=*static_cast<Arton_base*>((datas->find_type(b)));
+    double x=A.x-B.x;
+    double y=A.y-B.y;
+    double z=A.z-B.z;
+    double dis=sqrt(x*x+y*y+z*z);
+    if(dis==0){
+        return;
+    }
+    double f=-F(dis);
+    if(abs(f)<=5){
+        A.smail_v(0.1);
+        //B.smail_v();
+    }
+    double lin=f/dis;
+    double a_x=lin*x;
+    double a_y=lin*y;
+    double a_z=lin*z;
+    A.set_a(A.a_x+a_x,A.a_y+a_y,A.a_z+a_z);
+    //B.set_a(B.a_x-a_x,B.a_y-a_y,B.a_z-a_z);
+}

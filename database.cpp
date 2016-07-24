@@ -39,6 +39,7 @@ void Database::new_project(int type,int x,int y,int z){
     Life* lin;
     Arton_base* lin_a;
     switch (type){
+//      case (-1)://英雄
         case(0)://怪物_0
             for(int i=0;i<PEOPLE_ALL;i++){
                 if(!data_f[hear].people_use[i]){
@@ -128,4 +129,60 @@ void Database::move_project(int type,int id,int x_old,int y_old){
     lin.type=type;
     lin.id=id;
     move_project(lin,x_old,y_old);
+}
+void* Database::find_type(const pic_all& lin,int* type,int* type_base){
+    void* ret;
+    *type_base=lin.type;
+    switch(lin.type){
+        case (-1)://英雄
+        case (0)://怪物
+            ret=data_f[hear].people[lin.id];
+            *type=2;
+            break;
+        case (100)://粒子
+            ret=data_f[hear].arton[lin.id];
+            *type=3;
+            break;
+        default:
+            *type=*type_base=-10;
+            ret=NULL;
+            break;
+    }
+    return ret;
+}
+void* Database::find_type(const pic_all& lin,int* type){
+    void* ret;
+    switch(lin.type){
+        case (-1)://英雄
+        case (0)://怪物
+            ret=data_f[hear].people[lin.id];
+            *type=2;
+            break;
+        case (100)://粒子
+            ret=data_f[hear].arton[lin.id];
+            *type=3;
+            break;
+        default:
+            *type=-10;
+            ret=NULL;
+            break;
+    }
+    return ret;
+}
+void* Database::find_type(const pic_all& lin){
+    void* ret;
+
+    switch(lin.type){
+        case (-1)://英雄
+        case (0)://怪物
+            ret=data_f[hear].people[lin.id];
+            break;
+        case (100)://粒子
+            ret=data_f[hear].arton[lin.id];
+            break;
+        default:
+            ret=NULL;
+            break;
+    }
+    return ret;
 }

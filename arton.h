@@ -4,12 +4,14 @@ class Arton_base{
     public:
         Arton_base();
         ~Arton_base();
-        inline void set_a(int a_x,int a_y,int a_z);
-        inline void set_v(int x,int y,int z);
-        inline void set_xy(int x,int y,int z);
+        void set_a(double a_x,double a_y,double a_z);
+        inline void set_v(double x,double y,double z);
+        inline void set_xy(double x,double y,double z);
+        void smail_v();//缩小速度
+        void smail_v(double c);
         int get_id_pic();
-        inline void cal_v();//计算v
-        inline void cal_s();//计算位置
+        void cal_v();//计算v
+        void cal_s();//计算位置
         double x,y,z;
         double v_x,v_y,v_z;
         double a_x,a_y,a_z;
@@ -25,8 +27,8 @@ class Arton_base{
 };
 class Arton_green:public Arton_base{
     public:
-        Arton_green(int x, int y, int z);
-        Arton_green(int x, int y, int z,int v_x,int v_y,int v_z);
+        Arton_green(double x, double y, double z);
+        Arton_green(double x, double y, double z,double v_x,double v_y,double v_z);
         ~Arton_green();
 
 };

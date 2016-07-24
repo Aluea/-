@@ -20,16 +20,16 @@ void swap(pic_all& a,pic_all& b);
 struct data_in{
     data_in();
 
-    //背景线性表
+    //背景线性表1
     M_map* background[BACKGROUND_ALL];
     bool background_use[BACKGROUND_ALL];
-    //怪物线性表
+    //怪物线性表2
     Life* people[PEOPLE_ALL];
     bool people_use[PEOPLE_ALL];
-    //粒子线性表
+    //粒子线性表3
     Arton_base* arton[ARTON_ALL];
     bool arton_use[ARTON_ALL];
-    //事物线性表
+    //事物线性表4
     Affairs* affairs[AFFAIRS_ALL];
     bool affairs_use[AFFAIRS_ALL];
 
@@ -51,6 +51,9 @@ class Database{
         void del_project(const pic_all& obj);//删除
         void move_project(const pic_all& obj,int x_old,int y_old);
         void move_project(int type,int id,int x_old,int y_old);
+        void* find_type(const pic_all& lin,int* type,int* type_base);//类型查找 返回viod* 指针 type 说明类型 type说基类类类型
+        void* find_type(const pic_all& lin,int* type);
+        void* find_type(const pic_all& lin);
         int hear;
     private:        
         data_in data_f[MAP_ALL];
