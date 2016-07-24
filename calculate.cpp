@@ -1,5 +1,6 @@
 #include<calculate.h>
 #define MT 3000
+//查询区
 inline bool cal::getdf(pic_all *p){
 
     if(p->type<100){
@@ -14,6 +15,7 @@ inline bool cal::getdf(pic_all *p){
         else return true;
     }
 }
+
 
 inline double cal::getjuli(pic_all *p,pic_all *q){
        double x1,y1,z1,x2,y2,z2;double juli;
@@ -44,6 +46,134 @@ inline void cal::getxyz(pic_all *p,double *x,double *y,double *z){
        lin=datas->data_f[0].arton[p->id];
        *x=lin->x;*y=lin->y;*z=lin->z;
     }
+}
+inline void cal::getv(pic_all *p,double *vx,double *vy,double *vz){
+    if(p->type<100){
+            //empty
+           *vx=*vy=*vz=0;
+        }
+        else if(p->type>=100){
+        Arton_base *lin;
+       lin=datas->data_f[0].arton[p->id];
+       *vx=lin->v_x;*vy=lin->v_y;*vz=lin->v_z;
+
+    }
+}
+
+inline void cal::geta(pic_all *p,double *ax,double *ay,double *az){
+    if(p->type<100){
+            //empty
+           *ax=*ay=*az=0;
+        }
+        else if(p->type>=100){
+        Arton_base *lin;
+       lin=datas->data_f[0].arton[p->id];
+       *ax=lin->a_x;*ay=lin->a_y;*az=lin->a_z;
+
+    }
+}
+
+inline int cal::getbl(pic_all *p){
+    if(p->type<100){
+            //empty
+           return -1;
+        }
+        else if(p->type>=100){
+        Arton_base *lin;
+       lin=datas->data_f[0].arton[p->id];
+       return lin->belong;
+
+    }
+
+}
+
+inline void cal::setxy(pic_all *p,double *x,double *y){
+    if(p->type<100){
+            //empty
+
+        }
+        else if(p->type>=100){
+        Arton_base *lin;
+       lin=datas->data_f[0].arton[p->id];
+       lin->x=*x;lin->y=*y;
+    }
+}
+
+inline void cal::setxyz(pic_all *p,double *x,double *y,double *z){
+    if(p->type<100){
+            //empty
+
+        }
+        else if(p->type>=100){
+        Arton_base *lin;
+       lin=datas->data_f[0].arton[p->id];
+       lin->x=*x;lin->y=*y;lin->z=*z;
+    }
+}
+
+inline void cal::setv(pic_all *p,double *vx,double *vy,double *vz){
+    if(p->type<100){
+            //empty
+
+        }
+        else if(p->type>=100){
+        Arton_base *lin;
+       lin=datas->data_f[0].arton[p->id];
+       lin->v_x=*vx;lin->v_y=*vy;lin->v_z=*vz;
+
+    }
+}
+
+inline void cal::seta(pic_all *p,double *ax,double *ay,double *az){
+    if(p->type<100){
+            //empty
+
+        }
+        else if(p->type>=100){
+        Arton_base *lin;
+       lin=datas->data_f[0].arton[p->id];
+       lin->a_x=*ax;lin->a_y=*ay;lin->a_z=*az;
+
+    }
+}
+
+inline void cal::setbl(pic_all *p,int e){
+    if(p->type<100){
+            //empty
+
+        }
+        else if(p->type>=100){
+        Arton_base *lin;
+       lin=datas->data_f[0].arton[p->id];
+         lin->belong=e;}
+}
+
+//方法区
+void cal::colide(pic_all *p,pic_all *q){
+    double x1,x2,y1,y2,z1,z2,vx1,vx2,vy1,vy2,vz1,vz2;
+    double cvx,cvy,cvz;
+    double nvx1,nvx2,nvy1,nvy2,nvz1,nvz2;
+    double vcx1,vcx2,vcx3,vcy1,vcy2,vcy3,vcz1,vcz2,vcz3;
+    getxyz(p,&x1,&y1,&z1);
+    getxyz(q,&x2,&y2,&z2);
+    getv(p,&vx1,&vy1,&vz1);
+    getv(q,&vx2,&vy2,&vz2);
+    cvx=vx2;cvy=vy2;cvz=vz2;
+    vcx1=vx1-=cvx;vcy1=vy1-=cvy;vcz1=vz1-=cvz;
+    vcx2=x2-x1;vcy2=y2-y1;vcz2=z2-z1;
+    double k1,k2,k3;
+    k1=vcx1*vcx2+vcy1*vcy2+vcz1*vcz2;
+    k2=vcx2*vcx2+vcy2*vcy2+vcz2*vcz2;
+    k3=k1/1.0*k2;
+    vcx2*=k3;vcy2*=k3;vcz2*=k3;
+    vcx3=vcx1-vcx2;
+    vcy3=vcy1-vcy2;
+    vcz3=vcz1-vcz2;
+    nvx1=vcx3+cvx;nvx2=vcx2+cvx;
+    nvy1=vcy3+cvy;nvy2=vcy2+cvy;
+    nvz1=vcz3+cvz;nvz2=vcz2+cvz;
+    setv(p,&nvx1,&nvy1,&nvz1);
+    setv(q,&nvx2,&nvy2,&nvz2);
 }
 
 void cal::m_search1(){
