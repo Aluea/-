@@ -158,13 +158,15 @@ void cal::colide(pic_all *p,pic_all *q){
     getxyz(q,&x2,&y2,&z2);
     getv(p,&vx1,&vy1,&vz1);
     getv(q,&vx2,&vy2,&vz2);
+    //qDebug("%f %f %f  %f %f %f",vx1,vy1,vz1,vx2,vy2,vz2);
     cvx=vx2;cvy=vy2;cvz=vz2;
     vcx1=vx1-=cvx;vcy1=vy1-=cvy;vcz1=vz1-=cvz;
     vcx2=x2-x1;vcy2=y2-y1;vcz2=z2-z1;
     double k1,k2,k3;
     k1=vcx1*vcx2+vcy1*vcy2+vcz1*vcz2;
     k2=vcx2*vcx2+vcy2*vcy2+vcz2*vcz2;
-    k3=k1/1.0*k2;
+    k3=k1/(1.0*k2);
+    //qDebug("k:%f %f %f",k1,k2,k3);
     vcx2*=k3;vcy2*=k3;vcz2*=k3;
     vcx3=vcx1-vcx2;
     vcy3=vcy1-vcy2;
@@ -172,8 +174,10 @@ void cal::colide(pic_all *p,pic_all *q){
     nvx1=vcx3+cvx;nvx2=vcx2+cvx;
     nvy1=vcy3+cvy;nvy2=vcy2+cvy;
     nvz1=vcz3+cvz;nvz2=vcz2+cvz;
+  //qDebug("%f %f %f  %f %f %f",nvx1,nvy1,nvz1,nvx2,nvy2,nvz2);
     setv(p,&nvx1,&nvy1,&nvz1);
     setv(q,&nvx2,&nvy2,&nvz2);
+
 }
 
 void cal::m_search1(){

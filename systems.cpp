@@ -6,8 +6,8 @@ m_system::m_system(QWidget *parent):QWidget(parent){
     data.new_background(0,796,0,800,350,1);
     data.new_background(0,2*796,0,800,350,2);
     data.new_background(0,3*796,0,800,350,3);
-    //data.new_project(100,100,100,50);
-   // data.new_project(100,500,100,50);
+    data.new_project(100,100,100,50,3);
+    data.new_project(100,150,100,50,0);
    // data.new_project(100,300,100,50);
    // data.new_project(100,700,100,50);
     //for(int i=0;i<4;i++){
@@ -18,7 +18,7 @@ m_system::m_system(QWidget *parent):QWidget(parent){
     jisuan.datas=&data;
     connect(&con_ji,SIGNAL(timeout()),this,SLOT(upbase()));
 
-    con_ji.start(30);
+    con_ji.start(300);
 }
 //操纵
 void m_system::beckon(int x, int y){
@@ -26,7 +26,7 @@ void m_system::beckon(int x, int y){
     x0=x+show_zb;
     z0=data.hero.z;
     y0=144+(z0)/2-(y);
-    data.new_project(100,x0,y0,z0);
+    data.new_project(100,x0,y0,z0,0);
 }
 
 //更新
@@ -37,7 +37,7 @@ void m_system::upbase(){
    // jisuan.main_js();
 
     //临时写法
-    {
+    {      int lin_count=0;
         for(int i=0;i<200;i++){
             for(int j=0;j<18;j++){
                 for(int k=0;k<data.data_f[data.hear].map_count[i][j];k++){
@@ -47,7 +47,17 @@ void m_system::upbase(){
                             for(int y=0;y<18;y++){
                                 for(int z=0;z<data.data_f[data.hear].map_count[x][y];z++){
                                     if(data.data_f[data.hear].map[x][y][z].type==100){
+                                       /* double jl;
+                                        jl=jisuan.getjuli(&data.data_f[data.hear].map[i][j][k],&data.data_f[data.hear].map[x][y][z]);
+                                       if(jl)qDebug("%f",jl);
+                                        if(jl<=250&&jl>50){
+                                            qDebug("afgaf");
+                                           if(lin_count==0){
+                                               jisuan.colide(&data.data_f[data.hear].map[i][j][k],&data.data_f[data.hear].map[x][y][z]);
+                                               lin_count=1;
 
+                                           }
+                                        }*/
                                         jisuan.cal_f(data.data_f[data.hear].map[i][j][k],data.data_f[data.hear].map[x][y][z]);
 
                                     }

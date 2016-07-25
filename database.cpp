@@ -18,9 +18,9 @@ Database::Database(){
     //hero=new Hero();
     data_f[hear].people[0]=&hero;
     data_f[hear].people_use[0]=true;
-    data_f[hear].map[int(hero.x/DIS)][int(hero.y/DIS)][0].type=-1;
+    /*data_f[hear].map[int(hero.x/DIS)][int(hero.y/DIS)][0].type=-1;
     data_f[hear].map[int(hero.x/DIS)][int(hero.y/DIS)][0].id=0;
-    data_f[hear].map_count[int(hero.x/DIS)][int(hero.y/DIS)]++;
+    data_f[hear].map_count[int(hero.x/DIS)][int(hero.y/DIS)]++;*/
     //data_f=new data_in;
 }
 Database::~Database(){
@@ -34,7 +34,7 @@ void swap(pic_all& a,pic_all& b){
     b=c;
 }
 
-void Database::new_project(int type,int x,int y,int z){
+void Database::new_project(int type,int x,int y,int z,int v){
     int id;
     Life* lin;
     Arton_base* lin_a;
@@ -64,6 +64,7 @@ void Database::new_project(int type,int x,int y,int z){
             }
 
             lin_a=data_f[hear].arton[id]=new Arton_green(x,y,z);
+            lin_a->v_x=v;
             x=lin_a->x/DIS;
             y=lin_a->y/DIS;
            // qDebug("%d %d",x,y);

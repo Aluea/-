@@ -46,7 +46,7 @@ class Database{
         friend class System;
         friend class m_system;
         friend class cal;
-        void new_project(int type,int x,int y,int z);//新建对象
+        void new_project(int type,int x,int y,int z,int v);//新建对象
         void new_background(int hear, int x, int y, int w, int h, int pic_id);
         void del_project(const pic_all& obj);//删除
         void move_project(const pic_all& obj,int x_old,int y_old);

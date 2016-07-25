@@ -46,7 +46,7 @@ Arton_green::Arton_green(double x, double y, double z, double v_x=0, double v_y=
     id_count=1;
     id_pic=new int[id_count];
     id_pic[0]=200;
-     size=50;
+     size=15;
      state=0;
     this->x=x;
     this->y=y;
