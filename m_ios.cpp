@@ -8,17 +8,9 @@ my_ios::my_ios(QWidget *parent):QWidget(parent){
     tu[100]=new QPixmap(":/R1");
     tu[101]=new QPixmap(":/R2");
     tu[200]=new QPixmap(":/L1");
-    tuq[0]=new QRect(0,0,800,350);
-    tuq[1]=new QRect(800,0,800,350);
-    tuq[2]=new QRect(0,0,800,350);
-    tuq[3]=new QRect(0,0,800,350);
-    tuq[4]=new QRect(0,0,800,350);
-    tuq[5]=new QRect(0,0,800,350);
-    tuq[6]=new QRect(0,0,800,350);
-    tuq[7]=new QRect(0,0,800,350);
-    tuq[8]=new QRect(0,0,800,350);
-    tuq[9]=new QRect(0,0,800,350);
-    tuq[10]=new QRect(0,0,800,350);
+    for(int i=0;i<100;i++){
+        tuq[i]=new QRect(335,250,67,67);
+    }
     tuq[100]=new QRect(335,250,67,67);
     tuq[101]=new QRect(335,250,67,67);
     //dq=0;peo_jump=false;
@@ -125,6 +117,9 @@ void my_ios::keyPressEvent( QKeyEvent *event){
            //    peo_jump_timer.start(3*TI);
             jumps();
             break;
+         case 'Z': QPoint aaa = cursor().pos();
+            aaa=mapFromGlobal(aaa);
+            sys->beckon(aaa.x(),aaa.y());break;
     }
 }
  void my_ios::jumps(){

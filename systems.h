@@ -39,6 +39,8 @@ public:
     void show_search();
     pic_all harvest[1000];
     int h_count;
+    // 操作粒子、技能
+    void beckon(int x,int y);
 
 private:
     //人图动 标志
