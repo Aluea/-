@@ -8,23 +8,23 @@ m_system::m_system(QWidget *parent):QWidget(parent){
     data.new_background(0,3*796,0,800,350,3);
     data.new_project(100,100,100,50);
     data.new_project(100,500,100,50);
-    data.new_project(100,300,0,50);
-    data.new_project(100,0,0,0);
-    for(int i=0;i<5;i++){
-        data.new_project(100,rand()%700,rand()%350,rand()%300);
+    data.new_project(100,300,100,50);
+    data.new_project(100,700,100,50);
+    for(int i=0;i<4;i++){
+        data.new_project(100,rand()%500,rand()%180,rand()%100);
         //data.new_project(100,300,0,50);
     }
     ft=1;
     jisuan.datas=&data;
     connect(&con_ji,SIGNAL(timeout()),this,SLOT(upbase()));
 
-    con_ji.start(50);
+    con_ji.start(30);
 }
 void m_system::upbase(){
     jisuan.shouli();
     jisuan.sudujs();
     jisuan.weizhijs();
-    jisuan.main_js();
+   // jisuan.main_js();
 
     //临时写法
     {
@@ -54,6 +54,11 @@ void m_system::upbase(){
                 for(int k=0;k<data.data_f[data.hear].map_count[i][j];k++){
                     if(data.data_f[data.hear].map[i][j][k].type==100){
                         Arton_base &A=*static_cast<Arton_base*>(data.find_type(data.data_f[data.hear].map[i][j][k]));
+                    if(abs(A.a_x)<0.05)A.a_x=0;
+                        if(abs(A.a_y)<0.05)A.a_y=0;
+                       if(abs(A.a_z)<0.05)A.a_z=0;
+
+
                         A.cal_v();
                         A.cal_s();
                         A.set_a(0,0,0);

@@ -1,5 +1,6 @@
 #ifndef __ARTON__
 #define __ARTON__
+#include<cmath>
 class Arton_base{
     public:
         Arton_base();

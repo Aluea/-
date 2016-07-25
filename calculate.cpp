@@ -296,7 +296,7 @@ void cal::cal_f(const pic_all& a,const pic_all& b){
     }
     double f=-F(dis);
     if(abs(f)<=5){
-        A.smail_v(0.1);
+        A.smail_v(2);
         //B.smail_v();
     }
     double lin=f/dis;

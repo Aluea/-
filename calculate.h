@@ -2,8 +2,9 @@
 #define __CALCULATE__
 #include<database.h>
 #include<arton.h>
+#include<cmath>
 //力大小计算
-#define F(DIS) ( (DIS)>1000?0:( 2000*((DIS)-30)/(1*((DIS)-30)*((DIS)-30)+4000) ) )
+#define F(DIS) ( (DIS)>200?0:( 2000*((DIS)-25)/(1*((DIS)-25)*((DIS)-25)+4000) ) )
 struct tuan{
     int x_max;
     int x_min;

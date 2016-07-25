@@ -15,9 +15,19 @@ void Arton_base::smail_v(){
     v_z*=0.71;
 }
 void Arton_base::smail_v(double c){
-    v_x*=c;
-    v_y*=c;
-    v_z*=c;
+    int x,y,z;
+    if(v_x>0)x=1;
+    else x=-1;
+    if(abs(v_x)-c>0)v_x=(abs(v_x)-c)*x;
+    else v_x=0;
+    if(v_y>0)y=1;
+    else y=-1;
+    if(abs(v_y)-c>0)v_y=(abs(v_y)-c)*y;
+    else v_y=0;
+    if(v_z>0)z=1;
+    else z=-1;
+    if(abs(v_z)-c>0)v_z=(abs(v_z)-c)*z;
+    else v_z=0;
 }
 
 Arton_green::Arton_green(double x, double y, double z){
@@ -71,9 +81,9 @@ void Arton_base::set_v(double x, double y, double z){
 }
 
 void Arton_base::cal_v(){
-    v_x+=a_x;
-    v_y+=a_y;
-    v_z+=a_z;
+    v_x+=a_x*0.3;
+    v_y+=a_y*0.3;
+    v_z+=a_z*0.3;
 }
 
 void Arton_base::cal_s(){
