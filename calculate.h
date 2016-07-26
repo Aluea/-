@@ -4,7 +4,7 @@
 #include<arton.h>
 #include<cmath>
 //力大小计算
-#define F(DIS) ( (DIS)>200?0:( 2000*((DIS)-20)/(1*((DIS)-20)*((DIS)-20)+4000) ) )
+#define F(DIS) ( (DIS)>32?0:( 2000*((DIS)-20)/(1*((DIS)-20)*((DIS)-20)+4000) ) )
 struct tuan{
     int x_max;
     int x_min;
@@ -50,6 +50,7 @@ private:
    int fn_count;
    pic_all js_list[1000];
    int js_count;
+
 
 };
 

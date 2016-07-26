@@ -72,6 +72,10 @@ void Database::new_project(int type,int x,int y,int z,int v){
             data_f[hear].map[x][y][data_f[hear].map_count[x][y]].type=type;
             data_f[hear].map_count[x][y]++;
             //qDebug("%d",data_f[hear].map_count[x][y]);
+            pic_all lins;
+            lins.id=id;
+            lins.type=type;
+            freshman.push(lins);  //初生主动点
             break;
 
     }

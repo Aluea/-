@@ -55,6 +55,7 @@ class Database{
         void* find_type(const pic_all& lin,int* type);
         void* find_type(const pic_all& lin);
         int hear;
+        stack<pic_all> freshman;  //新建单位身份栈 打破平衡的变数
     private:        
         data_in data_f[MAP_ALL];
 

@@ -6,7 +6,7 @@ m_system::m_system(QWidget *parent):QWidget(parent){
     data.new_background(0,796,0,800,350,1);
     data.new_background(0,2*796,0,800,350,2);
     data.new_background(0,3*796,0,800,350,3);
-    data.new_project(100,100,100,50,3);
+    data.new_project(100,100,100,50,0);
     data.new_project(100,150,100,50,0);
    // data.new_project(100,300,100,50);
    // data.new_project(100,700,100,50);
@@ -18,7 +18,7 @@ m_system::m_system(QWidget *parent):QWidget(parent){
     jisuan.datas=&data;
     connect(&con_ji,SIGNAL(timeout()),this,SLOT(upbase()));
 
-    con_ji.start(300);
+    con_ji.start(30);
 }
 //操纵
 void m_system::beckon(int x, int y){
@@ -34,10 +34,10 @@ void m_system::upbase(){
     jisuan.shouli();
     jisuan.sudujs();
     jisuan.weizhijs();
-   // jisuan.main_js();
+    jisuan.main_js();
 
     //临时写法
-    {      int lin_count=0;
+   /* {      int lin_count=0;
         for(int i=0;i<200;i++){
             for(int j=0;j<18;j++){
                 for(int k=0;k<data.data_f[data.hear].map_count[i][j];k++){
@@ -57,7 +57,7 @@ void m_system::upbase(){
                                                lin_count=1;
 
                                            }
-                                        }*/
+                                        }
                                         jisuan.cal_f(data.data_f[data.hear].map[i][j][k],data.data_f[data.hear].map[x][y][z]);
 
                                     }
@@ -69,14 +69,28 @@ void m_system::upbase(){
                 }
             }
         }
+        int x,y,z;
         for(int i=0;i<200;i++){
             for(int j=0;j<18;j++){
                 for(int k=0;k<data.data_f[data.hear].map_count[i][j];k++){
                     if(data.data_f[data.hear].map[i][j][k].type==100){
                         Arton_base &A=*static_cast<Arton_base*>(data.find_type(data.data_f[data.hear].map[i][j][k]));
-                    if(abs(A.a_x)<0.2)A.a_x=0;
-                        if(abs(A.a_y)<0.2)A.a_y=0;
-                       if(abs(A.a_z)<0.2)A.a_z=0;
+                    if(abs(A.a_x)<0.5)A.a_x=0;
+                    if(abs(A.a_x)>20){
+                        if(A.a_x>0)x=1;else x=-1;
+                        A.a_x=20*x;
+                    }
+                        if(abs(A.a_y)<0.5)A.a_y=0;
+                        if(abs(A.a_y)>20){
+                            if(A.a_y>0)y=1;else y=-1;
+                            A.a_y=20*y;
+                        }
+                       if(abs(A.a_z)<0.5)A.a_z=0;
+                       if(abs(A.a_z)>20){
+                           if(A.a_z>0)z=1;else z=-1;
+                           A.a_z=20*z;
+                       }
+
 
 
                         A.cal_v();
@@ -86,7 +100,7 @@ void m_system::upbase(){
                 }
             }
         }
-    }
+    }*/
 
 }
  m_system::~m_system(){

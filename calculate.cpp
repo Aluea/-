@@ -1,5 +1,5 @@
 #include<calculate.h>
-#define MT 3000
+#define MT 10000
 //查询区
 inline bool cal::getdf(pic_all *p){
 
@@ -193,39 +193,50 @@ void cal::m_search1(){
             }
         }
     }
+    while(!datas->freshman.empty()){      //初生入库
+        active_list[at_count++]=datas->freshman.top();
+        datas->freshman.pop();
+    }
 }
  void cal::m_search2(){
      for(int i=0;i<at_count;i++){
          pre[i]=-1;
+         qDebug("%d %d",active_list[i].type,active_list[i].id);
      }
      double juli;
      fn_count=0;
      for(int i=0;i<at_count;i++){
          if(pre[i]==-1){
              pre[i]=fn_count++;
+             //qDebug("++");
          for(int j=i+1;j<at_count;j++){
              if(pre[j]==-1){
-             juli=getjuli(&active_list[i],&active_list[i]);
+             juli=getjuli(&active_list[i],&active_list[j]);
+            // qDebug("JL %f",juli);
              if(juli<=MT)pre[j]=pre[i];
             }
          }
          }
      }
      for(int i=0;i<fn_count;i++){
-         fn_list[i].x_max=-1;
-         fn_list[i].x_min=99999;
-         fn_list[i].y_max=-1;
-         fn_list[i].y_min=99999;
+         fn_list[i].x_max=0;
+         fn_list[i].x_min=200;
+         fn_list[i].y_max=0;
+         fn_list[i].y_min=18;
 
      }
      double x,y;
      for(int i=0;i<at_count;i++){
        getxy(&active_list[i],&x,&y);
-       if(x>fn_list[pre[i]].x_max)fn_list[pre[i]].x_max=x;
-       if(x<fn_list[pre[i]].x_min)fn_list[pre[i]].x_min=x;
-       if(y>fn_list[pre[i]].y_max)fn_list[pre[i]].y_max=y;
-       if(y<fn_list[pre[i]].y_min)fn_list[pre[i]].y_min=y;
+
+      x=x*1.0/DIS;y=y*1.0/DIS;
+      // qDebug("xy %.0f %.0f",x,y);
+       if(x>fn_list[pre[i]].x_max)fn_list[pre[i]].x_max=(int)x;
+       if(x<fn_list[pre[i]].x_min)fn_list[pre[i]].x_min=(int)x;
+       if(y>fn_list[pre[i]].y_max)fn_list[pre[i]].y_max=(int)y;
+       if(y<fn_list[pre[i]].y_min)fn_list[pre[i]].y_min=0;
      }
+    // qDebug("AT %d",at_count);
  }
  void cal::main_js(){
      m_search1();
@@ -240,13 +251,18 @@ void cal::m_search1(){
          else b_y=180;
          if(fn_list[l].y_min-5>=0)
          b_x=fn_list[l].y_min-5;
-         else b_s=0;
+         else b_x=0;
          if(fn_list[l].y_max+5<=18)
          b_s=fn_list[l].y_max+5;
          else b_s=18;
+         qDebug("sj%d %d %d %d",b_z,b_y,b_s,b_x);
+         if(b_z<0||b_z>=180)b_z=0;
+         if(b_y<0||b_y>=180)b_y=180;
+         if(b_s<0||b_s>=18)b_s=0;
+         if(b_x<0||b_x>=18)b_x=18;
          js_count=0;
          for(int k=b_z;k<=b_y;k++){    //四极入库
-             for(int i=b_x;i<b_s;i++){
+             for(int i=b_x;i<=b_s;i++){
                  for(int j=0;j<datas->data_f[0].map_count[k][i];j++){
 
                     js_list[js_count++]=datas->data_f[0].map[k][i][j];
@@ -254,14 +270,53 @@ void cal::m_search1(){
                  }
              }
          }
+        // qDebug("ZM %d",js_count);
+
          // 前戏结束 正式开算
          for(int i=0;i<js_count;i++){
-             //单个受力
-             for(int j=0;j<js_count;j++){
-                 //双方受力
-             }
+             Arton_base &A=*static_cast<Arton_base*>(datas->find_type(js_list[i]));
+             A.set_a(0,0,0);
          }
+         for(int i=0;i<js_count;i++){
+             //单个受力
+            // qDebug("%d",js_list[i].id);
+             for(int j=i+1;j<js_count;j++){
 
+                    // qDebug("%f",getjuli(&js_list[i],&js_list[j]));
+                    // if(getjuli(&js_list[i],&js_list[j])<500)colide(&js_list[i],&js_list[j]);
+                 {   cal_f(js_list[i],js_list[j]);
+                      cal_f(js_list[j],js_list[i]);}
+               }
+
+         }
+         int x,y,z;
+          for(int i=0;i<js_count;i++){
+              Arton_base &A=*static_cast<Arton_base*>(datas->find_type(js_list[i]));
+          if(abs(A.a_x)<0.7)A.a_x=0;
+        //  if(abs(A.a_x)>20){
+      //        if(A.a_x>0)x=1;else x=-1;
+      //        A.a_x=20*x;
+     //     }
+              if(abs(A.a_y)<0.7)A.a_y=0;
+       //       if(abs(A.a_y)>20){
+       //           if(A.a_y>0)y=1;else y=-1;
+        //          A.a_y=20*y;
+          //    }
+             if(abs(A.a_z)<0.7)A.a_z=0;
+       //      if(abs(A.a_z)>20){
+        //         if(A.a_z>0)z=1;else z=-1;
+        //         A.a_z=20*z;
+        //     }
+
+
+
+                A.cal_v();
+
+
+
+              A.cal_s();
+
+          }
 
 
 
@@ -304,9 +359,16 @@ void cal::cal_f(const pic_all& a,const pic_all& b){
         //B.smail_v();
     }
     double lin=f/dis;
-    double a_x=lin*x;
-    double a_y=lin*y;
-    double a_z=lin*z;
+    double a_x,a_y,a_z;
+    if(dis<=16){
+     a_x=lin*x;
+     a_y=lin*y;
+     a_z=lin*z;}
+    else{
+         a_x=lin*x;
+         a_y=lin*y;
+         a_z=lin*z;
+    }
     A.set_a(A.a_x+a_x,A.a_y+a_y,A.a_z+a_z);
     //B.set_a(B.a_x-a_x,B.a_y-a_y,B.a_z-a_z);
 }
