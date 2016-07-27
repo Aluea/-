@@ -12,7 +12,7 @@
 #include<affairs.h>
 #include<QDebug>
 //#include<database.h>
-#define INF 1<<30
+#define INF (1<<30)
 
 struct pic{
     int x,y,z,w,h;

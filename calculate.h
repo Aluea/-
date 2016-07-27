@@ -4,14 +4,14 @@
 #include<arton.h>
 #include<cmath>
 //力大小计算
-#define F(DIS) ( (DIS)>32?0:( 2000*((DIS)-20)/(1*((DIS)-20)*((DIS)-20)+4000) ) )
+//#define F(DIS) ( (DIS)>32?0:( 2000*((DIS)-20)/(1*((DIS)-20)*((DIS)-20)+4000) ) )
+
 struct tuan{
     int x_max;
     int x_min;
     int y_max;
     int y_min;
 };
-
 class cal{
 public :
     cal(){}
@@ -53,6 +53,6 @@ private:
 
 
 };
-
+double F(double dis);
 
 #endif

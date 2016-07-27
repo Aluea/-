@@ -37,70 +37,44 @@ void m_system::upbase(){
     jisuan.main_js();
 
     //临时写法
-   /* {      int lin_count=0;
-        for(int i=0;i<200;i++){
-            for(int j=0;j<18;j++){
-                for(int k=0;k<data.data_f[data.hear].map_count[i][j];k++){
-                    if(data.data_f[data.hear].map[i][j][k].type==100){
+//    {
+//        for(int i=0;i<200;i++){
+//            for(int j=0;j<18;j++){
+//                for(int k=0;k<data.data_f[data.hear].map_count[i][j];k++){
+//                    if(data.data_f[data.hear].map[i][j][k].type==100){
 
-                        for(int x=0;x<200;x++){
-                            for(int y=0;y<18;y++){
-                                for(int z=0;z<data.data_f[data.hear].map_count[x][y];z++){
-                                    if(data.data_f[data.hear].map[x][y][z].type==100){
-                                       /* double jl;
-                                        jl=jisuan.getjuli(&data.data_f[data.hear].map[i][j][k],&data.data_f[data.hear].map[x][y][z]);
-                                       if(jl)qDebug("%f",jl);
-                                        if(jl<=250&&jl>50){
-                                            qDebug("afgaf");
-                                           if(lin_count==0){
-                                               jisuan.colide(&data.data_f[data.hear].map[i][j][k],&data.data_f[data.hear].map[x][y][z]);
-                                               lin_count=1;
+//                        for(int x=0;x<200;x++){
+//                            for(int y=0;y<18;y++){
+//                                for(int z=0;z<data.data_f[data.hear].map_count[x][y];z++){
+//                                    if(data.data_f[data.hear].map[x][y][z].type==100){
 
-                                           }
-                                        }
-                                        jisuan.cal_f(data.data_f[data.hear].map[i][j][k],data.data_f[data.hear].map[x][y][z]);
+//                                        jisuan.cal_f(data.data_f[data.hear].map[i][j][k],data.data_f[data.hear].map[x][y][z]);
 
-                                    }
-                                }
-                            }
-                        }
+//                                    }
+//                                }
+//                            }
+//                        }
 
-                    }
-                }
-            }
-        }
-        int x,y,z;
-        for(int i=0;i<200;i++){
-            for(int j=0;j<18;j++){
-                for(int k=0;k<data.data_f[data.hear].map_count[i][j];k++){
-                    if(data.data_f[data.hear].map[i][j][k].type==100){
-                        Arton_base &A=*static_cast<Arton_base*>(data.find_type(data.data_f[data.hear].map[i][j][k]));
-                    if(abs(A.a_x)<0.5)A.a_x=0;
-                    if(abs(A.a_x)>20){
-                        if(A.a_x>0)x=1;else x=-1;
-                        A.a_x=20*x;
-                    }
-                        if(abs(A.a_y)<0.5)A.a_y=0;
-                        if(abs(A.a_y)>20){
-                            if(A.a_y>0)y=1;else y=-1;
-                            A.a_y=20*y;
-                        }
-                       if(abs(A.a_z)<0.5)A.a_z=0;
-                       if(abs(A.a_z)>20){
-                           if(A.a_z>0)z=1;else z=-1;
-                           A.a_z=20*z;
-                       }
+//                    }
+//                }
+//            }
+//        }
+//        int x,y,z;
+//        for(int i=0;i<200;i++){
+//            for(int j=0;j<18;j++){
+//                for(int k=0;k<data.data_f[data.hear].map_count[i][j];k++){
+//                    if(data.data_f[data.hear].map[i][j][k].type==100){
+//                        Arton_base &A=*static_cast<Arton_base*>(data.find_type(data.data_f[data.hear].map[i][j][k]));
 
 
-
-                        A.cal_v();
-                        A.cal_s();
-                        A.set_a(0,0,0);
-                    }
-                }
-            }
-        }
-    }*/
+//                        A.cal_v();
+//                        A.cal_s();
+//                        A.set_a(0,0,0);
+//                    }
+//                }
+//            }
+//        }
+//    }
 
 }
  m_system::~m_system(){

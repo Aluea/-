@@ -15,6 +15,18 @@ inline bool cal::getdf(pic_all *p){
         else return true;
     }
 }
+double F(double dis){
+    double ret;
+    if(dis>22.2){
+        ret=0;
+    }else if(dis>25){
+        ret=50/dis;
+    }else{
+        ret=-328.15/(dis+6.25)+12.5;
+    }
+    return ret;
+}
+
 
 
 inline double cal::getjuli(pic_all *p,pic_all *q){
@@ -284,36 +296,38 @@ void cal::m_search1(){
 
                     // qDebug("%f",getjuli(&js_list[i],&js_list[j]));
                     // if(getjuli(&js_list[i],&js_list[j])<500)colide(&js_list[i],&js_list[j]);
-                 {   cal_f(js_list[i],js_list[j]);
-                      cal_f(js_list[j],js_list[i]);}
-               }
+                 {
+                     cal_f(js_list[i],js_list[j]);
+                     cal_f(js_list[j],js_list[i]);
+                 }
+             }
 
          }
          int x,y,z;
           for(int i=0;i<js_count;i++){
               Arton_base &A=*static_cast<Arton_base*>(datas->find_type(js_list[i]));
-          if(abs(A.a_x)<0.7)A.a_x=0;
-        //  if(abs(A.a_x)>20){
-      //        if(A.a_x>0)x=1;else x=-1;
-      //        A.a_x=20*x;
-     //     }
-              if(abs(A.a_y)<0.7)A.a_y=0;
-       //       if(abs(A.a_y)>20){
-       //           if(A.a_y>0)y=1;else y=-1;
-        //          A.a_y=20*y;
-          //    }
-             if(abs(A.a_z)<0.7)A.a_z=0;
-       //      if(abs(A.a_z)>20){
-        //         if(A.a_z>0)z=1;else z=-1;
-        //         A.a_z=20*z;
-        //     }
+//          if(abs(A.a_x)<0.7)A.a_x=0;
+//        //  if(abs(A.a_x)>20){
+//      //        if(A.a_x>0)x=1;else x=-1;
+//      //        A.a_x=20*x;
+//     //     }
+//              if(abs(A.a_y)<0.7)A.a_y=0;
+//       //       if(abs(A.a_y)>20){
+//       //           if(A.a_y>0)y=1;else y=-1;
+//        //          A.a_y=20*y;
+//          //    }
+//             if(abs(A.a_z)<0.7)A.a_z=0;
+//       //      if(abs(A.a_z)>20){
+//        //         if(A.a_z>0)z=1;else z=-1;
+//        //         A.a_z=20*z;
+//        //     }
 
 
 
                 A.cal_v();
 
 
-
+//                datas->move_project(js_list[i],A.x,A.y);
               A.cal_s();
 
           }
@@ -354,9 +368,9 @@ void cal::cal_f(const pic_all& a,const pic_all& b){
         return;
     }
     double f=-F(dis);
-    if(abs(f)<=5){
-        A.smail_v(2);
-        //B.smail_v();
+    if(abs(f)<=0.75){
+//        A.smail_v(2);
+        A.smail_v();
     }
     double lin=f/dis;
     double a_x,a_y,a_z;

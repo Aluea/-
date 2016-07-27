@@ -10,9 +10,9 @@ Arton_base::~Arton_base(){
 
 }
 void Arton_base::smail_v(){
-    v_x*=0.71;
-    v_y*=0.71;
-    v_z*=0.71;
+    v_x*=0.5;
+    v_y*=0.5;
+    v_z*=0.5;
 }
 void Arton_base::smail_v(double c){
     int x,y,z;
@@ -81,15 +81,22 @@ void Arton_base::set_v(double x, double y, double z){
 }
 
 void Arton_base::cal_v(){
-    if(abs(v_x)+abs(a_x)==abs(a_x+v_x))
-    v_x+=a_x*0.1;
-    else v_x+=a_x*0.7;
-    if(abs(v_y)+abs(a_y)==abs(a_y+v_y))
-    v_y+=a_y*0.1;
-    else v_y+=a_y*0.7;
-    if(abs(v_z)+abs(a_z)==abs(a_z+v_z))
-    v_z+=a_z*0.1;
-    else v_z+=a_z*0.7;
+//    if(abs(v_x)+abs(a_x)==abs(a_x+v_x))
+//    v_x+=a_x*0.1;
+//    else v_x+=a_x*0.7;
+//    if(abs(v_y)+abs(a_y)==abs(a_y+v_y))
+//    v_y+=a_y*0.1;
+//    else v_y+=a_y*0.7;
+//    if(abs(v_z)+abs(a_z)==abs(a_z+v_z))
+//    v_z+=a_z*0.1;
+//    else v_z+=a_z*0.7;
+    v_x+=a_x;
+    v_y+=a_y;
+    v_z+=a_z;
+    v_x=(int)v_x;
+    v_y=(int)v_y;
+    v_z=(int)v_z;
+
 }
 
 void Arton_base::cal_s(){
@@ -97,12 +104,14 @@ void Arton_base::cal_s(){
     y+=v_y;
     z+=v_z;
     if(z<0){
-        z=0;
+        z=-z;
     }
     if(y<0){
-        y=0;
+        y=-y;
     }
-
+    x=(int)x;
+    y=(int)y;
+    z=(int)z;
 
 
 }
