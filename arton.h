@@ -26,6 +26,13 @@ class Arton_base{
     private:
 
 };
+class Arton_virtual:public Arton_base{
+public:
+    Arton_virtual(double x, double y, double z);
+    ~Arton_virtual();
+
+};
+
 class Arton_green:public Arton_base{
     public:
         Arton_green(double x, double y, double z);

@@ -26,5 +26,10 @@ struct showturn{
     int pic;
 };
 bool cmp(showturn a,showturn b);
+struct pic_all{
+    bool operator ==(const pic_all& lin);
+    int type;
+    int id;
+};
 
 #endif

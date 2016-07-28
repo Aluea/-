@@ -11,12 +11,9 @@ using namespace std;
 #define AFFAIRS_ALL 3000
 #define EMPTY -1
 #define DIS 20
-struct pic_all{
-    bool operator ==(const pic_all& lin);
-    int type;
-    int id;
-};
+
 void swap(pic_all& a,pic_all& b);
+
 struct data_in{
     data_in();
 
@@ -46,7 +43,8 @@ class Database{
         friend class System;
         friend class m_system;
         friend class cal;
-        void new_project(int type,int x,int y,int z,int v);//新建对象
+        int new_project(int type,int x,int y,int z,int v);//新建对象
+        int new_affairs(int type,int x,int y,int z,int v);//新建事物.技能
         void new_background(int hear, int x, int y, int w, int h, int pic_id);
         void del_project(const pic_all& obj);//删除
         void move_project(const pic_all& obj,int x_old,int y_old);
@@ -56,6 +54,9 @@ class Database{
         void* find_type(const pic_all& lin);
         int hear;
         stack<pic_all> freshman;  //新建单位身份栈 打破平衡的变数
+        pic_all must_list[1000]; //主场必须项
+        int must_count;
+        void kill_must(const pic_all& obj);
     private:        
         data_in data_f[MAP_ALL];
 

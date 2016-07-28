@@ -6,14 +6,15 @@ m_system::m_system(QWidget *parent):QWidget(parent){
     data.new_background(0,796,0,800,350,1);
     data.new_background(0,2*796,0,800,350,2);
     data.new_background(0,3*796,0,800,350,3);
-    data.new_project(100,100,100,50,0);
-    data.new_project(100,150,100,50,0);
+   // data.new_project(100,100,100,50,0);
+   // data.new_project(100,150,100,50,0);
    // data.new_project(100,300,100,50);
    // data.new_project(100,700,100,50);
     //for(int i=0;i<4;i++){
       //  data.new_project(100,rand()%500,rand()%180,50);
         //data.new_project(100,300,0,50);
     //}
+    data.new_affairs(300,200,100,230,0);
     ft=1;
     jisuan.datas=&data;
     connect(&con_ji,SIGNAL(timeout()),this,SLOT(upbase()));
@@ -22,11 +23,32 @@ m_system::m_system(QWidget *parent):QWidget(parent){
 }
 //操纵
 void m_system::beckon(int x, int y){
-    int x0,y0,z0;
+    int x0,y0,z0;int id;
     x0=x+show_zb;
     z0=data.hero.z;
     y0=144+(z0)/2-(y);
-    data.new_project(100,x0,y0,z0,0);
+   id=data.new_project(100,x0,y0,z0,0);
+   data.data_f[0].arton[id]->belong=0;
+}
+void m_system::shoot(int x, int y){
+    int x0,y0,z0;int id;
+    x0=x+show_zb;
+    z0=data.hero.z;
+    y0=144+(z0)/2-(y);
+    double vcx,vcy,vcz,mod;
+    vcx=x0-data.hero.x;
+    vcy=y0-(data.hero.y+5);
+    vcz=0;
+    mod=sqrt(vcx*vcx+vcy*vcy);
+    vcx=vcx*20.0/mod;
+    vcy=vcy*20.0/mod;
+    id=data.new_project(100,data.hero.x,data.hero.y+5,data.hero.z,0);
+    data.data_f[0].arton[id]->v_x=vcx;
+    data.data_f[0].arton[id]->v_y=vcy;
+    data.data_f[0].arton[id]->v_z=vcz;
+     data.data_f[0].arton[id]->belong=1;
+
+
 }
 
 //更新

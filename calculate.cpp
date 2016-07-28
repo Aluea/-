@@ -10,14 +10,14 @@ inline bool cal::getdf(pic_all *p){
     else if(p->type>=100){
          Arton_base *lin;
         lin=datas->data_f[0].arton[p->id];
-        if(!lin->a_x&&!lin->a_y&&!lin->a_z&&!lin->v_x&&!lin->v_y&&!lin->v_z)
+        if(!lin->a_x&&!lin->a_y&&!lin->a_z&&abs(lin->v_x)<0.001&&abs(lin->v_y)<0.001&&abs(lin->v_z)<0.001)
             return false;
         else return true;
     }
 }
 double F(double dis){
     double ret;
-    if(dis>22.2){
+    if(dis>25.2){
         ret=0;
     }else if(dis>25){
         ret=50/dis;
@@ -191,6 +191,41 @@ void cal::colide(pic_all *p,pic_all *q){
     setv(q,&nvx2,&nvy2,&nvz2);
 
 }
+void cal::xun_js(pic_all *p, pic_all *q){
+    Arton_virtual *lin;
+    lin=datas->data_f[0].affairs[p->id]->virtual_list[0];
+    double vcx,vcy,vcz,x,y,z,mod;
+    getxyz(q,&x,&y,&z);
+    vcx=lin->x-x;
+    vcy=lin->y-y;
+    vcz=lin->z-z;
+    mod=sqrt(vcx*vcx+vcy*vcy+vcz*vcz);
+    if(mod<20){
+        vcx=0;
+        vcy=0;
+        vcz=0;
+    }
+    else if(mod<60){
+        vcx*=3.0/mod;
+        vcy*=3.0/mod;
+        vcz*=3.0/mod;
+    }
+    else if(mod<200){
+        vcx*=2/mod;
+        vcy*=2/mod;
+        vcz*=2/mod;
+    }
+    else{
+        vcx=0;
+        vcy=0;
+        vcz=0;
+    }
+    geta(q,&x,&y,&z);
+    x+=vcx;
+    y+=vcy;
+    z+=vcz;
+    seta(q,&x,&y,&z);
+}
 
 void cal::m_search1(){
     at_count=0;pic_all lin;
@@ -213,7 +248,7 @@ void cal::m_search1(){
  void cal::m_search2(){
      for(int i=0;i<at_count;i++){
          pre[i]=-1;
-         qDebug("%d %d",active_list[i].type,active_list[i].id);
+        // qDebug("%d %d",active_list[i].type,active_list[i].id);
      }
      double juli;
      fn_count=0;
@@ -246,7 +281,7 @@ void cal::m_search1(){
        if(x>fn_list[pre[i]].x_max)fn_list[pre[i]].x_max=(int)x;
        if(x<fn_list[pre[i]].x_min)fn_list[pre[i]].x_min=(int)x;
        if(y>fn_list[pre[i]].y_max)fn_list[pre[i]].y_max=(int)y;
-       if(y<fn_list[pre[i]].y_min)fn_list[pre[i]].y_min=0;
+       if(y<fn_list[pre[i]].y_min)fn_list[pre[i]].y_min=(int)y;
      }
     // qDebug("AT %d",at_count);
  }
@@ -254,7 +289,7 @@ void cal::m_search1(){
      m_search1();
      m_search2();
      int b_z,b_y,b_s,b_x;
-     for(int l=0;l<fn_count;l++){
+     for(int l=0;l<1;l++){
          if(fn_list[l].x_min-5>=0)
          b_z=fn_list[l].x_min-5;
          else b_z=0;
@@ -267,14 +302,14 @@ void cal::m_search1(){
          if(fn_list[l].y_max+5<=18)
          b_s=fn_list[l].y_max+5;
          else b_s=18;
-         qDebug("sj%d %d %d %d",b_z,b_y,b_s,b_x);
+        // qDebug("sj%d %d %d %d",b_z,b_y,b_s,b_x);
          if(b_z<0||b_z>=180)b_z=0;
          if(b_y<0||b_y>=180)b_y=180;
          if(b_s<0||b_s>=18)b_s=0;
          if(b_x<0||b_x>=18)b_x=18;
          js_count=0;
-         for(int k=b_z;k<=b_y;k++){    //四极入库
-             for(int i=b_x;i<=b_s;i++){
+         for(int k=0;k<180;k++){    //四极入库
+             for(int i=0;i<=14;i++){
                  for(int j=0;j<datas->data_f[0].map_count[k][i];j++){
 
                     js_list[js_count++]=datas->data_f[0].map[k][i][j];
@@ -289,6 +324,14 @@ void cal::m_search1(){
              Arton_base &A=*static_cast<Arton_base*>(datas->find_type(js_list[i]));
              A.set_a(0,0,0);
          }
+         for(int i=0;i<datas->must_count;i++){
+             //qDebug("%d",datas->must_count);
+             for(int j=0;j<js_count;j++){
+                 if(getbl(&js_list[j])==1){
+                     xun_js(&datas->must_list[i],&js_list[j]);
+                 }
+             }
+         }
          for(int i=0;i<js_count;i++){
              //单个受力
             // qDebug("%d",js_list[i].id);
@@ -296,9 +339,12 @@ void cal::m_search1(){
 
                     // qDebug("%f",getjuli(&js_list[i],&js_list[j]));
                     // if(getjuli(&js_list[i],&js_list[j])<500)colide(&js_list[i],&js_list[j]);
-                 {
+                 if(getbl(&js_list[i])==getbl(&js_list[j])&&getbl(&js_list[i])==0){
                      cal_f(js_list[i],js_list[j]);
                      cal_f(js_list[j],js_list[i]);
+                 }
+                 else{
+                     if(getjuli(&js_list[i],&js_list[j])<500)colide(&js_list[i],&js_list[j]);
                  }
              }
 
@@ -306,17 +352,17 @@ void cal::m_search1(){
          int x,y,z;
           for(int i=0;i<js_count;i++){
               Arton_base &A=*static_cast<Arton_base*>(datas->find_type(js_list[i]));
-//          if(abs(A.a_x)<0.7)A.a_x=0;
+         if(abs(A.a_x)<0.7)A.a_x=0;
 //        //  if(abs(A.a_x)>20){
 //      //        if(A.a_x>0)x=1;else x=-1;
 //      //        A.a_x=20*x;
 //     //     }
-//              if(abs(A.a_y)<0.7)A.a_y=0;
+              if(abs(A.a_y)<0.7)A.a_y=0;
 //       //       if(abs(A.a_y)>20){
 //       //           if(A.a_y>0)y=1;else y=-1;
 //        //          A.a_y=20*y;
 //          //    }
-//             if(abs(A.a_z)<0.7)A.a_z=0;
+             if(abs(A.a_z)<0.7)A.a_z=0;
 //       //      if(abs(A.a_z)>20){
 //        //         if(A.a_z>0)z=1;else z=-1;
 //        //         A.a_z=20*z;
@@ -368,9 +414,10 @@ void cal::cal_f(const pic_all& a,const pic_all& b){
         return;
     }
     double f=-F(dis);
+    if(f==0)return;
     if(abs(f)<=0.75){
-//        A.smail_v(2);
-        A.smail_v();
+        A.smail_v(2);
+       // A.smail_v();
     }
     double lin=f/dis;
     double a_x,a_y,a_z;

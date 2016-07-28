@@ -40,7 +40,7 @@ inline void setbl(pic_all *p,int e);
     void main_js();
     //运转法则
     void colide(pic_all *p,pic_all *q);
-
+   void xun_js(pic_all *p,pic_all *q); //虚实粒子 混算 （不完善 试验版）
     void cal_f(const pic_all& a,const pic_all& b);//力计算 并设置
 private:
    pic_all active_list[1000];

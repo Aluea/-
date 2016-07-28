@@ -22,6 +22,7 @@ Database::Database(){
     data_f[hear].map[int(hero.x/DIS)][int(hero.y/DIS)][0].id=0;
     data_f[hear].map_count[int(hero.x/DIS)][int(hero.y/DIS)]++;*/
     //data_f=new data_in;
+    must_count=0;
 }
 Database::~Database(){
     //delete hero;
@@ -33,11 +34,34 @@ void swap(pic_all& a,pic_all& b){
     a=b;
     b=c;
 }
+ int Database::new_affairs(int type,int x,int y,int z,int v){
+     int id;
+     Affairs *lin;pic_all lins;
 
-void Database::new_project(int type,int x,int y,int z,int v){
+     switch (type){
+     case (300):
+         for(int i=0;i<AFFAIRS_ALL;i++){
+             if(!data_f[hear].affairs_use[i]){
+                 id=i;
+                 data_f[hear].affairs_use[i]=true;
+                 break;
+             }
+         }
+         lin=data_f[hear].affairs[id]=new Affairs(1,0,0);
+         for(int i=0;i<lin->virtual_count;i++){
+             lin->virtual_list[i]=new Arton_virtual(x,y,z);
+         }break;
+     }
+     lins.id=id;lins.type=type;
+     must_list[must_count++]=lins;
+     return id;
+
+ }
+
+int Database::new_project(int type,int x,int y,int z,int v){
     int id;
     Life* lin;
-    Arton_base* lin_a;
+    Arton_base* lin_a; pic_all lins;
     switch (type){
 //      case (-1)://英雄
         case(0)://怪物_0
@@ -72,13 +96,15 @@ void Database::new_project(int type,int x,int y,int z,int v){
             data_f[hear].map[x][y][data_f[hear].map_count[x][y]].type=type;
             data_f[hear].map_count[x][y]++;
             //qDebug("%d",data_f[hear].map_count[x][y]);
-            pic_all lins;
+            lins;
             lins.id=id;
             lins.type=type;
             freshman.push(lins);  //初生主动点
             break;
 
+
     }
+    return id;
 }
 void Database::new_background(int hear,int x,int y,int w,int h,int pic_id){
     for(int i=0;i<BACKGROUND_ALL;i++){
@@ -190,4 +216,7 @@ void* Database::find_type(const pic_all& lin){
             break;
     }
     return ret;
+}
+void Database::kill_must(const pic_all& obj){
+
 }

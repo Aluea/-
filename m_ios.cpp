@@ -105,7 +105,7 @@ void my_ios::key_bourd_fun(){
 
 void my_ios::keyPressEvent( QKeyEvent *event){
 
-    char ch;
+    char ch;QPoint aaa;
     ch=event->key();
     //qDebug("%d",rfang);
 
@@ -117,9 +117,12 @@ void my_ios::keyPressEvent( QKeyEvent *event){
            //    peo_jump_timer.start(3*TI);
             jumps();
             break;
-         case 'Z': QPoint aaa = cursor().pos();
+         case 'Z':  aaa = cursor().pos();
             aaa=mapFromGlobal(aaa);
             sys->beckon(aaa.x(),aaa.y());break;
+           case 'C': aaa = cursor().pos();
+            aaa=mapFromGlobal(aaa);
+            sys->shoot(aaa.x(),aaa.y());break;
     }
 }
  void my_ios::jumps(){

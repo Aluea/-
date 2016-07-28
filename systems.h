@@ -41,6 +41,7 @@ public:
     int h_count;
     // 操作粒子、技能
     void beckon(int x,int y);
+    void shoot(int x,int y);
 
 private:
     //人图动 标志

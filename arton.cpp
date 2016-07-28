@@ -34,7 +34,7 @@ Arton_green::Arton_green(double x, double y, double z){
     id_count=1;
     id_pic=new int[id_count];
     id_pic[0]=200;
-    size=15;
+    size=10;
     state=0;
     this->x=x;
     this->y=y;
@@ -46,7 +46,7 @@ Arton_green::Arton_green(double x, double y, double z, double v_x=0, double v_y=
     id_count=1;
     id_pic=new int[id_count];
     id_pic[0]=200;
-     size=15;
+     size=10;
      state=0;
     this->x=x;
     this->y=y;
@@ -54,6 +54,15 @@ Arton_green::Arton_green(double x, double y, double z, double v_x=0, double v_y=
     this->v_x=v_x;
     this->v_y=v_y;
     this->v_z=v_z;
+    a_x=a_y=a_z=0;
+}
+Arton_virtual::Arton_virtual(double x, double y, double z){
+    size=10;
+    state=0;
+    this->x=x;
+    this->y=y;
+    this->z=z;
+    v_x=v_y=v_z=0;
     a_x=a_y=a_z=0;
 }
 
@@ -81,21 +90,21 @@ void Arton_base::set_v(double x, double y, double z){
 }
 
 void Arton_base::cal_v(){
-//    if(abs(v_x)+abs(a_x)==abs(a_x+v_x))
-//    v_x+=a_x*0.1;
-//    else v_x+=a_x*0.7;
-//    if(abs(v_y)+abs(a_y)==abs(a_y+v_y))
-//    v_y+=a_y*0.1;
-//    else v_y+=a_y*0.7;
-//    if(abs(v_z)+abs(a_z)==abs(a_z+v_z))
-//    v_z+=a_z*0.1;
-//    else v_z+=a_z*0.7;
-    v_x+=a_x;
-    v_y+=a_y;
-    v_z+=a_z;
-    v_x=(int)v_x;
-    v_y=(int)v_y;
-    v_z=(int)v_z;
+    if(abs(v_x)+abs(a_x)==abs(a_x+v_x))
+    v_x+=a_x*0.1;
+    else v_x+=a_x*0.7;
+    if(abs(v_y)+abs(a_y)==abs(a_y+v_y))
+    v_y+=a_y*0.1;
+    else v_y+=a_y*0.7;
+    if(abs(v_z)+abs(a_z)==abs(a_z+v_z))
+   v_z+=a_z*0.1;
+    else v_z+=a_z*0.7;
+   v_x*=0.97;
+   v_y*=0.97;
+   v_z*=0.97;
+   //if(abs(v_x)<0.0000001)v_x=0;
+   //if(abs(v_y)<0.0000001)v_y=0;
+  // if(abs(v_z)<0.0000001)v_z=0;
 
 }
 
@@ -109,9 +118,8 @@ void Arton_base::cal_s(){
     if(y<0){
         y=-y;
     }
-    x=(int)x;
-    y=(int)y;
-    z=(int)z;
+
 
 
 }
+
