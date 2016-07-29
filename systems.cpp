@@ -14,7 +14,7 @@ m_system::m_system(QWidget *parent):QWidget(parent){
       //  data.new_project(100,rand()%500,rand()%180,50);
         //data.new_project(100,300,0,50);
     //}
-    data.new_affairs(300,200,100,230,0);
+   // data.new_affairs(300,200,100,230,0);
     ft=1;
     jisuan.datas=&data;
     connect(&con_ji,SIGNAL(timeout()),this,SLOT(upbase()));

@@ -17,7 +17,7 @@ inline bool cal::getdf(pic_all *p){
 }
 double F(double dis){
     double ret;
-    if(dis>25.2){
+    if(dis>40.2){
         ret=0;
     }else if(dis>25){
         ret=50/dis;
@@ -339,9 +339,9 @@ void cal::m_search1(){
 
                     // qDebug("%f",getjuli(&js_list[i],&js_list[j]));
                     // if(getjuli(&js_list[i],&js_list[j])<500)colide(&js_list[i],&js_list[j]);
-                 if(getbl(&js_list[i])==getbl(&js_list[j])&&getbl(&js_list[i])==0){
+                 if(getbl(&js_list[i])==getbl(&js_list[j])){
                      cal_f(js_list[i],js_list[j]);
-                     cal_f(js_list[j],js_list[i]);
+
                  }
                  else{
                      if(getjuli(&js_list[i],&js_list[j])<500)colide(&js_list[i],&js_list[j]);
@@ -415,21 +415,51 @@ void cal::cal_f(const pic_all& a,const pic_all& b){
     }
     double f=-F(dis);
     if(f==0)return;
-    if(abs(f)<=0.75){
-        A.smail_v(2);
+     if(abs(f)<=0.75){
+    int fx1,fx2,fy1,fy2,fz1,fz2;
+    double vcx,vcy,vcz,vx1,vx2,vy1,vy2,vz1,vz2,mod;
+   A.getv(&vx1,&vy1,&vz1);
+    B.getv(&vx2,&vy2,&vz2);
+    vcx=vx1-vx2;
+    vcy=vy1-vy2;
+    vcz=vz1-vz2;
+    mod=abs(vcx*x+vcy*y+vcz*z)*1.0/dis;
+    double k;
+    if(mod>2)k=1;
+    else k=mod/2.0;
+    vcx=abs(x)*k*1.0/dis;
+    vcy=abs(y)*k*1.0/dis;
+    vcz=abs(z)*k*1.0/dis;
+    if(vx1>0)fx1=1;
+    else fx1=-1;
+    if(vx2>0)fx2=1;
+    else fx2=-1;
+    if(vy1>0)fy1=1;
+    else fy1=-1;
+    if(vy2>0)fy2=1;
+    else fy2=-1;
+    if(vz1>0)fz1=1;
+    else fz1=-1;
+    if(vz2>0)fz2=1;
+    else fz2=-1;
+    vx1=(abs(vx1)-vcx)*fx1;
+    vx2=(abs(vx2)-vcx)*fx2;
+    vy1=(abs(vy1)-vcy)*fy1;
+    vy2=(abs(vy2)-vcy)*fy2;
+    vz1=(abs(vz1)-vcz)*fz1;
+    vz2=(abs(vz2)-vcz)*fz2;
+
+    A.v_x=vx1;A.v_y=vy1;A.v_z=vz1;
+    B.v_x=vx2;B.v_y=vy2;B.v_z=vz2;
        // A.smail_v();
     }
     double lin=f/dis;
     double a_x,a_y,a_z;
-    if(dis<=16){
-     a_x=lin*x;
-     a_y=lin*y;
-     a_z=lin*z;}
-    else{
+
          a_x=lin*x;
          a_y=lin*y;
          a_z=lin*z;
-    }
+
     A.set_a(A.a_x+a_x,A.a_y+a_y,A.a_z+a_z);
-    //B.set_a(B.a_x-a_x,B.a_y-a_y,B.a_z-a_z);
+    B.set_a(B.a_x-a_x,B.a_y-a_y,B.a_z-a_z);
 }

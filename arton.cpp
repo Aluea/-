@@ -88,20 +88,25 @@ void Arton_base::set_v(double x, double y, double z){
      this->y=y;
      this->z=z;
 }
+void Arton_base::getv(double *x, double *y, double *z){
+    *x=v_x;
+    *y=v_y;
+    *z=v_z;
+}
 
 void Arton_base::cal_v(){
     if(abs(v_x)+abs(a_x)==abs(a_x+v_x))
-    v_x+=a_x*0.1;
+    v_x+=a_x*0.2;
     else v_x+=a_x*0.7;
     if(abs(v_y)+abs(a_y)==abs(a_y+v_y))
-    v_y+=a_y*0.1;
+    v_y+=a_y*0.2;
     else v_y+=a_y*0.7;
     if(abs(v_z)+abs(a_z)==abs(a_z+v_z))
-   v_z+=a_z*0.1;
+   v_z+=a_z*0.2;
     else v_z+=a_z*0.7;
-   v_x*=0.97;
-   v_y*=0.97;
-   v_z*=0.97;
+   v_x*=0.96;
+   v_y*=0.96;
+   v_z*=0.96;
    //if(abs(v_x)<0.0000001)v_x=0;
    //if(abs(v_y)<0.0000001)v_y=0;
   // if(abs(v_z)<0.0000001)v_z=0;

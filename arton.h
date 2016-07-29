@@ -11,6 +11,7 @@ class Arton_base{
         void smail_v();//缩小速度
         void smail_v(double c);
         int get_id_pic();
+        void getv(double *x,double *y,double *z);
         void cal_v();//计算v
         void cal_s();//计算位置
         double x,y,z;
