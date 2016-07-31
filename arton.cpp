@@ -34,7 +34,7 @@ Arton_green::Arton_green(double x, double y, double z){
     id_count=1;
     id_pic=new int[id_count];
     id_pic[0]=200;
-    size=10;
+    size=13;
     state=0;
     this->x=x;
     this->y=y;
@@ -46,7 +46,7 @@ Arton_green::Arton_green(double x, double y, double z, double v_x=0, double v_y=
     id_count=1;
     id_pic=new int[id_count];
     id_pic[0]=200;
-     size=10;
+     size=13;
      state=0;
     this->x=x;
     this->y=y;
@@ -104,12 +104,12 @@ void Arton_base::cal_v(){
     if(abs(v_z)+abs(a_z)==abs(a_z+v_z))
    v_z+=a_z*0.2;
     else v_z+=a_z*0.7;
-   v_x*=0.96;
-   v_y*=0.96;
-   v_z*=0.96;
-   //if(abs(v_x)<0.0000001)v_x=0;
-   //if(abs(v_y)<0.0000001)v_y=0;
-  // if(abs(v_z)<0.0000001)v_z=0;
+   v_x*=0.95;
+   v_y*=0.95;
+   v_z*=0.95;
+   //if(abs(v_x)<0.000000001)v_x=0;
+   //if(abs(v_y)<0.000000001)v_y=0;
+   //if(abs(v_z)<0.000000001)v_z=0;
 
 }
 

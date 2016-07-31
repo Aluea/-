@@ -17,7 +17,7 @@ inline bool cal::getdf(pic_all *p){
 }
 double F(double dis){
     double ret;
-    if(dis>40.2){
+    if(dis>25.2){
         ret=0;
     }else if(dis>25){
         ret=50/dis;
@@ -161,6 +161,88 @@ inline void cal::setbl(pic_all *p,int e){
 }
 
 //方法区
+void cal::relative_rest(pic_all *p,pic_all *q){
+    double x1,x2,y1,y2,z1,z2,vcx,vcy,vcz,mod,dis;
+    double ax1,ay1,az1,ax2,ay2,az2;
+    getxyz(p,&x1,&y1,&z1);
+    getxyz(q,&x2,&y2,&z2);
+    x1-=x2;y1-=y2;z1-=z2;
+    geta(p,&ax1,&ay1,&az1);
+    geta(q,&ax2,&ay2,&az2);
+   //  qDebug("%f %f %f %f %f %f",x1,y1,z1,x2,y2,z2);
+    vcx=ax1-ax2;
+    vcy=ay1-ay2;
+    vcz=az1-az2;
+
+    dis=sqrt(x1*x1+y1*y1+z1*z1);
+  //  qDebug("%f",dis);
+    mod=abs(x1*vcx+y1*vcy+z1*vcz)*1.0/dis;
+   // qDebug("%f",mod);
+    mod*=0.5;
+    vcx=abs(x1)*mod*1.0/dis;
+    vcy=abs(y1)*mod*1.0/dis;
+    vcz=abs(z1)*mod*1.0/dis;
+   // qDebug("%f %f %f",vcx,vcz,vcy);
+    int fx1,fx2,fy1,fy2,fz1,fz2;
+    if(ax1>0)fx1=1;
+    else fx1=-1;
+    if(ax2>0)fx2=1;
+    else fx2=-1;
+    if(ay1>0)fy1=1;
+    else fy1=-1;
+    if(ay2>0)fy2=1;
+    else fy2=-1;
+    if(az1>0)fz1=1;
+    else fz1=-1;
+    if(az2>0)fz2=1;
+    else fz2=-1;
+    ax1=(abs(ax1)-vcx)*fx1;
+    ax2=(abs(ax2)-vcx)*fx2;
+    ay1=(abs(ay1)-vcy)*fy1;
+    ay2=(abs(ay2)-vcy)*fy2;
+    az1=(abs(az1)-vcz)*fz1;
+    az2=(abs(az2)-vcz)*fz2;
+   // qDebug("AA%f %f %f %f %f %f",ax1,ay1,az1,ax2,ay2,az2);
+    seta(p,&ax1,&ay1,&az1);
+    seta(q,&ax2,&ay2,&az2);
+
+}
+
+void cal::pull(pic_all *p,pic_all *q){
+     double x1,x2,y1,y2,z1,z2,vcx,vcy,vcz,mod,dis;
+     double x,y,z;
+     getxyz(p,&x1,&y1,&z1);
+     getxyz(q,&x2,&y2,&z2);
+     x=x1-x2;
+     y=y1-y2;
+     z=z1-z2;
+     dis=sqrt(x*x+y*y+z*z);
+     mod=21-dis;
+     vcx=abs(x)*mod*0.5/dis;
+     vcy=abs(y)*mod*0.5/dis;
+     vcz=abs(z)*mod*0.5/dis;
+     if(x1<x2){
+         x1-=vcx;x2+=vcx;
+     }
+     else{
+         x1+=vcx;x2-=vcx;
+     }
+     if(y1<y2){
+         y1-=vcy;y2+=vcy;
+     }
+      else{
+         y1+=vcy;y2-=vcy;
+     }
+     if(z1<z2){
+         z1-=vcz;z2+=vcz;
+     }
+     else{
+         z1+=vcz;z2-=vcz;
+     }
+     setxyz(p,&x1,&y1,&z1);
+     setxyz(q,&x2,&y2,&z2);
+}
+
 void cal::colide(pic_all *p,pic_all *q){
     double x1,x2,y1,y2,z1,z2,vx1,vx2,vy1,vy2,vz1,vz2;
     double cvx,cvy,cvz;
@@ -200,20 +282,35 @@ void cal::xun_js(pic_all *p, pic_all *q){
     vcy=lin->y-y;
     vcz=lin->z-z;
     mod=sqrt(vcx*vcx+vcy*vcy+vcz*vcz);
-    if(mod<20){
+    if(mod<10){
         vcx=0;
         vcy=0;
         vcz=0;
     }
     else if(mod<60){
-        vcx*=3.0/mod;
-        vcy*=3.0/mod;
-        vcz*=3.0/mod;
+        vcx*=0.5*3.0/mod;
+        vcy*=0.5*3.0/mod;
+        vcz*=0.5*3.0/mod;
     }
-    else if(mod<200){
-        vcx*=2/mod;
-        vcy*=2/mod;
-        vcz*=2/mod;
+    else if(mod<70){
+        vcx*=0.5*2/mod;
+        vcy*=0.5*2/mod;
+        vcz*=0.5*2/mod;
+    }
+    else if(mod<80){
+        vcx*=0.5*1.5/mod;
+        vcy*=0.5*1.5/mod;
+        vcz*=0.5*1.5/mod;
+    }
+    else if(mod<90){
+        vcx*=0.5*1.0/mod;
+        vcy*=0.5*1.0/mod;
+        vcz*=0.5*1.0/mod;
+    }
+    else if(mod<100){
+        vcx*=0.5*0.5/mod;
+        vcy*=0.5*0.5/mod;
+        vcz*=0.5*0.5/mod;
     }
     else{
         vcx=0;
@@ -327,7 +424,7 @@ void cal::m_search1(){
          for(int i=0;i<datas->must_count;i++){
              //qDebug("%d",datas->must_count);
              for(int j=0;j<js_count;j++){
-                 if(getbl(&js_list[j])==1){
+                 if(getbl(&js_list[j])==0){
                      xun_js(&datas->must_list[i],&js_list[j]);
                  }
              }
@@ -349,20 +446,28 @@ void cal::m_search1(){
              }
 
          }
+         for(int i=0;i<js_count;i++){
+             for(int j=i+1;j<js_count;j++){
+                 if(getjuli(&js_list[i],&js_list[j])<400){
+                     relative_rest(&js_list[i],&js_list[j]);
+                     pull(&js_list[i],&js_list[j]);
+                 }
+             }
+         }
          int x,y,z;
           for(int i=0;i<js_count;i++){
               Arton_base &A=*static_cast<Arton_base*>(datas->find_type(js_list[i]));
-         if(abs(A.a_x)<0.7)A.a_x=0;
+         if(abs(A.a_x)<0.25)A.a_x=0;
 //        //  if(abs(A.a_x)>20){
 //      //        if(A.a_x>0)x=1;else x=-1;
 //      //        A.a_x=20*x;
 //     //     }
-              if(abs(A.a_y)<0.7)A.a_y=0;
+              if(abs(A.a_y)<0.25)A.a_y=0;
 //       //       if(abs(A.a_y)>20){
 //       //           if(A.a_y>0)y=1;else y=-1;
 //        //          A.a_y=20*y;
 //          //    }
-             if(abs(A.a_z)<0.7)A.a_z=0;
+             if(abs(A.a_z)<0.25)A.a_z=0;
 //       //      if(abs(A.a_z)>20){
 //        //         if(A.a_z>0)z=1;else z=-1;
 //        //         A.a_z=20*z;

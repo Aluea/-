@@ -39,9 +39,11 @@ inline void setbl(pic_all *p,int e);
     //计算
     void main_js();
     //运转法则
-    void colide(pic_all *p,pic_all *q);
+    void colide(pic_all *p,pic_all *q);  //碰撞
    void xun_js(pic_all *p,pic_all *q); //虚实粒子 混算 （不完善 试验版）
     void cal_f(const pic_all& a,const pic_all& b);//力计算 并设置
+    void relative_rest(pic_all *p,pic_all *q);  //相对无力
+    void pull(pic_all *p,pic_all *q);           //强制拉开
 private:
    pic_all active_list[1000];
    int pre[1000]; //存上级

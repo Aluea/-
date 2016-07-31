@@ -14,7 +14,9 @@ m_system::m_system(QWidget *parent):QWidget(parent){
       //  data.new_project(100,rand()%500,rand()%180,50);
         //data.new_project(100,300,0,50);
     //}
-   // data.new_affairs(300,200,100,230,0);
+    data.new_affairs(300,200,100,230,0);
+    data.new_affairs(300,130,100,230,0);
+    data.new_affairs(300,270,100,230,0);
     ft=1;
     jisuan.datas=&data;
     connect(&con_ji,SIGNAL(timeout()),this,SLOT(upbase()));
@@ -40,8 +42,8 @@ void m_system::shoot(int x, int y){
     vcy=y0-(data.hero.y+5);
     vcz=0;
     mod=sqrt(vcx*vcx+vcy*vcy);
-    vcx=vcx*20.0/mod;
-    vcy=vcy*20.0/mod;
+    vcx=vcx*30.0/mod;
+    vcy=vcy*30.0/mod;
     id=data.new_project(100,data.hero.x,data.hero.y+5,data.hero.z,0);
     data.data_f[0].arton[id]->v_x=vcx;
     data.data_f[0].arton[id]->v_y=vcy;
