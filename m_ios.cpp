@@ -7,7 +7,7 @@ my_ios::my_ios(QWidget *parent):QWidget(parent){
     tu[3]=new QPixmap(":/A4");
     tu[100]=new QPixmap(":/R1");
     tu[101]=new QPixmap(":/R2");
-    tu[200]=new QPixmap(":/L1");
+    tu[200]=new QPixmap(":/L2");
     for(int i=0;i<100;i++){
         tuq[i]=new QRect(335,250,67,67);
     }

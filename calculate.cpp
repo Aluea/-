@@ -448,7 +448,7 @@ void cal::m_search1(){
          }
          for(int i=0;i<js_count;i++){
              for(int j=i+1;j<js_count;j++){
-                 if(getjuli(&js_list[i],&js_list[j])<400){
+                 if(getjuli(&js_list[i],&js_list[j])<300){
                      relative_rest(&js_list[i],&js_list[j]);
                      pull(&js_list[i],&js_list[j]);
                  }
